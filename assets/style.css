@@ -1,0 +1,212 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #36393f;
+}
+
+body *{
+  outline: black;
+}
+
+.no-select {
+  user-select: none;
+}
+
+#topTitle{
+    width: 100%;
+    background-color: #36393f;
+    text-align: center;
+  }
+
+  #titleMain {
+    color: #7289da;
+    font-size: 5em;
+    line-height: 75px;
+  }
+
+  #titleLink, #titleLink:visited, #titleLink:active {
+    text-decoration: none;
+    color: #f04747;
+  }
+  
+  #titleLink:hover {
+    text-decoration: none;
+    color: #00acee;
+  }
+
+  #stageLink, #stageLink:visited, #stageLink:active {
+    text-decoration-style:solid;
+    color: #f04747;
+  }
+
+.container {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    width: 70vw;
+}
+
+#input, #output {
+    height: 30px;
+    font-size: 20px;
+    background-color: #40444b;
+    border-radius: 5px;
+    border: none;
+    outline: black;
+    color: #99aab5;
+    padding-left: 5px;
+}
+
+#inputMorse {
+  font-family: monospace;
+  height: 30px;
+  font-size: 20px;
+  background-color: #40444b;
+  border-radius: 5px;
+  border: none;
+  outline: black;
+  color: #99aab5;
+  padding-left: 5px;
+}
+
+.container-stages {
+    display: flex;
+    justify-content: flex-start;
+    flex-basis: 100%;
+}
+
+.radioButton{
+    margin-left: 10px; /* left if "Stage:" is shown */
+    width: 20px;
+    height: 20px;
+    margin-top: 6px;
+    outline: black;
+}
+
+.text {
+    font-size: 25px;
+    color: #99aab5;
+}
+
+#locationLink, #locationLink:visited, #locationLink:active {
+  text-decoration-style:solid;
+  color: #f04747;
+}
+
+button {
+  position: relative;
+  bottom: 3px;
+  margin-left: 5px;
+  color: white;
+  border-radius: 3px;
+  width: auto;
+  height: 30px;
+  font-family: 'Roboto', sans-serif;
+  border: 0px;
+  outline: 0px;
+  background-color: #7289da;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #677bc4;
+}
+
+.container-matches {
+  display: flex;
+  justify-content: space-between;
+  flex-basis: 100%;
+}
+
+.checkbox {
+  width: 17px;
+  height: 17px;
+  margin: 0 3px 0 0;
+  outline: black;
+  cursor: pointer;
+}
+
+.textCheck {
+  font-size: 21px;
+  color: #99aab5;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+textarea {
+  background-color: #40444b;
+  color: #99aab5;
+  font-size: 12px;
+  border-radius: 10px;
+  border: 2px solid #40444b;
+  line-height: 20px;
+  height: 50%;
+  resize: vertical;
+}
+
+textarea:focus {
+  outline: black;
+}
+
+
+::-webkit-scrollbar {
+  width: auto;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #2e3338;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #202225;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-corner {
+  background: #f04747;
+  border: 0px;
+  border-radius: 50%;
+}
+
+::-webkit-resizer {
+  border-radius: 50%;
+  background-color: #f04747;
+}
+
+@media only screen and (max-width: 945px) {
+  #titleMain {
+    color: #7289da;
+    font-size: 3em;
+    line-height: 30px;
+  }
+
+  .radioButton {
+    margin-left: 10px; /* left if "Stage:" is shown */
+    width: 15px;
+    height: 15px;
+    margin-top: 6px;
+  }
+
+  #stageLink {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 775px) {
+
+
+  .radioButton {
+    margin-left: 10px; /* left if "Stage:" is shown */
+    width: 15px;
+    height: 15px;
+    margin-top: 6px;
+  }
+
+  .container-stages *{
+    font-size: 20px;
+  }
+
+  #defaultText {
+    display: none;
+  }
+}
