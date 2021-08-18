@@ -247,7 +247,27 @@ ${JSON.stringify(jmespath.search(json, "*.*.*.cipher_text9")).replaceAll(`","`, 
 
     arr = str.match(regex);
 
-    if (arr == null) {
+    noresult: if (arr == null) {
+		
+		// Dirtiest fix
+		// Start removing character and se if we have a match with fluff
+		var minimumChars = 5;
+		if(isMorse){
+			minimumChars = 15;
+		}
+		for(i=1;i<inputUse.length-minimumChars;i++){
+			if(isMorse){
+				var regex2 = new RegExp("(?:(.*" + inputUse.slice(0,inputUse.length-i).replaceAll(".", "\\.") + ".*))", "gi")
+			}else{
+				var regex2 = new RegExp("(?:(.*" + inputUse.slice(0,inputUse.length-i).replaceAll(".", "\\.").replaceAll(" ", "") + ".*))", "gi")
+			}
+			arr2 = str.match(regex2);
+			if(arr2){
+				arr = arr2;
+				break noresult;
+			}
+		}
+		
         textarea.value = "No results. Please check your morse.";
         location.innerText = "No matches found. Please ask #easter-egg-help."
         document.getElementById("matchesText").innerText = `Matches: (0)`;
