@@ -240,43 +240,43 @@ ${JSON.stringify(jmespath.search(json, "*.*.*.cipher_text9")).replaceAll(`","`, 
     }
 
     if (input.value == "") { // If no input, display everything. Replace morse input to escape the special regex dot. Works with both text and morse.
-        var regex = new RegExp("(?:(.*" + str + ".*))", "gi")
+        var regex = new RegExp("(?:(.*" + str + ".*))", "gi");
     } else {
-        var regex = new RegExp("(?:(.*" + inputUse.replaceAll(".", "\\.") + ".*))", "gi")
+        var regex = new RegExp("(?:(.*" + inputUse.replaceAll(".", "\\.") + ".*))", "gi");
     }
 
     arr = str.match(regex);
 
     noresult: if (arr == null) {
-		
-		// Dirtiest fix
-		// Start removing character and se if we have a match with fluff
-		var minimumChars = 5;
-		if(isMorse){
-			minimumChars = 15;
-		}
-		for(i=1;i<inputUse.length-minimumChars;i++){
-			if(isMorse){
-				var regex2 = new RegExp("(?:(.*" + inputUse.slice(0,inputUse.length-i).replaceAll(".", "\\.") + ".*))", "gi")
-			}else{
-				var regex2 = new RegExp("(?:(.*" + inputUse.slice(0,inputUse.length-i).replaceAll(".", "\\.").replaceAll(" ", "") + ".*))", "gi")
-			}
-			arr2 = str.match(regex2);
-			if(arr2){
-				arr = arr2;
-				break noresult;
-			}
-		}
-		
+
+        // Dirtiest fix
+        // Start removing character and se if we have a match with fluff
+        var minimumChars = 5;
+        if (isMorse) {
+            minimumChars = 15;
+        }
+        for (i = 1; i < inputUse.length - minimumChars; i++) {
+            if (isMorse) {
+                var regex2 = new RegExp("(?:(.*" + inputUse.slice(0, inputUse.length - i).replaceAll(".", "\\.") + ".*))", "gi");
+            } else {
+                var regex2 = new RegExp("(?:(.*" + inputUse.slice(0, inputUse.length - i).replaceAll(".", "\\.").replaceAll(" ", "") + ".*))", "gi");
+            }
+            arr2 = str.match(regex2);
+            if (arr2) {
+                arr = arr2;
+                break noresult;
+            }
+        }
+
         textarea.value = "No results. Please check your morse.";
-        location.innerText = "No matches found. Please ask #easter-egg-help."
+        location.innerText = "No matches found. Please ask #easter-egg-help.";
         document.getElementById("matchesText").innerText = `Matches: (0)`;
         return;
     }
 
     matches = arr[0] + "\n" + arr[1] + "\n" + arr[2] + "\n" + arr[3] + "\n" + arr[4] + "\n" + arr[5] + "\n" + arr[6] + "\n" + arr[7] + "\n" + arr[8] + "\n" + arr[9]
         + "\n" + arr[10] + "\n" + arr[11] + "\n" + arr[12] + "\n" + arr[13] + "\n" + arr[14] + "\n" + arr[15] + "\n" + arr[16] + "\n" + arr[17] + "\n" + arr[18] + "\n" + arr[19] + "\n" + arr[20]
-        + "\n" + arr[21] + "\n" + arr[22] + "\n" + arr[23] + "\n" + arr[24] + "\n" + arr[25] + "\n" + arr[26] + "\n" + arr[27] + "\n" + arr[28]
+        + "\n" + arr[21] + "\n" + arr[22] + "\n" + arr[23] + "\n" + arr[24] + "\n" + arr[25] + "\n" + arr[26] + "\n" + arr[27] + "\n" + arr[28];
 
 
     var textarea = document.getElementById("resultsBox");
