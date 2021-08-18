@@ -245,9 +245,17 @@ ${JSON.stringify(jmespath.search(json, "*.*.*.cipher_text9")).replaceAll(`","`, 
         var regex = new RegExp("(?:(.*" + inputUse.replaceAll(".", "\\.") + ".*))", "gi")
     }
 
-    arr = str.match(regex);
-
-    if (arr == null) {
+    //arr = str.match(regex);
+	
+	arr = [];
+	str.split("\n").forEach(element => {
+			var regexp2 = new RegExp("(?:(.*" + element + ".*))", "gi")
+			if(inputUse.replaceAll(".", "\\.").match(regexp2) != null){
+				arr.push(element);
+			}
+		}		
+	);
+    if (!arr.length) {
         textarea.value = "No results. Please check your morse.";
         location.innerText = "No matches found. Please ask #easter-egg-help."
         document.getElementById("matchesText").innerText = `Matches: (0)`;
