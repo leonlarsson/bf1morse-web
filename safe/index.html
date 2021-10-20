@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <!-- Primary Meta Tags -->
+  <title>BF1 Morse Solver</title>
+  <meta name="title" content="Mozzy's Morse Solver">
+  <meta name="description" content="A website used for quickly solving 'The Beginning' morse codes from Battlefield 1.">
+  <meta name="theme-color" content="#7289da">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://leonlarsson.com/projects/bf1morse/">
+  <meta property="og:title" content="Mozzy's Morse Solver">
+  <meta property="og:description"
+    content="A website used for quickly solving 'The Beginning' morse codes from Battlefield 1.">
+  <meta property="og:image" content="https://leonlarsson.com/projects/bf1morse/assets/images/embed.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://leonlarsson.com/projects/bf1morse/">
+  <meta property="twitter:title" content="Mozzy's Morse Solver">
+  <meta property="twitter:description"
+    content="A website used for quickly solving 'The Beginning' morse codes from Battlefield 1.">
+  <meta property="twitter:image" content="https://leonlarsson.com/projects/bf1morse/assets/images/embed.png">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="icon" href="https://leonlarsson.com/assets/icon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="https://leonlarsson.com/assets/icon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <script type="text/json" src="assets/js/locations.json"></script>
+  <script src="assets/js/jmespath.js"></script>
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/bacon.js"></script>
+  <script src="assets/js/util.js"></script>
+  <script src="assets/js/VigenereCipher.js"></script>
+  <script src="assets/js/VigenereCipher-Autokey.js"></script>
+  <script src="assets/js/morse.js"></script>
+</head>
+
+<body class="no-select">
+  <div class="" id="topTitle">
+    <div id="titleMain"><a id="titleLink" href="https://twitter.com/MozzyFX">Mozzy's</a> Morse Solver</div>
+  </div>
+  <br>
+  <div class="container">
+    <span class="text">Cipher Text/Morse:
+    </span>
+    <input placeholder="Input your morse or text here" oninput="decode()" class="input" id="input" type="text">
+    <div class="container-stages">
+      <a id="stageLink" href="https://bfee.co/index.php?title=Battlefield_1/A_Beginning#Decoding_The_Messages"
+        target="_blank"><span class="text">Stage:</span></a>
+      <label class="text"><input id="check1" type="radio" name="stageRadio" class="radioButton"
+          onchange="decode()">1</input></label>
+      <label class="text"><input id="check2" type="radio" name="stageRadio" class="radioButton"
+          onchange="decode()">2</input></label>
+      <label class="text"><input id="check3" type="radio" name="stageRadio" class="radioButton"
+          onchange="decode()">3</input></label>
+      <label class="text"><input id="check4" type="radio" name="stageRadio" class="radioButton"
+          onchange="decode()">4</input></label>
+      <label class="text"><input id="check5" type="radio" name="stageRadio" class="radioButton"
+          onchange="decode()">5</input></label>
+      <label class="text"><input id="check6" type="radio" name="stageRadio" class="radioButton"
+          onchange="decode()">6</input></label>
+      <label class="text"><input id="check7" type="radio" name="stageRadio" class="radioButton"
+          onchange="decode()">7</input></label>
+      <label class="text"><input id="check8" type="radio" name="stageRadio" class="radioButton"
+          onchange="decode()">8</input></label>
+      <label class="text"><input id="check9" type="radio" name="stageRadio" class="radioButton"
+          onchange="decode()">9</input></label>
+      <label class="text"><input id="check10" type="radio" name="stageRadio" class="radioButton"
+          onchange="decode()">All <span id="defaultText">(default)</span></input></label>
+    </div>
+    <br/>
+
+    <span class="text">Output:</span>
+    <input id="output" type="text" readonly
+      placeholder="Please select a stage if you want to filter results and see the output. This is not required.">
+    <br>
+    <span class="text" id="locationText">Awaiting input...</span>
+    <br>
+    <div class="container-matches">
+      <span id="matchesText" class="text">Matches:</span>
+      <div>
+        <label class="textCheck"><input id="noEmbedCheck" type="checkbox" class="checkbox" onchange="decode()">No embed</input></label>
+        <button title="Copies the match(es)." id="copyResultButton" onclick="copyResult()">Copy</button>
+      </div>
+    </div>
+    <textarea rows="10" id="resultsBox" readonly></textarea>
+  </div>
+  <script>
+    fetch("assets/js/locations.json")
+      .then(response => response.json())
+      .then(response => {
+        // sessionStorage.setItem("json", JSON.stringify(response))
+        // results = sessionStorage.getItem("json");
+        json = JSON.parse(JSON.stringify(response));
+
+        // CHANGES MADE: Removed the sessionStorage entirely. Removed any json declaration outside of this.
+      });
+
+    function copyResult() {
+      document.getElementById("resultsBox").select();
+      document.execCommand("copy");
+      document.getSelection().removeAllRanges();
+    }
+    
+  </script>
+</body>
+
+</html>
