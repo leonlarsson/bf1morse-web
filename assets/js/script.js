@@ -1,4 +1,4 @@
-function decode() {
+function decode(locationJson) {
 
     // Define checkboxes
     const check1 = document.getElementById("check1");
@@ -181,19 +181,19 @@ function decode() {
     let str;
     if (stage) {
 
-        str = JSON.stringify(jmespath.search(json, `*.*.*.cipher_${inputType}${stage}`)).replaceAll(`","`, "\n").replaceAll(`"],["`, "\n").replaceAll(",", "").replaceAll("[", "").replaceAll("]", "").replaceAll(`"`, "");
+        str = JSON.stringify(jmespath.search(locationJson, `*.*.*.cipher_${inputType}${stage}`)).replaceAll(`","`, "\n").replaceAll(`"],["`, "\n").replaceAll(",", "").replaceAll("[", "").replaceAll("]", "").replaceAll(`"`, "");
 
     } else {
 
-        str = `${JSON.stringify(jmespath.search(json, `*.*.*.cipher_${inputType}1`)).replaceAll(`","`, "\n").replaceAll(`"],["`, "\n").replaceAll(",", "").replaceAll("[", "").replaceAll("]", "").replaceAll(`"`, "")}
-${JSON.stringify(jmespath.search(json, `*.*.*.cipher_${inputType}2`)).replaceAll(`","`, "\n").replaceAll(`"],["`, "\n").replaceAll(",", "").replaceAll("[", "").replaceAll("]", "").replaceAll(`"`, "")}
-${JSON.stringify(jmespath.search(json, `*.*.*.cipher_${inputType}3`)).replaceAll(`","`, "\n").replaceAll(`"],["`, "\n").replaceAll(",", "").replaceAll("[", "").replaceAll("]", "").replaceAll(`"`, "")}
-${JSON.stringify(jmespath.search(json, `*.*.*.cipher_${inputType}4`)).replaceAll(`","`, "\n").replaceAll(`"],["`, "\n").replaceAll(",", "").replaceAll("[", "").replaceAll("]", "").replaceAll(`"`, "")}
-${JSON.stringify(jmespath.search(json, `*.*.*.cipher_${inputType}5`)).replaceAll(`","`, "\n").replaceAll(`"],["`, "\n").replaceAll(",", "").replaceAll("[", "").replaceAll("]", "").replaceAll(`"`, "")}
-${JSON.stringify(jmespath.search(json, `*.*.*.cipher_${inputType}6`)).replaceAll(`","`, "\n").replaceAll(`"],["`, "\n").replaceAll(",", "").replaceAll("[", "").replaceAll("]", "").replaceAll(`"`, "")}
-${JSON.stringify(jmespath.search(json, `*.*.*.cipher_${inputType}7`)).replaceAll(`","`, "\n").replaceAll(`"],["`, "\n").replaceAll(",", "").replaceAll("[", "").replaceAll("]", "").replaceAll(`"`, "")}
-${JSON.stringify(jmespath.search(json, `*.*.*.cipher_${inputType}8`)).replaceAll(`","`, "\n").replaceAll(`"],["`, "\n").replaceAll(",", "").replaceAll("[", "").replaceAll("]", "").replaceAll(`"`, "")}
-${JSON.stringify(jmespath.search(json, `*.*.*.cipher_${inputType}9`)).replaceAll(`","`, "\n").replaceAll(`"],["`, "\n").replaceAll(",", "").replaceAll("[", "").replaceAll("]", "").replaceAll(`"`, "")}`
+        str = `${JSON.stringify(jmespath.search(locationJson, `*.*.*.cipher_${inputType}1`)).replaceAll(`","`, "\n").replaceAll(`"],["`, "\n").replaceAll(",", "").replaceAll("[", "").replaceAll("]", "").replaceAll(`"`, "")}
+${JSON.stringify(jmespath.search(locationJson, `*.*.*.cipher_${inputType}2`)).replaceAll(`","`, "\n").replaceAll(`"],["`, "\n").replaceAll(",", "").replaceAll("[", "").replaceAll("]", "").replaceAll(`"`, "")}
+${JSON.stringify(jmespath.search(locationJson, `*.*.*.cipher_${inputType}3`)).replaceAll(`","`, "\n").replaceAll(`"],["`, "\n").replaceAll(",", "").replaceAll("[", "").replaceAll("]", "").replaceAll(`"`, "")}
+${JSON.stringify(jmespath.search(locationJson, `*.*.*.cipher_${inputType}4`)).replaceAll(`","`, "\n").replaceAll(`"],["`, "\n").replaceAll(",", "").replaceAll("[", "").replaceAll("]", "").replaceAll(`"`, "")}
+${JSON.stringify(jmespath.search(locationJson, `*.*.*.cipher_${inputType}5`)).replaceAll(`","`, "\n").replaceAll(`"],["`, "\n").replaceAll(",", "").replaceAll("[", "").replaceAll("]", "").replaceAll(`"`, "")}
+${JSON.stringify(jmespath.search(locationJson, `*.*.*.cipher_${inputType}6`)).replaceAll(`","`, "\n").replaceAll(`"],["`, "\n").replaceAll(",", "").replaceAll("[", "").replaceAll("]", "").replaceAll(`"`, "")}
+${JSON.stringify(jmespath.search(locationJson, `*.*.*.cipher_${inputType}7`)).replaceAll(`","`, "\n").replaceAll(`"],["`, "\n").replaceAll(",", "").replaceAll("[", "").replaceAll("]", "").replaceAll(`"`, "")}
+${JSON.stringify(jmespath.search(locationJson, `*.*.*.cipher_${inputType}8`)).replaceAll(`","`, "\n").replaceAll(`"],["`, "\n").replaceAll(",", "").replaceAll("[", "").replaceAll("]", "").replaceAll(`"`, "")}
+${JSON.stringify(jmespath.search(locationJson, `*.*.*.cipher_${inputType}9`)).replaceAll(`","`, "\n").replaceAll(`"],["`, "\n").replaceAll(",", "").replaceAll("[", "").replaceAll("]", "").replaceAll(`"`, "")}`
 
     }
 
@@ -252,383 +252,383 @@ ${JSON.stringify(jmespath.search(json, `*.*.*.cipher_${inputType}9`)).replaceAll
     // REPLACE (Make actually readable) //
     // Amiens
     // 1-1
-    matches = matches.replace(json.maps.amiens.location_1[`cipher_${inputType}1`], `(Stage 1) ${json.maps.amiens.location_1.plain_text_spaces}: ${json.maps.amiens.map_name} | ${embed1}${json.maps.amiens.map_url}${embed2}`);
-    matches = matches.replace(json.maps.amiens.location_1[`cipher_${inputType}2`], `(Stage 2) ${json.maps.amiens.location_1.plain_text_spaces}: ${json.maps.amiens.map_name} | ${embed1}${json.maps.amiens.map_url}${embed2}`);
-    matches = matches.replace(json.maps.amiens.location_1[`cipher_${inputType}3`], `(Stage 3) ${json.maps.amiens.location_1.plain_text_spaces}: ${json.maps.amiens.map_name} | ${embed1}${json.maps.amiens.map_url}${embed2}`);
-    matches = matches.replace(json.maps.amiens.location_1[`cipher_${inputType}4`], `(Stage 4) ${json.maps.amiens.location_1.plain_text_spaces}: ${json.maps.amiens.map_name} | ${embed1}${json.maps.amiens.map_url}${embed2}`);
-    matches = matches.replace(json.maps.amiens.location_1[`cipher_${inputType}5`], `(Stage 5) ${json.maps.amiens.location_1.plain_text_spaces}: ${json.maps.amiens.map_name} | ${embed1}${json.maps.amiens.map_url}${embed2}`);
-    matches = matches.replace(json.maps.amiens.location_1[`cipher_${inputType}6`], `(Stage 6) ${json.maps.amiens.location_1.plain_text_spaces}: ${json.maps.amiens.map_name} | ${embed1}${json.maps.amiens.map_url}${embed2}`);
-    matches = matches.replace(json.maps.amiens.location_1[`cipher_${inputType}7`], `(Stage 7) ${json.maps.amiens.location_1.plain_text_spaces}: ${json.maps.amiens.map_name} | ${embed1}${json.maps.amiens.map_url}${embed2}`);
-    matches = matches.replace(json.maps.amiens.location_1[`cipher_${inputType}8`], `(Stage 8) ${json.maps.amiens.location_1.plain_text_spaces}: ${json.maps.amiens.map_name} | ${embed1}${json.maps.amiens.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.amiens.location_1[`cipher_${inputType}1`], `(Stage 1) ${locationJson.maps.amiens.location_1.plain_text_spaces}: ${locationJson.maps.amiens.map_name} | ${embed1}${locationJson.maps.amiens.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.amiens.location_1[`cipher_${inputType}2`], `(Stage 2) ${locationJson.maps.amiens.location_1.plain_text_spaces}: ${locationJson.maps.amiens.map_name} | ${embed1}${locationJson.maps.amiens.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.amiens.location_1[`cipher_${inputType}3`], `(Stage 3) ${locationJson.maps.amiens.location_1.plain_text_spaces}: ${locationJson.maps.amiens.map_name} | ${embed1}${locationJson.maps.amiens.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.amiens.location_1[`cipher_${inputType}4`], `(Stage 4) ${locationJson.maps.amiens.location_1.plain_text_spaces}: ${locationJson.maps.amiens.map_name} | ${embed1}${locationJson.maps.amiens.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.amiens.location_1[`cipher_${inputType}5`], `(Stage 5) ${locationJson.maps.amiens.location_1.plain_text_spaces}: ${locationJson.maps.amiens.map_name} | ${embed1}${locationJson.maps.amiens.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.amiens.location_1[`cipher_${inputType}6`], `(Stage 6) ${locationJson.maps.amiens.location_1.plain_text_spaces}: ${locationJson.maps.amiens.map_name} | ${embed1}${locationJson.maps.amiens.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.amiens.location_1[`cipher_${inputType}7`], `(Stage 7) ${locationJson.maps.amiens.location_1.plain_text_spaces}: ${locationJson.maps.amiens.map_name} | ${embed1}${locationJson.maps.amiens.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.amiens.location_1[`cipher_${inputType}8`], `(Stage 8) ${locationJson.maps.amiens.location_1.plain_text_spaces}: ${locationJson.maps.amiens.map_name} | ${embed1}${locationJson.maps.amiens.map_url}${embed2}`);
 
     // 1-2
-    matches = matches.replace(json.maps.amiens.location_2[`cipher_${inputType}1`], `(Stage 1) ${json.maps.amiens.location_2.plain_text_spaces}: ${json.maps.amiens.map_name} | ${embed1}${json.maps.amiens.map_url}${embed2}`);
-    matches = matches.replace(json.maps.amiens.location_2[`cipher_${inputType}2`], `(Stage 2) ${json.maps.amiens.location_2.plain_text_spaces}: ${json.maps.amiens.map_name} | ${embed1}${json.maps.amiens.map_url}${embed2}`);
-    matches = matches.replace(json.maps.amiens.location_2[`cipher_${inputType}3`], `(Stage 3) ${json.maps.amiens.location_2.plain_text_spaces}: ${json.maps.amiens.map_name} | ${embed1}${json.maps.amiens.map_url}${embed2}`);
-    matches = matches.replace(json.maps.amiens.location_2[`cipher_${inputType}4`], `(Stage 4) ${json.maps.amiens.location_2.plain_text_spaces}: ${json.maps.amiens.map_name} | ${embed1}${json.maps.amiens.map_url}${embed2}`);
-    matches = matches.replace(json.maps.amiens.location_2[`cipher_${inputType}5`], `(Stage 5) ${json.maps.amiens.location_2.plain_text_spaces}: ${json.maps.amiens.map_name} | ${embed1}${json.maps.amiens.map_url}${embed2}`);
-    matches = matches.replace(json.maps.amiens.location_2[`cipher_${inputType}6`], `(Stage 6) ${json.maps.amiens.location_2.plain_text_spaces}: ${json.maps.amiens.map_name} | ${embed1}${json.maps.amiens.map_url}${embed2}`);
-    matches = matches.replace(json.maps.amiens.location_2[`cipher_${inputType}7`], `(Stage 7) ${json.maps.amiens.location_2.plain_text_spaces}: ${json.maps.amiens.map_name} | ${embed1}${json.maps.amiens.map_url}${embed2}`);
-    matches = matches.replace(json.maps.amiens.location_2[`cipher_${inputType}8`], `(Stage 8) ${json.maps.amiens.location_2.plain_text_spaces}: ${json.maps.amiens.map_name} | ${embed1}${json.maps.amiens.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.amiens.location_2[`cipher_${inputType}1`], `(Stage 1) ${locationJson.maps.amiens.location_2.plain_text_spaces}: ${locationJson.maps.amiens.map_name} | ${embed1}${locationJson.maps.amiens.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.amiens.location_2[`cipher_${inputType}2`], `(Stage 2) ${locationJson.maps.amiens.location_2.plain_text_spaces}: ${locationJson.maps.amiens.map_name} | ${embed1}${locationJson.maps.amiens.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.amiens.location_2[`cipher_${inputType}3`], `(Stage 3) ${locationJson.maps.amiens.location_2.plain_text_spaces}: ${locationJson.maps.amiens.map_name} | ${embed1}${locationJson.maps.amiens.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.amiens.location_2[`cipher_${inputType}4`], `(Stage 4) ${locationJson.maps.amiens.location_2.plain_text_spaces}: ${locationJson.maps.amiens.map_name} | ${embed1}${locationJson.maps.amiens.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.amiens.location_2[`cipher_${inputType}5`], `(Stage 5) ${locationJson.maps.amiens.location_2.plain_text_spaces}: ${locationJson.maps.amiens.map_name} | ${embed1}${locationJson.maps.amiens.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.amiens.location_2[`cipher_${inputType}6`], `(Stage 6) ${locationJson.maps.amiens.location_2.plain_text_spaces}: ${locationJson.maps.amiens.map_name} | ${embed1}${locationJson.maps.amiens.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.amiens.location_2[`cipher_${inputType}7`], `(Stage 7) ${locationJson.maps.amiens.location_2.plain_text_spaces}: ${locationJson.maps.amiens.map_name} | ${embed1}${locationJson.maps.amiens.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.amiens.location_2[`cipher_${inputType}8`], `(Stage 8) ${locationJson.maps.amiens.location_2.plain_text_spaces}: ${locationJson.maps.amiens.map_name} | ${embed1}${locationJson.maps.amiens.map_url}${embed2}`);
 
     // 1-3
-    matches = matches.replace(json.maps.amiens.location_3[`cipher_${inputType}1`], `(Stage 1) ${json.maps.amiens.location_3.plain_text_spaces}: ${json.maps.amiens.map_name} | ${embed1}${json.maps.amiens.map_url}${embed2}`);
-    matches = matches.replace(json.maps.amiens.location_3[`cipher_${inputType}2`], `(Stage 2) ${json.maps.amiens.location_3.plain_text_spaces}: ${json.maps.amiens.map_name} | ${embed1}${json.maps.amiens.map_url}${embed2}`);
-    matches = matches.replace(json.maps.amiens.location_3[`cipher_${inputType}3`], `(Stage 3) ${json.maps.amiens.location_3.plain_text_spaces}: ${json.maps.amiens.map_name} | ${embed1}${json.maps.amiens.map_url}${embed2}`);
-    matches = matches.replace(json.maps.amiens.location_3[`cipher_${inputType}4`], `(Stage 4) ${json.maps.amiens.location_3.plain_text_spaces}: ${json.maps.amiens.map_name} | ${embed1}${json.maps.amiens.map_url}${embed2}`);
-    matches = matches.replace(json.maps.amiens.location_3[`cipher_${inputType}5`], `(Stage 5) ${json.maps.amiens.location_3.plain_text_spaces}: ${json.maps.amiens.map_name} | ${embed1}${json.maps.amiens.map_url}${embed2}`);
-    matches = matches.replace(json.maps.amiens.location_3[`cipher_${inputType}6`], `(Stage 6) ${json.maps.amiens.location_3.plain_text_spaces}: ${json.maps.amiens.map_name} | ${embed1}${json.maps.amiens.map_url}${embed2}`);
-    matches = matches.replace(json.maps.amiens.location_3[`cipher_${inputType}7`], `(Stage 7) ${json.maps.amiens.location_3.plain_text_spaces}: ${json.maps.amiens.map_name} | ${embed1}${json.maps.amiens.map_url}${embed2}`);
-    matches = matches.replace(json.maps.amiens.location_3[`cipher_${inputType}8`], `(Stage 8) ${json.maps.amiens.location_3.plain_text_spaces}: ${json.maps.amiens.map_name} | ${embed1}${json.maps.amiens.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.amiens.location_3[`cipher_${inputType}1`], `(Stage 1) ${locationJson.maps.amiens.location_3.plain_text_spaces}: ${locationJson.maps.amiens.map_name} | ${embed1}${locationJson.maps.amiens.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.amiens.location_3[`cipher_${inputType}2`], `(Stage 2) ${locationJson.maps.amiens.location_3.plain_text_spaces}: ${locationJson.maps.amiens.map_name} | ${embed1}${locationJson.maps.amiens.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.amiens.location_3[`cipher_${inputType}3`], `(Stage 3) ${locationJson.maps.amiens.location_3.plain_text_spaces}: ${locationJson.maps.amiens.map_name} | ${embed1}${locationJson.maps.amiens.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.amiens.location_3[`cipher_${inputType}4`], `(Stage 4) ${locationJson.maps.amiens.location_3.plain_text_spaces}: ${locationJson.maps.amiens.map_name} | ${embed1}${locationJson.maps.amiens.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.amiens.location_3[`cipher_${inputType}5`], `(Stage 5) ${locationJson.maps.amiens.location_3.plain_text_spaces}: ${locationJson.maps.amiens.map_name} | ${embed1}${locationJson.maps.amiens.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.amiens.location_3[`cipher_${inputType}6`], `(Stage 6) ${locationJson.maps.amiens.location_3.plain_text_spaces}: ${locationJson.maps.amiens.map_name} | ${embed1}${locationJson.maps.amiens.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.amiens.location_3[`cipher_${inputType}7`], `(Stage 7) ${locationJson.maps.amiens.location_3.plain_text_spaces}: ${locationJson.maps.amiens.map_name} | ${embed1}${locationJson.maps.amiens.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.amiens.location_3[`cipher_${inputType}8`], `(Stage 8) ${locationJson.maps.amiens.location_3.plain_text_spaces}: ${locationJson.maps.amiens.map_name} | ${embed1}${locationJson.maps.amiens.map_url}${embed2}`);
 
     // Apremont
     // 2-1
-    matches = matches.replace(json.maps.apremont.location_1[`cipher_${inputType}1`], `(Stage 1) ${json.maps.apremont.location_1.plain_text_spaces}: ${json.maps.apremont.map_name} | ${embed1}${json.maps.apremont.map_url}${embed2}`);
-    matches = matches.replace(json.maps.apremont.location_1[`cipher_${inputType}2`], `(Stage 2) ${json.maps.apremont.location_1.plain_text_spaces}: ${json.maps.apremont.map_name} | ${embed1}${json.maps.apremont.map_url}${embed2}`);
-    matches = matches.replace(json.maps.apremont.location_1[`cipher_${inputType}3`], `(Stage 3) ${json.maps.apremont.location_1.plain_text_spaces}: ${json.maps.apremont.map_name} | ${embed1}${json.maps.apremont.map_url}${embed2}`);
-    matches = matches.replace(json.maps.apremont.location_1[`cipher_${inputType}4`], `(Stage 4) ${json.maps.apremont.location_1.plain_text_spaces}: ${json.maps.apremont.map_name} | ${embed1}${json.maps.apremont.map_url}${embed2}`);
-    matches = matches.replace(json.maps.apremont.location_1[`cipher_${inputType}5`], `(Stage 5) ${json.maps.apremont.location_1.plain_text_spaces}: ${json.maps.apremont.map_name} | ${embed1}${json.maps.apremont.map_url}${embed2}`);
-    matches = matches.replace(json.maps.apremont.location_1[`cipher_${inputType}6`], `(Stage 6) ${json.maps.apremont.location_1.plain_text_spaces}: ${json.maps.apremont.map_name} | ${embed1}${json.maps.apremont.map_url}${embed2}`);
-    matches = matches.replace(json.maps.apremont.location_1[`cipher_${inputType}7`], `(Stage 7) ${json.maps.apremont.location_1.plain_text_spaces}: ${json.maps.apremont.map_name} | ${embed1}${json.maps.apremont.map_url}${embed2}`);
-    matches = matches.replace(json.maps.apremont.location_1[`cipher_${inputType}8`], `(Stage 8) ${json.maps.apremont.location_1.plain_text_spaces}: ${json.maps.apremont.map_name} | ${embed1}${json.maps.apremont.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.apremont.location_1[`cipher_${inputType}1`], `(Stage 1) ${locationJson.maps.apremont.location_1.plain_text_spaces}: ${locationJson.maps.apremont.map_name} | ${embed1}${locationJson.maps.apremont.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.apremont.location_1[`cipher_${inputType}2`], `(Stage 2) ${locationJson.maps.apremont.location_1.plain_text_spaces}: ${locationJson.maps.apremont.map_name} | ${embed1}${locationJson.maps.apremont.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.apremont.location_1[`cipher_${inputType}3`], `(Stage 3) ${locationJson.maps.apremont.location_1.plain_text_spaces}: ${locationJson.maps.apremont.map_name} | ${embed1}${locationJson.maps.apremont.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.apremont.location_1[`cipher_${inputType}4`], `(Stage 4) ${locationJson.maps.apremont.location_1.plain_text_spaces}: ${locationJson.maps.apremont.map_name} | ${embed1}${locationJson.maps.apremont.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.apremont.location_1[`cipher_${inputType}5`], `(Stage 5) ${locationJson.maps.apremont.location_1.plain_text_spaces}: ${locationJson.maps.apremont.map_name} | ${embed1}${locationJson.maps.apremont.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.apremont.location_1[`cipher_${inputType}6`], `(Stage 6) ${locationJson.maps.apremont.location_1.plain_text_spaces}: ${locationJson.maps.apremont.map_name} | ${embed1}${locationJson.maps.apremont.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.apremont.location_1[`cipher_${inputType}7`], `(Stage 7) ${locationJson.maps.apremont.location_1.plain_text_spaces}: ${locationJson.maps.apremont.map_name} | ${embed1}${locationJson.maps.apremont.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.apremont.location_1[`cipher_${inputType}8`], `(Stage 8) ${locationJson.maps.apremont.location_1.plain_text_spaces}: ${locationJson.maps.apremont.map_name} | ${embed1}${locationJson.maps.apremont.map_url}${embed2}`);
 
     // 2-2
-    matches = matches.replace(json.maps.apremont.location_2[`cipher_${inputType}1`], `(Stage 1) ${json.maps.apremont.location_2.plain_text_spaces}: ${json.maps.apremont.map_name} | ${embed1}${json.maps.apremont.map_url}${embed2}`);
-    matches = matches.replace(json.maps.apremont.location_2[`cipher_${inputType}2`], `(Stage 2) ${json.maps.apremont.location_2.plain_text_spaces}: ${json.maps.apremont.map_name} | ${embed1}${json.maps.apremont.map_url}${embed2}`);
-    matches = matches.replace(json.maps.apremont.location_2[`cipher_${inputType}3`], `(Stage 3) ${json.maps.apremont.location_2.plain_text_spaces}: ${json.maps.apremont.map_name} | ${embed1}${json.maps.apremont.map_url}${embed2}`);
-    matches = matches.replace(json.maps.apremont.location_2[`cipher_${inputType}4`], `(Stage 4) ${json.maps.apremont.location_2.plain_text_spaces}: ${json.maps.apremont.map_name} | ${embed1}${json.maps.apremont.map_url}${embed2}`);
-    matches = matches.replace(json.maps.apremont.location_2[`cipher_${inputType}5`], `(Stage 5) ${json.maps.apremont.location_2.plain_text_spaces}: ${json.maps.apremont.map_name} | ${embed1}${json.maps.apremont.map_url}${embed2}`);
-    matches = matches.replace(json.maps.apremont.location_2[`cipher_${inputType}6`], `(Stage 6) ${json.maps.apremont.location_2.plain_text_spaces}: ${json.maps.apremont.map_name} | ${embed1}${json.maps.apremont.map_url}${embed2}`);
-    matches = matches.replace(json.maps.apremont.location_2[`cipher_${inputType}7`], `(Stage 7) ${json.maps.apremont.location_2.plain_text_spaces}: ${json.maps.apremont.map_name} | ${embed1}${json.maps.apremont.map_url}${embed2}`);
-    matches = matches.replace(json.maps.apremont.location_2[`cipher_${inputType}8`], `(Stage 8) ${json.maps.apremont.location_2.plain_text_spaces}: ${json.maps.apremont.map_name} | ${embed1}${json.maps.apremont.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.apremont.location_2[`cipher_${inputType}1`], `(Stage 1) ${locationJson.maps.apremont.location_2.plain_text_spaces}: ${locationJson.maps.apremont.map_name} | ${embed1}${locationJson.maps.apremont.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.apremont.location_2[`cipher_${inputType}2`], `(Stage 2) ${locationJson.maps.apremont.location_2.plain_text_spaces}: ${locationJson.maps.apremont.map_name} | ${embed1}${locationJson.maps.apremont.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.apremont.location_2[`cipher_${inputType}3`], `(Stage 3) ${locationJson.maps.apremont.location_2.plain_text_spaces}: ${locationJson.maps.apremont.map_name} | ${embed1}${locationJson.maps.apremont.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.apremont.location_2[`cipher_${inputType}4`], `(Stage 4) ${locationJson.maps.apremont.location_2.plain_text_spaces}: ${locationJson.maps.apremont.map_name} | ${embed1}${locationJson.maps.apremont.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.apremont.location_2[`cipher_${inputType}5`], `(Stage 5) ${locationJson.maps.apremont.location_2.plain_text_spaces}: ${locationJson.maps.apremont.map_name} | ${embed1}${locationJson.maps.apremont.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.apremont.location_2[`cipher_${inputType}6`], `(Stage 6) ${locationJson.maps.apremont.location_2.plain_text_spaces}: ${locationJson.maps.apremont.map_name} | ${embed1}${locationJson.maps.apremont.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.apremont.location_2[`cipher_${inputType}7`], `(Stage 7) ${locationJson.maps.apremont.location_2.plain_text_spaces}: ${locationJson.maps.apremont.map_name} | ${embed1}${locationJson.maps.apremont.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.apremont.location_2[`cipher_${inputType}8`], `(Stage 8) ${locationJson.maps.apremont.location_2.plain_text_spaces}: ${locationJson.maps.apremont.map_name} | ${embed1}${locationJson.maps.apremont.map_url}${embed2}`);
 
     // 3-3
-    matches = matches.replace(json.maps.apremont.location_3[`cipher_${inputType}1`], `(Stage 1) ${json.maps.apremont.location_3.plain_text_spaces}: ${json.maps.apremont.map_name} | ${embed1}${json.maps.apremont.map_url}${embed2}`);
-    matches = matches.replace(json.maps.apremont.location_3[`cipher_${inputType}2`], `(Stage 2) ${json.maps.apremont.location_3.plain_text_spaces}: ${json.maps.apremont.map_name} | ${embed1}${json.maps.apremont.map_url}${embed2}`);
-    matches = matches.replace(json.maps.apremont.location_3[`cipher_${inputType}3`], `(Stage 3) ${json.maps.apremont.location_3.plain_text_spaces}: ${json.maps.apremont.map_name} | ${embed1}${json.maps.apremont.map_url}${embed2}`);
-    matches = matches.replace(json.maps.apremont.location_3[`cipher_${inputType}4`], `(Stage 4) ${json.maps.apremont.location_3.plain_text_spaces}: ${json.maps.apremont.map_name} | ${embed1}${json.maps.apremont.map_url}${embed2}`);
-    matches = matches.replace(json.maps.apremont.location_3[`cipher_${inputType}5`], `(Stage 5) ${json.maps.apremont.location_3.plain_text_spaces}: ${json.maps.apremont.map_name} | ${embed1}${json.maps.apremont.map_url}${embed2}`);
-    matches = matches.replace(json.maps.apremont.location_3[`cipher_${inputType}6`], `(Stage 6) ${json.maps.apremont.location_3.plain_text_spaces}: ${json.maps.apremont.map_name} | ${embed1}${json.maps.apremont.map_url}${embed2}`);
-    matches = matches.replace(json.maps.apremont.location_3[`cipher_${inputType}7`], `(Stage 7) ${json.maps.apremont.location_3.plain_text_spaces}: ${json.maps.apremont.map_name} | ${embed1}${json.maps.apremont.map_url}${embed2}`);
-    matches = matches.replace(json.maps.apremont.location_3[`cipher_${inputType}8`], `(Stage 8) ${json.maps.apremont.location_3.plain_text_spaces}: ${json.maps.apremont.map_name} | ${embed1}${json.maps.apremont.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.apremont.location_3[`cipher_${inputType}1`], `(Stage 1) ${locationJson.maps.apremont.location_3.plain_text_spaces}: ${locationJson.maps.apremont.map_name} | ${embed1}${locationJson.maps.apremont.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.apremont.location_3[`cipher_${inputType}2`], `(Stage 2) ${locationJson.maps.apremont.location_3.plain_text_spaces}: ${locationJson.maps.apremont.map_name} | ${embed1}${locationJson.maps.apremont.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.apremont.location_3[`cipher_${inputType}3`], `(Stage 3) ${locationJson.maps.apremont.location_3.plain_text_spaces}: ${locationJson.maps.apremont.map_name} | ${embed1}${locationJson.maps.apremont.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.apremont.location_3[`cipher_${inputType}4`], `(Stage 4) ${locationJson.maps.apremont.location_3.plain_text_spaces}: ${locationJson.maps.apremont.map_name} | ${embed1}${locationJson.maps.apremont.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.apremont.location_3[`cipher_${inputType}5`], `(Stage 5) ${locationJson.maps.apremont.location_3.plain_text_spaces}: ${locationJson.maps.apremont.map_name} | ${embed1}${locationJson.maps.apremont.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.apremont.location_3[`cipher_${inputType}6`], `(Stage 6) ${locationJson.maps.apremont.location_3.plain_text_spaces}: ${locationJson.maps.apremont.map_name} | ${embed1}${locationJson.maps.apremont.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.apremont.location_3[`cipher_${inputType}7`], `(Stage 7) ${locationJson.maps.apremont.location_3.plain_text_spaces}: ${locationJson.maps.apremont.map_name} | ${embed1}${locationJson.maps.apremont.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.apremont.location_3[`cipher_${inputType}8`], `(Stage 8) ${locationJson.maps.apremont.location_3.plain_text_spaces}: ${locationJson.maps.apremont.map_name} | ${embed1}${locationJson.maps.apremont.map_url}${embed2}`);
 
     // Varennes
     // 3-1
-    matches = matches.replace(json.maps.varennes.location_1[`cipher_${inputType}1`], `(Stage 1) ${json.maps.varennes.location_1.plain_text_spaces}: ${json.maps.varennes.map_name} | ${embed1}${json.maps.varennes.map_url}${embed2}`);
-    matches = matches.replace(json.maps.varennes.location_1[`cipher_${inputType}2`], `(Stage 2) ${json.maps.varennes.location_1.plain_text_spaces}: ${json.maps.varennes.map_name} | ${embed1}${json.maps.varennes.map_url}${embed2}`);
-    matches = matches.replace(json.maps.varennes.location_1[`cipher_${inputType}3`], `(Stage 3) ${json.maps.varennes.location_1.plain_text_spaces}: ${json.maps.varennes.map_name} | ${embed1}${json.maps.varennes.map_url}${embed2}`);
-    matches = matches.replace(json.maps.varennes.location_1[`cipher_${inputType}4`], `(Stage 4) ${json.maps.varennes.location_1.plain_text_spaces}: ${json.maps.varennes.map_name} | ${embed1}${json.maps.varennes.map_url}${embed2}`);
-    matches = matches.replace(json.maps.varennes.location_1[`cipher_${inputType}5`], `(Stage 5) ${json.maps.varennes.location_1.plain_text_spaces}: ${json.maps.varennes.map_name} | ${embed1}${json.maps.varennes.map_url}${embed2}`);
-    matches = matches.replace(json.maps.varennes.location_1[`cipher_${inputType}6`], `(Stage 6) ${json.maps.varennes.location_1.plain_text_spaces}: ${json.maps.varennes.map_name} | ${embed1}${json.maps.varennes.map_url}${embed2}`);
-    matches = matches.replace(json.maps.varennes.location_1[`cipher_${inputType}7`], `(Stage 7) ${json.maps.varennes.location_1.plain_text_spaces}: ${json.maps.varennes.map_name} | ${embed1}${json.maps.varennes.map_url}${embed2}`);
-    matches = matches.replace(json.maps.varennes.location_1[`cipher_${inputType}8`], `(Stage 8) ${json.maps.varennes.location_1.plain_text_spaces}: ${json.maps.varennes.map_name} | ${embed1}${json.maps.varennes.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.varennes.location_1[`cipher_${inputType}1`], `(Stage 1) ${locationJson.maps.varennes.location_1.plain_text_spaces}: ${locationJson.maps.varennes.map_name} | ${embed1}${locationJson.maps.varennes.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.varennes.location_1[`cipher_${inputType}2`], `(Stage 2) ${locationJson.maps.varennes.location_1.plain_text_spaces}: ${locationJson.maps.varennes.map_name} | ${embed1}${locationJson.maps.varennes.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.varennes.location_1[`cipher_${inputType}3`], `(Stage 3) ${locationJson.maps.varennes.location_1.plain_text_spaces}: ${locationJson.maps.varennes.map_name} | ${embed1}${locationJson.maps.varennes.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.varennes.location_1[`cipher_${inputType}4`], `(Stage 4) ${locationJson.maps.varennes.location_1.plain_text_spaces}: ${locationJson.maps.varennes.map_name} | ${embed1}${locationJson.maps.varennes.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.varennes.location_1[`cipher_${inputType}5`], `(Stage 5) ${locationJson.maps.varennes.location_1.plain_text_spaces}: ${locationJson.maps.varennes.map_name} | ${embed1}${locationJson.maps.varennes.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.varennes.location_1[`cipher_${inputType}6`], `(Stage 6) ${locationJson.maps.varennes.location_1.plain_text_spaces}: ${locationJson.maps.varennes.map_name} | ${embed1}${locationJson.maps.varennes.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.varennes.location_1[`cipher_${inputType}7`], `(Stage 7) ${locationJson.maps.varennes.location_1.plain_text_spaces}: ${locationJson.maps.varennes.map_name} | ${embed1}${locationJson.maps.varennes.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.varennes.location_1[`cipher_${inputType}8`], `(Stage 8) ${locationJson.maps.varennes.location_1.plain_text_spaces}: ${locationJson.maps.varennes.map_name} | ${embed1}${locationJson.maps.varennes.map_url}${embed2}`);
 
     // 3-2
-    matches = matches.replace(json.maps.varennes.location_2[`cipher_${inputType}1`], `(Stage 1) ${json.maps.varennes.location_2.plain_text_spaces}: ${json.maps.varennes.map_name} | ${embed1}${json.maps.varennes.map_url}${embed2}`);
-    matches = matches.replace(json.maps.varennes.location_2[`cipher_${inputType}2`], `(Stage 2) ${json.maps.varennes.location_2.plain_text_spaces}: ${json.maps.varennes.map_name} | ${embed1}${json.maps.varennes.map_url}${embed2}`);
-    matches = matches.replace(json.maps.varennes.location_2[`cipher_${inputType}3`], `(Stage 3) ${json.maps.varennes.location_2.plain_text_spaces}: ${json.maps.varennes.map_name} | ${embed1}${json.maps.varennes.map_url}${embed2}`);
-    matches = matches.replace(json.maps.varennes.location_2[`cipher_${inputType}4`], `(Stage 4) ${json.maps.varennes.location_2.plain_text_spaces}: ${json.maps.varennes.map_name} | ${embed1}${json.maps.varennes.map_url}${embed2}`);
-    matches = matches.replace(json.maps.varennes.location_2[`cipher_${inputType}5`], `(Stage 5) ${json.maps.varennes.location_2.plain_text_spaces}: ${json.maps.varennes.map_name} | ${embed1}${json.maps.varennes.map_url}${embed2}`);
-    matches = matches.replace(json.maps.varennes.location_2[`cipher_${inputType}6`], `(Stage 6) ${json.maps.varennes.location_2.plain_text_spaces}: ${json.maps.varennes.map_name} | ${embed1}${json.maps.varennes.map_url}${embed2}`);
-    matches = matches.replace(json.maps.varennes.location_2[`cipher_${inputType}7`], `(Stage 7) ${json.maps.varennes.location_2.plain_text_spaces}: ${json.maps.varennes.map_name} | ${embed1}${json.maps.varennes.map_url}${embed2}`);
-    matches = matches.replace(json.maps.varennes.location_2[`cipher_${inputType}8`], `(Stage 8) ${json.maps.varennes.location_2.plain_text_spaces}: ${json.maps.varennes.map_name} | ${embed1}${json.maps.varennes.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.varennes.location_2[`cipher_${inputType}1`], `(Stage 1) ${locationJson.maps.varennes.location_2.plain_text_spaces}: ${locationJson.maps.varennes.map_name} | ${embed1}${locationJson.maps.varennes.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.varennes.location_2[`cipher_${inputType}2`], `(Stage 2) ${locationJson.maps.varennes.location_2.plain_text_spaces}: ${locationJson.maps.varennes.map_name} | ${embed1}${locationJson.maps.varennes.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.varennes.location_2[`cipher_${inputType}3`], `(Stage 3) ${locationJson.maps.varennes.location_2.plain_text_spaces}: ${locationJson.maps.varennes.map_name} | ${embed1}${locationJson.maps.varennes.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.varennes.location_2[`cipher_${inputType}4`], `(Stage 4) ${locationJson.maps.varennes.location_2.plain_text_spaces}: ${locationJson.maps.varennes.map_name} | ${embed1}${locationJson.maps.varennes.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.varennes.location_2[`cipher_${inputType}5`], `(Stage 5) ${locationJson.maps.varennes.location_2.plain_text_spaces}: ${locationJson.maps.varennes.map_name} | ${embed1}${locationJson.maps.varennes.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.varennes.location_2[`cipher_${inputType}6`], `(Stage 6) ${locationJson.maps.varennes.location_2.plain_text_spaces}: ${locationJson.maps.varennes.map_name} | ${embed1}${locationJson.maps.varennes.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.varennes.location_2[`cipher_${inputType}7`], `(Stage 7) ${locationJson.maps.varennes.location_2.plain_text_spaces}: ${locationJson.maps.varennes.map_name} | ${embed1}${locationJson.maps.varennes.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.varennes.location_2[`cipher_${inputType}8`], `(Stage 8) ${locationJson.maps.varennes.location_2.plain_text_spaces}: ${locationJson.maps.varennes.map_name} | ${embed1}${locationJson.maps.varennes.map_url}${embed2}`);
 
     // 3-3
-    matches = matches.replace(json.maps.varennes.location_3[`cipher_${inputType}1`], `(Stage 1) ${json.maps.varennes.location_3.plain_text_spaces}: ${json.maps.varennes.map_name} | ${embed1}${json.maps.varennes.map_url}${embed2}`);
-    matches = matches.replace(json.maps.varennes.location_3[`cipher_${inputType}2`], `(Stage 2) ${json.maps.varennes.location_3.plain_text_spaces}: ${json.maps.varennes.map_name} | ${embed1}${json.maps.varennes.map_url}${embed2}`);
-    matches = matches.replace(json.maps.varennes.location_3[`cipher_${inputType}3`], `(Stage 3) ${json.maps.varennes.location_3.plain_text_spaces}: ${json.maps.varennes.map_name} | ${embed1}${json.maps.varennes.map_url}${embed2}`);
-    matches = matches.replace(json.maps.varennes.location_3[`cipher_${inputType}4`], `(Stage 4) ${json.maps.varennes.location_3.plain_text_spaces}: ${json.maps.varennes.map_name} | ${embed1}${json.maps.varennes.map_url}${embed2}`);
-    matches = matches.replace(json.maps.varennes.location_3[`cipher_${inputType}5`], `(Stage 5) ${json.maps.varennes.location_3.plain_text_spaces}: ${json.maps.varennes.map_name} | ${embed1}${json.maps.varennes.map_url}${embed2}`);
-    matches = matches.replace(json.maps.varennes.location_3[`cipher_${inputType}6`], `(Stage 6) ${json.maps.varennes.location_3.plain_text_spaces}: ${json.maps.varennes.map_name} | ${embed1}${json.maps.varennes.map_url}${embed2}`);
-    matches = matches.replace(json.maps.varennes.location_3[`cipher_${inputType}7`], `(Stage 7) ${json.maps.varennes.location_3.plain_text_spaces}: ${json.maps.varennes.map_name} | ${embed1}${json.maps.varennes.map_url}${embed2}`);
-    matches = matches.replace(json.maps.varennes.location_3[`cipher_${inputType}8`], `(Stage 8) ${json.maps.varennes.location_3.plain_text_spaces}: ${json.maps.varennes.map_name} | ${embed1}${json.maps.varennes.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.varennes.location_3[`cipher_${inputType}1`], `(Stage 1) ${locationJson.maps.varennes.location_3.plain_text_spaces}: ${locationJson.maps.varennes.map_name} | ${embed1}${locationJson.maps.varennes.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.varennes.location_3[`cipher_${inputType}2`], `(Stage 2) ${locationJson.maps.varennes.location_3.plain_text_spaces}: ${locationJson.maps.varennes.map_name} | ${embed1}${locationJson.maps.varennes.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.varennes.location_3[`cipher_${inputType}3`], `(Stage 3) ${locationJson.maps.varennes.location_3.plain_text_spaces}: ${locationJson.maps.varennes.map_name} | ${embed1}${locationJson.maps.varennes.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.varennes.location_3[`cipher_${inputType}4`], `(Stage 4) ${locationJson.maps.varennes.location_3.plain_text_spaces}: ${locationJson.maps.varennes.map_name} | ${embed1}${locationJson.maps.varennes.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.varennes.location_3[`cipher_${inputType}5`], `(Stage 5) ${locationJson.maps.varennes.location_3.plain_text_spaces}: ${locationJson.maps.varennes.map_name} | ${embed1}${locationJson.maps.varennes.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.varennes.location_3[`cipher_${inputType}6`], `(Stage 6) ${locationJson.maps.varennes.location_3.plain_text_spaces}: ${locationJson.maps.varennes.map_name} | ${embed1}${locationJson.maps.varennes.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.varennes.location_3[`cipher_${inputType}7`], `(Stage 7) ${locationJson.maps.varennes.location_3.plain_text_spaces}: ${locationJson.maps.varennes.map_name} | ${embed1}${locationJson.maps.varennes.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.varennes.location_3[`cipher_${inputType}8`], `(Stage 8) ${locationJson.maps.varennes.location_3.plain_text_spaces}: ${locationJson.maps.varennes.map_name} | ${embed1}${locationJson.maps.varennes.map_url}${embed2}`);
 
     // Adriatic
     // 4-1
-    matches = matches.replace(json.maps.adriatic.location_1[`cipher_${inputType}1`], `(Stage 1) ${json.maps.adriatic.location_1.plain_text_spaces}: ${json.maps.adriatic.map_name} | ${embed1}${json.maps.adriatic.map_url}${embed2}`);
-    matches = matches.replace(json.maps.adriatic.location_1[`cipher_${inputType}2`], `(Stage 2) ${json.maps.adriatic.location_1.plain_text_spaces}: ${json.maps.adriatic.map_name} | ${embed1}${json.maps.adriatic.map_url}${embed2}`);
-    matches = matches.replace(json.maps.adriatic.location_1[`cipher_${inputType}3`], `(Stage 3) ${json.maps.adriatic.location_1.plain_text_spaces}: ${json.maps.adriatic.map_name} | ${embed1}${json.maps.adriatic.map_url}${embed2}`);
-    matches = matches.replace(json.maps.adriatic.location_1[`cipher_${inputType}4`], `(Stage 4) ${json.maps.adriatic.location_1.plain_text_spaces}: ${json.maps.adriatic.map_name} | ${embed1}${json.maps.adriatic.map_url}${embed2}`);
-    matches = matches.replace(json.maps.adriatic.location_1[`cipher_${inputType}5`], `(Stage 5) ${json.maps.adriatic.location_1.plain_text_spaces}: ${json.maps.adriatic.map_name} | ${embed1}${json.maps.adriatic.map_url}${embed2}`);
-    matches = matches.replace(json.maps.adriatic.location_1[`cipher_${inputType}6`], `(Stage 6) ${json.maps.adriatic.location_1.plain_text_spaces}: ${json.maps.adriatic.map_name} | ${embed1}${json.maps.adriatic.map_url}${embed2}`);
-    matches = matches.replace(json.maps.adriatic.location_1[`cipher_${inputType}7`], `(Stage 7) ${json.maps.adriatic.location_1.plain_text_spaces}: ${json.maps.adriatic.map_name} | ${embed1}${json.maps.adriatic.map_url}${embed2}`);
-    matches = matches.replace(json.maps.adriatic.location_1[`cipher_${inputType}8`], `(Stage 8) ${json.maps.adriatic.location_1.plain_text_spaces}: ${json.maps.adriatic.map_name} | ${embed1}${json.maps.adriatic.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.adriatic.location_1[`cipher_${inputType}1`], `(Stage 1) ${locationJson.maps.adriatic.location_1.plain_text_spaces}: ${locationJson.maps.adriatic.map_name} | ${embed1}${locationJson.maps.adriatic.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.adriatic.location_1[`cipher_${inputType}2`], `(Stage 2) ${locationJson.maps.adriatic.location_1.plain_text_spaces}: ${locationJson.maps.adriatic.map_name} | ${embed1}${locationJson.maps.adriatic.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.adriatic.location_1[`cipher_${inputType}3`], `(Stage 3) ${locationJson.maps.adriatic.location_1.plain_text_spaces}: ${locationJson.maps.adriatic.map_name} | ${embed1}${locationJson.maps.adriatic.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.adriatic.location_1[`cipher_${inputType}4`], `(Stage 4) ${locationJson.maps.adriatic.location_1.plain_text_spaces}: ${locationJson.maps.adriatic.map_name} | ${embed1}${locationJson.maps.adriatic.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.adriatic.location_1[`cipher_${inputType}5`], `(Stage 5) ${locationJson.maps.adriatic.location_1.plain_text_spaces}: ${locationJson.maps.adriatic.map_name} | ${embed1}${locationJson.maps.adriatic.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.adriatic.location_1[`cipher_${inputType}6`], `(Stage 6) ${locationJson.maps.adriatic.location_1.plain_text_spaces}: ${locationJson.maps.adriatic.map_name} | ${embed1}${locationJson.maps.adriatic.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.adriatic.location_1[`cipher_${inputType}7`], `(Stage 7) ${locationJson.maps.adriatic.location_1.plain_text_spaces}: ${locationJson.maps.adriatic.map_name} | ${embed1}${locationJson.maps.adriatic.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.adriatic.location_1[`cipher_${inputType}8`], `(Stage 8) ${locationJson.maps.adriatic.location_1.plain_text_spaces}: ${locationJson.maps.adriatic.map_name} | ${embed1}${locationJson.maps.adriatic.map_url}${embed2}`);
 
     // 4-2
-    matches = matches.replace(json.maps.adriatic.location_2[`cipher_${inputType}1`], `(Stage 1) ${json.maps.adriatic.location_2.plain_text_spaces}: ${json.maps.adriatic.map_name} | ${embed1}${json.maps.adriatic.map_url}${embed2}`);
-    matches = matches.replace(json.maps.adriatic.location_2[`cipher_${inputType}2`], `(Stage 2) ${json.maps.adriatic.location_2.plain_text_spaces}: ${json.maps.adriatic.map_name} | ${embed1}${json.maps.adriatic.map_url}${embed2}`);
-    matches = matches.replace(json.maps.adriatic.location_2[`cipher_${inputType}3`], `(Stage 3) ${json.maps.adriatic.location_2.plain_text_spaces}: ${json.maps.adriatic.map_name} | ${embed1}${json.maps.adriatic.map_url}${embed2}`);
-    matches = matches.replace(json.maps.adriatic.location_2[`cipher_${inputType}4`], `(Stage 4) ${json.maps.adriatic.location_2.plain_text_spaces}: ${json.maps.adriatic.map_name} | ${embed1}${json.maps.adriatic.map_url}${embed2}`);
-    matches = matches.replace(json.maps.adriatic.location_2[`cipher_${inputType}5`], `(Stage 5) ${json.maps.adriatic.location_2.plain_text_spaces}: ${json.maps.adriatic.map_name} | ${embed1}${json.maps.adriatic.map_url}${embed2}`);
-    matches = matches.replace(json.maps.adriatic.location_2[`cipher_${inputType}6`], `(Stage 6) ${json.maps.adriatic.location_2.plain_text_spaces}: ${json.maps.adriatic.map_name} | ${embed1}${json.maps.adriatic.map_url}${embed2}`);
-    matches = matches.replace(json.maps.adriatic.location_2[`cipher_${inputType}7`], `(Stage 7) ${json.maps.adriatic.location_2.plain_text_spaces}: ${json.maps.adriatic.map_name} | ${embed1}${json.maps.adriatic.map_url}${embed2}`);
-    matches = matches.replace(json.maps.adriatic.location_2[`cipher_${inputType}8`], `(Stage 8) ${json.maps.adriatic.location_2.plain_text_spaces}: ${json.maps.adriatic.map_name} | ${embed1}${json.maps.adriatic.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.adriatic.location_2[`cipher_${inputType}1`], `(Stage 1) ${locationJson.maps.adriatic.location_2.plain_text_spaces}: ${locationJson.maps.adriatic.map_name} | ${embed1}${locationJson.maps.adriatic.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.adriatic.location_2[`cipher_${inputType}2`], `(Stage 2) ${locationJson.maps.adriatic.location_2.plain_text_spaces}: ${locationJson.maps.adriatic.map_name} | ${embed1}${locationJson.maps.adriatic.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.adriatic.location_2[`cipher_${inputType}3`], `(Stage 3) ${locationJson.maps.adriatic.location_2.plain_text_spaces}: ${locationJson.maps.adriatic.map_name} | ${embed1}${locationJson.maps.adriatic.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.adriatic.location_2[`cipher_${inputType}4`], `(Stage 4) ${locationJson.maps.adriatic.location_2.plain_text_spaces}: ${locationJson.maps.adriatic.map_name} | ${embed1}${locationJson.maps.adriatic.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.adriatic.location_2[`cipher_${inputType}5`], `(Stage 5) ${locationJson.maps.adriatic.location_2.plain_text_spaces}: ${locationJson.maps.adriatic.map_name} | ${embed1}${locationJson.maps.adriatic.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.adriatic.location_2[`cipher_${inputType}6`], `(Stage 6) ${locationJson.maps.adriatic.location_2.plain_text_spaces}: ${locationJson.maps.adriatic.map_name} | ${embed1}${locationJson.maps.adriatic.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.adriatic.location_2[`cipher_${inputType}7`], `(Stage 7) ${locationJson.maps.adriatic.location_2.plain_text_spaces}: ${locationJson.maps.adriatic.map_name} | ${embed1}${locationJson.maps.adriatic.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.adriatic.location_2[`cipher_${inputType}8`], `(Stage 8) ${locationJson.maps.adriatic.location_2.plain_text_spaces}: ${locationJson.maps.adriatic.map_name} | ${embed1}${locationJson.maps.adriatic.map_url}${embed2}`);
 
     // 4-3
-    matches = matches.replace(json.maps.adriatic.location_3[`cipher_${inputType}1`], `(Stage 1) ${json.maps.adriatic.location_3.plain_text_spaces}: ${json.maps.adriatic.map_name} | ${embed1}${json.maps.adriatic.map_url}${embed2}`);
-    matches = matches.replace(json.maps.adriatic.location_3[`cipher_${inputType}2`], `(Stage 2) ${json.maps.adriatic.location_3.plain_text_spaces}: ${json.maps.adriatic.map_name} | ${embed1}${json.maps.adriatic.map_url}${embed2}`);
-    matches = matches.replace(json.maps.adriatic.location_3[`cipher_${inputType}3`], `(Stage 3) ${json.maps.adriatic.location_3.plain_text_spaces}: ${json.maps.adriatic.map_name} | ${embed1}${json.maps.adriatic.map_url}${embed2}`);
-    matches = matches.replace(json.maps.adriatic.location_3[`cipher_${inputType}4`], `(Stage 4) ${json.maps.adriatic.location_3.plain_text_spaces}: ${json.maps.adriatic.map_name} | ${embed1}${json.maps.adriatic.map_url}${embed2}`);
-    matches = matches.replace(json.maps.adriatic.location_3[`cipher_${inputType}5`], `(Stage 5) ${json.maps.adriatic.location_3.plain_text_spaces}: ${json.maps.adriatic.map_name} | ${embed1}${json.maps.adriatic.map_url}${embed2}`);
-    matches = matches.replace(json.maps.adriatic.location_3[`cipher_${inputType}6`], `(Stage 6) ${json.maps.adriatic.location_3.plain_text_spaces}: ${json.maps.adriatic.map_name} | ${embed1}${json.maps.adriatic.map_url}${embed2}`);
-    matches = matches.replace(json.maps.adriatic.location_3[`cipher_${inputType}7`], `(Stage 7) ${json.maps.adriatic.location_3.plain_text_spaces}: ${json.maps.adriatic.map_name} | ${embed1}${json.maps.adriatic.map_url}${embed2}`);
-    matches = matches.replace(json.maps.adriatic.location_3[`cipher_${inputType}8`], `(Stage 8) ${json.maps.adriatic.location_3.plain_text_spaces}: ${json.maps.adriatic.map_name} | ${embed1}${json.maps.adriatic.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.adriatic.location_3[`cipher_${inputType}1`], `(Stage 1) ${locationJson.maps.adriatic.location_3.plain_text_spaces}: ${locationJson.maps.adriatic.map_name} | ${embed1}${locationJson.maps.adriatic.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.adriatic.location_3[`cipher_${inputType}2`], `(Stage 2) ${locationJson.maps.adriatic.location_3.plain_text_spaces}: ${locationJson.maps.adriatic.map_name} | ${embed1}${locationJson.maps.adriatic.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.adriatic.location_3[`cipher_${inputType}3`], `(Stage 3) ${locationJson.maps.adriatic.location_3.plain_text_spaces}: ${locationJson.maps.adriatic.map_name} | ${embed1}${locationJson.maps.adriatic.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.adriatic.location_3[`cipher_${inputType}4`], `(Stage 4) ${locationJson.maps.adriatic.location_3.plain_text_spaces}: ${locationJson.maps.adriatic.map_name} | ${embed1}${locationJson.maps.adriatic.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.adriatic.location_3[`cipher_${inputType}5`], `(Stage 5) ${locationJson.maps.adriatic.location_3.plain_text_spaces}: ${locationJson.maps.adriatic.map_name} | ${embed1}${locationJson.maps.adriatic.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.adriatic.location_3[`cipher_${inputType}6`], `(Stage 6) ${locationJson.maps.adriatic.location_3.plain_text_spaces}: ${locationJson.maps.adriatic.map_name} | ${embed1}${locationJson.maps.adriatic.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.adriatic.location_3[`cipher_${inputType}7`], `(Stage 7) ${locationJson.maps.adriatic.location_3.plain_text_spaces}: ${locationJson.maps.adriatic.map_name} | ${embed1}${locationJson.maps.adriatic.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.adriatic.location_3[`cipher_${inputType}8`], `(Stage 8) ${locationJson.maps.adriatic.location_3.plain_text_spaces}: ${locationJson.maps.adriatic.map_name} | ${embed1}${locationJson.maps.adriatic.map_url}${embed2}`);
 
     // Faw
     // 5-1
-    matches = matches.replace(json.maps.faw.location_1[`cipher_${inputType}1`], `(Stage 1) ${json.maps.faw.location_1.plain_text_spaces}: ${json.maps.faw.map_name} | ${embed1}${json.maps.faw.map_url}${embed2}`);
-    matches = matches.replace(json.maps.faw.location_1[`cipher_${inputType}2`], `(Stage 2) ${json.maps.faw.location_1.plain_text_spaces}: ${json.maps.faw.map_name} | ${embed1}${json.maps.faw.map_url}${embed2}`);
-    matches = matches.replace(json.maps.faw.location_1[`cipher_${inputType}3`], `(Stage 3) ${json.maps.faw.location_1.plain_text_spaces}: ${json.maps.faw.map_name} | ${embed1}${json.maps.faw.map_url}${embed2}`);
-    matches = matches.replace(json.maps.faw.location_1[`cipher_${inputType}4`], `(Stage 4) ${json.maps.faw.location_1.plain_text_spaces}: ${json.maps.faw.map_name} | ${embed1}${json.maps.faw.map_url}${embed2}`);
-    matches = matches.replace(json.maps.faw.location_1[`cipher_${inputType}5`], `(Stage 5) ${json.maps.faw.location_1.plain_text_spaces}: ${json.maps.faw.map_name} | ${embed1}${json.maps.faw.map_url}${embed2}`);
-    matches = matches.replace(json.maps.faw.location_1[`cipher_${inputType}6`], `(Stage 6) ${json.maps.faw.location_1.plain_text_spaces}: ${json.maps.faw.map_name} | ${embed1}${json.maps.faw.map_url}${embed2}`);
-    matches = matches.replace(json.maps.faw.location_1[`cipher_${inputType}7`], `(Stage 7) ${json.maps.faw.location_1.plain_text_spaces}: ${json.maps.faw.map_name} | ${embed1}${json.maps.faw.map_url}${embed2}`);
-    matches = matches.replace(json.maps.faw.location_1[`cipher_${inputType}8`], `(Stage 8) ${json.maps.faw.location_1.plain_text_spaces}: ${json.maps.faw.map_name} | ${embed1}${json.maps.faw.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.faw.location_1[`cipher_${inputType}1`], `(Stage 1) ${locationJson.maps.faw.location_1.plain_text_spaces}: ${locationJson.maps.faw.map_name} | ${embed1}${locationJson.maps.faw.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.faw.location_1[`cipher_${inputType}2`], `(Stage 2) ${locationJson.maps.faw.location_1.plain_text_spaces}: ${locationJson.maps.faw.map_name} | ${embed1}${locationJson.maps.faw.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.faw.location_1[`cipher_${inputType}3`], `(Stage 3) ${locationJson.maps.faw.location_1.plain_text_spaces}: ${locationJson.maps.faw.map_name} | ${embed1}${locationJson.maps.faw.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.faw.location_1[`cipher_${inputType}4`], `(Stage 4) ${locationJson.maps.faw.location_1.plain_text_spaces}: ${locationJson.maps.faw.map_name} | ${embed1}${locationJson.maps.faw.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.faw.location_1[`cipher_${inputType}5`], `(Stage 5) ${locationJson.maps.faw.location_1.plain_text_spaces}: ${locationJson.maps.faw.map_name} | ${embed1}${locationJson.maps.faw.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.faw.location_1[`cipher_${inputType}6`], `(Stage 6) ${locationJson.maps.faw.location_1.plain_text_spaces}: ${locationJson.maps.faw.map_name} | ${embed1}${locationJson.maps.faw.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.faw.location_1[`cipher_${inputType}7`], `(Stage 7) ${locationJson.maps.faw.location_1.plain_text_spaces}: ${locationJson.maps.faw.map_name} | ${embed1}${locationJson.maps.faw.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.faw.location_1[`cipher_${inputType}8`], `(Stage 8) ${locationJson.maps.faw.location_1.plain_text_spaces}: ${locationJson.maps.faw.map_name} | ${embed1}${locationJson.maps.faw.map_url}${embed2}`);
 
     // 5-2
-    matches = matches.replace(json.maps.faw.location_2[`cipher_${inputType}1`], `(Stage 1) ${json.maps.faw.location_2.plain_text_spaces}: ${json.maps.faw.map_name} | ${embed1}${json.maps.faw.map_url}${embed2}`);
-    matches = matches.replace(json.maps.faw.location_2[`cipher_${inputType}2`], `(Stage 2) ${json.maps.faw.location_2.plain_text_spaces}: ${json.maps.faw.map_name} | ${embed1}${json.maps.faw.map_url}${embed2}`);
-    matches = matches.replace(json.maps.faw.location_2[`cipher_${inputType}3`], `(Stage 3) ${json.maps.faw.location_2.plain_text_spaces}: ${json.maps.faw.map_name} | ${embed1}${json.maps.faw.map_url}${embed2}`);
-    matches = matches.replace(json.maps.faw.location_2[`cipher_${inputType}4`], `(Stage 4) ${json.maps.faw.location_2.plain_text_spaces}: ${json.maps.faw.map_name} | ${embed1}${json.maps.faw.map_url}${embed2}`);
-    matches = matches.replace(json.maps.faw.location_2[`cipher_${inputType}5`], `(Stage 5) ${json.maps.faw.location_2.plain_text_spaces}: ${json.maps.faw.map_name} | ${embed1}${json.maps.faw.map_url}${embed2}`);
-    matches = matches.replace(json.maps.faw.location_2[`cipher_${inputType}6`], `(Stage 6) ${json.maps.faw.location_2.plain_text_spaces}: ${json.maps.faw.map_name} | ${embed1}${json.maps.faw.map_url}${embed2}`);
-    matches = matches.replace(json.maps.faw.location_2[`cipher_${inputType}7`], `(Stage 7) ${json.maps.faw.location_2.plain_text_spaces}: ${json.maps.faw.map_name} | ${embed1}${json.maps.faw.map_url}${embed2}`);
-    matches = matches.replace(json.maps.faw.location_2[`cipher_${inputType}8`], `(Stage 8) ${json.maps.faw.location_2.plain_text_spaces}: ${json.maps.faw.map_name} | ${embed1}${json.maps.faw.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.faw.location_2[`cipher_${inputType}1`], `(Stage 1) ${locationJson.maps.faw.location_2.plain_text_spaces}: ${locationJson.maps.faw.map_name} | ${embed1}${locationJson.maps.faw.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.faw.location_2[`cipher_${inputType}2`], `(Stage 2) ${locationJson.maps.faw.location_2.plain_text_spaces}: ${locationJson.maps.faw.map_name} | ${embed1}${locationJson.maps.faw.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.faw.location_2[`cipher_${inputType}3`], `(Stage 3) ${locationJson.maps.faw.location_2.plain_text_spaces}: ${locationJson.maps.faw.map_name} | ${embed1}${locationJson.maps.faw.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.faw.location_2[`cipher_${inputType}4`], `(Stage 4) ${locationJson.maps.faw.location_2.plain_text_spaces}: ${locationJson.maps.faw.map_name} | ${embed1}${locationJson.maps.faw.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.faw.location_2[`cipher_${inputType}5`], `(Stage 5) ${locationJson.maps.faw.location_2.plain_text_spaces}: ${locationJson.maps.faw.map_name} | ${embed1}${locationJson.maps.faw.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.faw.location_2[`cipher_${inputType}6`], `(Stage 6) ${locationJson.maps.faw.location_2.plain_text_spaces}: ${locationJson.maps.faw.map_name} | ${embed1}${locationJson.maps.faw.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.faw.location_2[`cipher_${inputType}7`], `(Stage 7) ${locationJson.maps.faw.location_2.plain_text_spaces}: ${locationJson.maps.faw.map_name} | ${embed1}${locationJson.maps.faw.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.faw.location_2[`cipher_${inputType}8`], `(Stage 8) ${locationJson.maps.faw.location_2.plain_text_spaces}: ${locationJson.maps.faw.map_name} | ${embed1}${locationJson.maps.faw.map_url}${embed2}`);
 
     // 5-3
-    matches = matches.replace(json.maps.faw.location_3[`cipher_${inputType}1`], `(Stage 1) ${json.maps.faw.location_3.plain_text_spaces}: ${json.maps.faw.map_name} | ${embed1}${json.maps.faw.map_url}${embed2}`);
-    matches = matches.replace(json.maps.faw.location_3[`cipher_${inputType}2`], `(Stage 2) ${json.maps.faw.location_3.plain_text_spaces}: ${json.maps.faw.map_name} | ${embed1}${json.maps.faw.map_url}${embed2}`);
-    matches = matches.replace(json.maps.faw.location_3[`cipher_${inputType}3`], `(Stage 3) ${json.maps.faw.location_3.plain_text_spaces}: ${json.maps.faw.map_name} | ${embed1}${json.maps.faw.map_url}${embed2}`);
-    matches = matches.replace(json.maps.faw.location_3[`cipher_${inputType}4`], `(Stage 4) ${json.maps.faw.location_3.plain_text_spaces}: ${json.maps.faw.map_name} | ${embed1}${json.maps.faw.map_url}${embed2}`);
-    matches = matches.replace(json.maps.faw.location_3[`cipher_${inputType}5`], `(Stage 5) ${json.maps.faw.location_3.plain_text_spaces}: ${json.maps.faw.map_name} | ${embed1}${json.maps.faw.map_url}${embed2}`);
-    matches = matches.replace(json.maps.faw.location_3[`cipher_${inputType}6`], `(Stage 6) ${json.maps.faw.location_3.plain_text_spaces}: ${json.maps.faw.map_name} | ${embed1}${json.maps.faw.map_url}${embed2}`);
-    matches = matches.replace(json.maps.faw.location_3[`cipher_${inputType}7`], `(Stage 7) ${json.maps.faw.location_3.plain_text_spaces}: ${json.maps.faw.map_name} | ${embed1}${json.maps.faw.map_url}${embed2}`);
-    matches = matches.replace(json.maps.faw.location_3[`cipher_${inputType}8`], `(Stage 8) ${json.maps.faw.location_3.plain_text_spaces}: ${json.maps.faw.map_name} | ${embed1}${json.maps.faw.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.faw.location_3[`cipher_${inputType}1`], `(Stage 1) ${locationJson.maps.faw.location_3.plain_text_spaces}: ${locationJson.maps.faw.map_name} | ${embed1}${locationJson.maps.faw.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.faw.location_3[`cipher_${inputType}2`], `(Stage 2) ${locationJson.maps.faw.location_3.plain_text_spaces}: ${locationJson.maps.faw.map_name} | ${embed1}${locationJson.maps.faw.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.faw.location_3[`cipher_${inputType}3`], `(Stage 3) ${locationJson.maps.faw.location_3.plain_text_spaces}: ${locationJson.maps.faw.map_name} | ${embed1}${locationJson.maps.faw.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.faw.location_3[`cipher_${inputType}4`], `(Stage 4) ${locationJson.maps.faw.location_3.plain_text_spaces}: ${locationJson.maps.faw.map_name} | ${embed1}${locationJson.maps.faw.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.faw.location_3[`cipher_${inputType}5`], `(Stage 5) ${locationJson.maps.faw.location_3.plain_text_spaces}: ${locationJson.maps.faw.map_name} | ${embed1}${locationJson.maps.faw.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.faw.location_3[`cipher_${inputType}6`], `(Stage 6) ${locationJson.maps.faw.location_3.plain_text_spaces}: ${locationJson.maps.faw.map_name} | ${embed1}${locationJson.maps.faw.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.faw.location_3[`cipher_${inputType}7`], `(Stage 7) ${locationJson.maps.faw.location_3.plain_text_spaces}: ${locationJson.maps.faw.map_name} | ${embed1}${locationJson.maps.faw.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.faw.location_3[`cipher_${inputType}8`], `(Stage 8) ${locationJson.maps.faw.location_3.plain_text_spaces}: ${locationJson.maps.faw.map_name} | ${embed1}${locationJson.maps.faw.map_url}${embed2}`);
 
     // Venetian
     // 6-1
-    matches = matches.replace(json.maps.venetian.location_1[`cipher_${inputType}1`], `(Stage 1) ${json.maps.venetian.location_1.plain_text_spaces}: ${json.maps.venetian.map_name} | ${embed1}${json.maps.venetian.map_url}${embed2}`);
-    matches = matches.replace(json.maps.venetian.location_1[`cipher_${inputType}2`], `(Stage 2) ${json.maps.venetian.location_1.plain_text_spaces}: ${json.maps.venetian.map_name} | ${embed1}${json.maps.venetian.map_url}${embed2}`);
-    matches = matches.replace(json.maps.venetian.location_1[`cipher_${inputType}3`], `(Stage 3) ${json.maps.venetian.location_1.plain_text_spaces}: ${json.maps.venetian.map_name} | ${embed1}${json.maps.venetian.map_url}${embed2}`);
-    matches = matches.replace(json.maps.venetian.location_1[`cipher_${inputType}4`], `(Stage 4) ${json.maps.venetian.location_1.plain_text_spaces}: ${json.maps.venetian.map_name} | ${embed1}${json.maps.venetian.map_url}${embed2}`);
-    matches = matches.replace(json.maps.venetian.location_1[`cipher_${inputType}5`], `(Stage 5) ${json.maps.venetian.location_1.plain_text_spaces}: ${json.maps.venetian.map_name} | ${embed1}${json.maps.venetian.map_url}${embed2}`);
-    matches = matches.replace(json.maps.venetian.location_1[`cipher_${inputType}6`], `(Stage 6) ${json.maps.venetian.location_1.plain_text_spaces}: ${json.maps.venetian.map_name} | ${embed1}${json.maps.venetian.map_url}${embed2}`);
-    matches = matches.replace(json.maps.venetian.location_1[`cipher_${inputType}7`], `(Stage 7) ${json.maps.venetian.location_1.plain_text_spaces}: ${json.maps.venetian.map_name} | ${embed1}${json.maps.venetian.map_url}${embed2}`);
-    matches = matches.replace(json.maps.venetian.location_1[`cipher_${inputType}8`], `(Stage 8) ${json.maps.venetian.location_1.plain_text_spaces}: ${json.maps.venetian.map_name} | ${embed1}${json.maps.venetian.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.venetian.location_1[`cipher_${inputType}1`], `(Stage 1) ${locationJson.maps.venetian.location_1.plain_text_spaces}: ${locationJson.maps.venetian.map_name} | ${embed1}${locationJson.maps.venetian.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.venetian.location_1[`cipher_${inputType}2`], `(Stage 2) ${locationJson.maps.venetian.location_1.plain_text_spaces}: ${locationJson.maps.venetian.map_name} | ${embed1}${locationJson.maps.venetian.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.venetian.location_1[`cipher_${inputType}3`], `(Stage 3) ${locationJson.maps.venetian.location_1.plain_text_spaces}: ${locationJson.maps.venetian.map_name} | ${embed1}${locationJson.maps.venetian.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.venetian.location_1[`cipher_${inputType}4`], `(Stage 4) ${locationJson.maps.venetian.location_1.plain_text_spaces}: ${locationJson.maps.venetian.map_name} | ${embed1}${locationJson.maps.venetian.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.venetian.location_1[`cipher_${inputType}5`], `(Stage 5) ${locationJson.maps.venetian.location_1.plain_text_spaces}: ${locationJson.maps.venetian.map_name} | ${embed1}${locationJson.maps.venetian.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.venetian.location_1[`cipher_${inputType}6`], `(Stage 6) ${locationJson.maps.venetian.location_1.plain_text_spaces}: ${locationJson.maps.venetian.map_name} | ${embed1}${locationJson.maps.venetian.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.venetian.location_1[`cipher_${inputType}7`], `(Stage 7) ${locationJson.maps.venetian.location_1.plain_text_spaces}: ${locationJson.maps.venetian.map_name} | ${embed1}${locationJson.maps.venetian.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.venetian.location_1[`cipher_${inputType}8`], `(Stage 8) ${locationJson.maps.venetian.location_1.plain_text_spaces}: ${locationJson.maps.venetian.map_name} | ${embed1}${locationJson.maps.venetian.map_url}${embed2}`);
 
     // 6-2
-    matches = matches.replace(json.maps.venetian.location_2[`cipher_${inputType}1`], `(Stage 1) ${json.maps.venetian.location_2.plain_text_spaces}: ${json.maps.venetian.map_name} | ${embed1}${json.maps.venetian.map_url}${embed2}`);
-    matches = matches.replace(json.maps.venetian.location_2[`cipher_${inputType}2`], `(Stage 2) ${json.maps.venetian.location_2.plain_text_spaces}: ${json.maps.venetian.map_name} | ${embed1}${json.maps.venetian.map_url}${embed2}`);
-    matches = matches.replace(json.maps.venetian.location_2[`cipher_${inputType}3`], `(Stage 3) ${json.maps.venetian.location_2.plain_text_spaces}: ${json.maps.venetian.map_name} | ${embed1}${json.maps.venetian.map_url}${embed2}`);
-    matches = matches.replace(json.maps.venetian.location_2[`cipher_${inputType}4`], `(Stage 4) ${json.maps.venetian.location_2.plain_text_spaces}: ${json.maps.venetian.map_name} | ${embed1}${json.maps.venetian.map_url}${embed2}`);
-    matches = matches.replace(json.maps.venetian.location_2[`cipher_${inputType}5`], `(Stage 5) ${json.maps.venetian.location_2.plain_text_spaces}: ${json.maps.venetian.map_name} | ${embed1}${json.maps.venetian.map_url}${embed2}`);
-    matches = matches.replace(json.maps.venetian.location_2[`cipher_${inputType}6`], `(Stage 6) ${json.maps.venetian.location_2.plain_text_spaces}: ${json.maps.venetian.map_name} | ${embed1}${json.maps.venetian.map_url}${embed2}`);
-    matches = matches.replace(json.maps.venetian.location_2[`cipher_${inputType}7`], `(Stage 7) ${json.maps.venetian.location_2.plain_text_spaces}: ${json.maps.venetian.map_name} | ${embed1}${json.maps.venetian.map_url}${embed2}`);
-    matches = matches.replace(json.maps.venetian.location_2[`cipher_${inputType}8`], `(Stage 8) ${json.maps.venetian.location_2.plain_text_spaces}: ${json.maps.venetian.map_name} | ${embed1}${json.maps.venetian.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.venetian.location_2[`cipher_${inputType}1`], `(Stage 1) ${locationJson.maps.venetian.location_2.plain_text_spaces}: ${locationJson.maps.venetian.map_name} | ${embed1}${locationJson.maps.venetian.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.venetian.location_2[`cipher_${inputType}2`], `(Stage 2) ${locationJson.maps.venetian.location_2.plain_text_spaces}: ${locationJson.maps.venetian.map_name} | ${embed1}${locationJson.maps.venetian.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.venetian.location_2[`cipher_${inputType}3`], `(Stage 3) ${locationJson.maps.venetian.location_2.plain_text_spaces}: ${locationJson.maps.venetian.map_name} | ${embed1}${locationJson.maps.venetian.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.venetian.location_2[`cipher_${inputType}4`], `(Stage 4) ${locationJson.maps.venetian.location_2.plain_text_spaces}: ${locationJson.maps.venetian.map_name} | ${embed1}${locationJson.maps.venetian.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.venetian.location_2[`cipher_${inputType}5`], `(Stage 5) ${locationJson.maps.venetian.location_2.plain_text_spaces}: ${locationJson.maps.venetian.map_name} | ${embed1}${locationJson.maps.venetian.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.venetian.location_2[`cipher_${inputType}6`], `(Stage 6) ${locationJson.maps.venetian.location_2.plain_text_spaces}: ${locationJson.maps.venetian.map_name} | ${embed1}${locationJson.maps.venetian.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.venetian.location_2[`cipher_${inputType}7`], `(Stage 7) ${locationJson.maps.venetian.location_2.plain_text_spaces}: ${locationJson.maps.venetian.map_name} | ${embed1}${locationJson.maps.venetian.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.venetian.location_2[`cipher_${inputType}8`], `(Stage 8) ${locationJson.maps.venetian.location_2.plain_text_spaces}: ${locationJson.maps.venetian.map_name} | ${embed1}${locationJson.maps.venetian.map_url}${embed2}`);
 
     // 6-3
-    matches = matches.replace(json.maps.venetian.location_3[`cipher_${inputType}1`], `(Stage 1) ${json.maps.venetian.location_3.plain_text_spaces}: ${json.maps.venetian.map_name} | ${embed1}${json.maps.venetian.map_url}${embed2}`);
-    matches = matches.replace(json.maps.venetian.location_3[`cipher_${inputType}2`], `(Stage 2) ${json.maps.venetian.location_3.plain_text_spaces}: ${json.maps.venetian.map_name} | ${embed1}${json.maps.venetian.map_url}${embed2}`);
-    matches = matches.replace(json.maps.venetian.location_3[`cipher_${inputType}3`], `(Stage 3) ${json.maps.venetian.location_3.plain_text_spaces}: ${json.maps.venetian.map_name} | ${embed1}${json.maps.venetian.map_url}${embed2}`);
-    matches = matches.replace(json.maps.venetian.location_3[`cipher_${inputType}4`], `(Stage 4) ${json.maps.venetian.location_3.plain_text_spaces}: ${json.maps.venetian.map_name} | ${embed1}${json.maps.venetian.map_url}${embed2}`);
-    matches = matches.replace(json.maps.venetian.location_3[`cipher_${inputType}5`], `(Stage 5) ${json.maps.venetian.location_3.plain_text_spaces}: ${json.maps.venetian.map_name} | ${embed1}${json.maps.venetian.map_url}${embed2}`);
-    matches = matches.replace(json.maps.venetian.location_3[`cipher_${inputType}6`], `(Stage 6) ${json.maps.venetian.location_3.plain_text_spaces}: ${json.maps.venetian.map_name} | ${embed1}${json.maps.venetian.map_url}${embed2}`);
-    matches = matches.replace(json.maps.venetian.location_3[`cipher_${inputType}7`], `(Stage 7) ${json.maps.venetian.location_3.plain_text_spaces}: ${json.maps.venetian.map_name} | ${embed1}${json.maps.venetian.map_url}${embed2}`);
-    matches = matches.replace(json.maps.venetian.location_3[`cipher_${inputType}8`], `(Stage 8) ${json.maps.venetian.location_3.plain_text_spaces}: ${json.maps.venetian.map_name} | ${embed1}${json.maps.venetian.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.venetian.location_3[`cipher_${inputType}1`], `(Stage 1) ${locationJson.maps.venetian.location_3.plain_text_spaces}: ${locationJson.maps.venetian.map_name} | ${embed1}${locationJson.maps.venetian.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.venetian.location_3[`cipher_${inputType}2`], `(Stage 2) ${locationJson.maps.venetian.location_3.plain_text_spaces}: ${locationJson.maps.venetian.map_name} | ${embed1}${locationJson.maps.venetian.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.venetian.location_3[`cipher_${inputType}3`], `(Stage 3) ${locationJson.maps.venetian.location_3.plain_text_spaces}: ${locationJson.maps.venetian.map_name} | ${embed1}${locationJson.maps.venetian.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.venetian.location_3[`cipher_${inputType}4`], `(Stage 4) ${locationJson.maps.venetian.location_3.plain_text_spaces}: ${locationJson.maps.venetian.map_name} | ${embed1}${locationJson.maps.venetian.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.venetian.location_3[`cipher_${inputType}5`], `(Stage 5) ${locationJson.maps.venetian.location_3.plain_text_spaces}: ${locationJson.maps.venetian.map_name} | ${embed1}${locationJson.maps.venetian.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.venetian.location_3[`cipher_${inputType}6`], `(Stage 6) ${locationJson.maps.venetian.location_3.plain_text_spaces}: ${locationJson.maps.venetian.map_name} | ${embed1}${locationJson.maps.venetian.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.venetian.location_3[`cipher_${inputType}7`], `(Stage 7) ${locationJson.maps.venetian.location_3.plain_text_spaces}: ${locationJson.maps.venetian.map_name} | ${embed1}${locationJson.maps.venetian.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.venetian.location_3[`cipher_${inputType}8`], `(Stage 8) ${locationJson.maps.venetian.location_3.plain_text_spaces}: ${locationJson.maps.venetian.map_name} | ${embed1}${locationJson.maps.venetian.map_url}${embed2}`);
 
     // Jifar
     // 7-1
-    matches = matches.replace(json.maps.jifar.location_1[`cipher_${inputType}1`], `(Stage 1) ${json.maps.jifar.location_1.plain_text_spaces}: ${json.maps.jifar.map_name} | ${embed1}${json.maps.jifar.map_url}${embed2}`);
-    matches = matches.replace(json.maps.jifar.location_1[`cipher_${inputType}2`], `(Stage 2) ${json.maps.jifar.location_1.plain_text_spaces}: ${json.maps.jifar.map_name} | ${embed1}${json.maps.jifar.map_url}${embed2}`);
-    matches = matches.replace(json.maps.jifar.location_1[`cipher_${inputType}3`], `(Stage 3) ${json.maps.jifar.location_1.plain_text_spaces}: ${json.maps.jifar.map_name} | ${embed1}${json.maps.jifar.map_url}${embed2}`);
-    matches = matches.replace(json.maps.jifar.location_1[`cipher_${inputType}4`], `(Stage 4) ${json.maps.jifar.location_1.plain_text_spaces}: ${json.maps.jifar.map_name} | ${embed1}${json.maps.jifar.map_url}${embed2}`);
-    matches = matches.replace(json.maps.jifar.location_1[`cipher_${inputType}5`], `(Stage 5) ${json.maps.jifar.location_1.plain_text_spaces}: ${json.maps.jifar.map_name} | ${embed1}${json.maps.jifar.map_url}${embed2}`);
-    matches = matches.replace(json.maps.jifar.location_1[`cipher_${inputType}6`], `(Stage 6) ${json.maps.jifar.location_1.plain_text_spaces}: ${json.maps.jifar.map_name} | ${embed1}${json.maps.jifar.map_url}${embed2}`);
-    matches = matches.replace(json.maps.jifar.location_1[`cipher_${inputType}7`], `(Stage 7) ${json.maps.jifar.location_1.plain_text_spaces}: ${json.maps.jifar.map_name} | ${embed1}${json.maps.jifar.map_url}${embed2}`);
-    matches = matches.replace(json.maps.jifar.location_1[`cipher_${inputType}8`], `(Stage 8) ${json.maps.jifar.location_1.plain_text_spaces}: ${json.maps.jifar.map_name} | ${embed1}${json.maps.jifar.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.jifar.location_1[`cipher_${inputType}1`], `(Stage 1) ${locationJson.maps.jifar.location_1.plain_text_spaces}: ${locationJson.maps.jifar.map_name} | ${embed1}${locationJson.maps.jifar.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.jifar.location_1[`cipher_${inputType}2`], `(Stage 2) ${locationJson.maps.jifar.location_1.plain_text_spaces}: ${locationJson.maps.jifar.map_name} | ${embed1}${locationJson.maps.jifar.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.jifar.location_1[`cipher_${inputType}3`], `(Stage 3) ${locationJson.maps.jifar.location_1.plain_text_spaces}: ${locationJson.maps.jifar.map_name} | ${embed1}${locationJson.maps.jifar.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.jifar.location_1[`cipher_${inputType}4`], `(Stage 4) ${locationJson.maps.jifar.location_1.plain_text_spaces}: ${locationJson.maps.jifar.map_name} | ${embed1}${locationJson.maps.jifar.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.jifar.location_1[`cipher_${inputType}5`], `(Stage 5) ${locationJson.maps.jifar.location_1.plain_text_spaces}: ${locationJson.maps.jifar.map_name} | ${embed1}${locationJson.maps.jifar.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.jifar.location_1[`cipher_${inputType}6`], `(Stage 6) ${locationJson.maps.jifar.location_1.plain_text_spaces}: ${locationJson.maps.jifar.map_name} | ${embed1}${locationJson.maps.jifar.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.jifar.location_1[`cipher_${inputType}7`], `(Stage 7) ${locationJson.maps.jifar.location_1.plain_text_spaces}: ${locationJson.maps.jifar.map_name} | ${embed1}${locationJson.maps.jifar.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.jifar.location_1[`cipher_${inputType}8`], `(Stage 8) ${locationJson.maps.jifar.location_1.plain_text_spaces}: ${locationJson.maps.jifar.map_name} | ${embed1}${locationJson.maps.jifar.map_url}${embed2}`);
 
     // 7-2
-    matches = matches.replace(json.maps.jifar.location_2[`cipher_${inputType}1`], `(Stage 1) ${json.maps.jifar.location_2.plain_text_spaces}: ${json.maps.jifar.map_name} | ${embed1}${json.maps.jifar.map_url}${embed2}`);
-    matches = matches.replace(json.maps.jifar.location_2[`cipher_${inputType}2`], `(Stage 2) ${json.maps.jifar.location_2.plain_text_spaces}: ${json.maps.jifar.map_name} | ${embed1}${json.maps.jifar.map_url}${embed2}`);
-    matches = matches.replace(json.maps.jifar.location_2[`cipher_${inputType}3`], `(Stage 3) ${json.maps.jifar.location_2.plain_text_spaces}: ${json.maps.jifar.map_name} | ${embed1}${json.maps.jifar.map_url}${embed2}`);
-    matches = matches.replace(json.maps.jifar.location_2[`cipher_${inputType}4`], `(Stage 4) ${json.maps.jifar.location_2.plain_text_spaces}: ${json.maps.jifar.map_name} | ${embed1}${json.maps.jifar.map_url}${embed2}`);
-    matches = matches.replace(json.maps.jifar.location_2[`cipher_${inputType}5`], `(Stage 5) ${json.maps.jifar.location_2.plain_text_spaces}: ${json.maps.jifar.map_name} | ${embed1}${json.maps.jifar.map_url}${embed2}`);
-    matches = matches.replace(json.maps.jifar.location_2[`cipher_${inputType}6`], `(Stage 6) ${json.maps.jifar.location_2.plain_text_spaces}: ${json.maps.jifar.map_name} | ${embed1}${json.maps.jifar.map_url}${embed2}`);
-    matches = matches.replace(json.maps.jifar.location_2[`cipher_${inputType}7`], `(Stage 7) ${json.maps.jifar.location_2.plain_text_spaces}: ${json.maps.jifar.map_name} | ${embed1}${json.maps.jifar.map_url}${embed2}`);
-    matches = matches.replace(json.maps.jifar.location_2[`cipher_${inputType}8`], `(Stage 8) ${json.maps.jifar.location_2.plain_text_spaces}: ${json.maps.jifar.map_name} | ${embed1}${json.maps.jifar.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.jifar.location_2[`cipher_${inputType}1`], `(Stage 1) ${locationJson.maps.jifar.location_2.plain_text_spaces}: ${locationJson.maps.jifar.map_name} | ${embed1}${locationJson.maps.jifar.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.jifar.location_2[`cipher_${inputType}2`], `(Stage 2) ${locationJson.maps.jifar.location_2.plain_text_spaces}: ${locationJson.maps.jifar.map_name} | ${embed1}${locationJson.maps.jifar.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.jifar.location_2[`cipher_${inputType}3`], `(Stage 3) ${locationJson.maps.jifar.location_2.plain_text_spaces}: ${locationJson.maps.jifar.map_name} | ${embed1}${locationJson.maps.jifar.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.jifar.location_2[`cipher_${inputType}4`], `(Stage 4) ${locationJson.maps.jifar.location_2.plain_text_spaces}: ${locationJson.maps.jifar.map_name} | ${embed1}${locationJson.maps.jifar.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.jifar.location_2[`cipher_${inputType}5`], `(Stage 5) ${locationJson.maps.jifar.location_2.plain_text_spaces}: ${locationJson.maps.jifar.map_name} | ${embed1}${locationJson.maps.jifar.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.jifar.location_2[`cipher_${inputType}6`], `(Stage 6) ${locationJson.maps.jifar.location_2.plain_text_spaces}: ${locationJson.maps.jifar.map_name} | ${embed1}${locationJson.maps.jifar.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.jifar.location_2[`cipher_${inputType}7`], `(Stage 7) ${locationJson.maps.jifar.location_2.plain_text_spaces}: ${locationJson.maps.jifar.map_name} | ${embed1}${locationJson.maps.jifar.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.jifar.location_2[`cipher_${inputType}8`], `(Stage 8) ${locationJson.maps.jifar.location_2.plain_text_spaces}: ${locationJson.maps.jifar.map_name} | ${embed1}${locationJson.maps.jifar.map_url}${embed2}`);
 
     // 7-3
-    matches = matches.replace(json.maps.jifar.location_3[`cipher_${inputType}1`], `(Stage 1) ${json.maps.jifar.location_3.plain_text_spaces}: ${json.maps.jifar.map_name} | ${embed1}${json.maps.jifar.map_url}${embed2}`);
-    matches = matches.replace(json.maps.jifar.location_3[`cipher_${inputType}2`], `(Stage 2) ${json.maps.jifar.location_3.plain_text_spaces}: ${json.maps.jifar.map_name} | ${embed1}${json.maps.jifar.map_url}${embed2}`);
-    matches = matches.replace(json.maps.jifar.location_3[`cipher_${inputType}3`], `(Stage 3) ${json.maps.jifar.location_3.plain_text_spaces}: ${json.maps.jifar.map_name} | ${embed1}${json.maps.jifar.map_url}${embed2}`);
-    matches = matches.replace(json.maps.jifar.location_3[`cipher_${inputType}4`], `(Stage 4) ${json.maps.jifar.location_3.plain_text_spaces}: ${json.maps.jifar.map_name} | ${embed1}${json.maps.jifar.map_url}${embed2}`);
-    matches = matches.replace(json.maps.jifar.location_3[`cipher_${inputType}5`], `(Stage 5) ${json.maps.jifar.location_3.plain_text_spaces}: ${json.maps.jifar.map_name} | ${embed1}${json.maps.jifar.map_url}${embed2}`);
-    matches = matches.replace(json.maps.jifar.location_3[`cipher_${inputType}6`], `(Stage 6) ${json.maps.jifar.location_3.plain_text_spaces}: ${json.maps.jifar.map_name} | ${embed1}${json.maps.jifar.map_url}${embed2}`);
-    matches = matches.replace(json.maps.jifar.location_3[`cipher_${inputType}7`], `(Stage 7) ${json.maps.jifar.location_3.plain_text_spaces}: ${json.maps.jifar.map_name} | ${embed1}${json.maps.jifar.map_url}${embed2}`);
-    matches = matches.replace(json.maps.jifar.location_3[`cipher_${inputType}8`], `(Stage 8) ${json.maps.jifar.location_3.plain_text_spaces}: ${json.maps.jifar.map_name} | ${embed1}${json.maps.jifar.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.jifar.location_3[`cipher_${inputType}1`], `(Stage 1) ${locationJson.maps.jifar.location_3.plain_text_spaces}: ${locationJson.maps.jifar.map_name} | ${embed1}${locationJson.maps.jifar.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.jifar.location_3[`cipher_${inputType}2`], `(Stage 2) ${locationJson.maps.jifar.location_3.plain_text_spaces}: ${locationJson.maps.jifar.map_name} | ${embed1}${locationJson.maps.jifar.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.jifar.location_3[`cipher_${inputType}3`], `(Stage 3) ${locationJson.maps.jifar.location_3.plain_text_spaces}: ${locationJson.maps.jifar.map_name} | ${embed1}${locationJson.maps.jifar.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.jifar.location_3[`cipher_${inputType}4`], `(Stage 4) ${locationJson.maps.jifar.location_3.plain_text_spaces}: ${locationJson.maps.jifar.map_name} | ${embed1}${locationJson.maps.jifar.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.jifar.location_3[`cipher_${inputType}5`], `(Stage 5) ${locationJson.maps.jifar.location_3.plain_text_spaces}: ${locationJson.maps.jifar.map_name} | ${embed1}${locationJson.maps.jifar.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.jifar.location_3[`cipher_${inputType}6`], `(Stage 6) ${locationJson.maps.jifar.location_3.plain_text_spaces}: ${locationJson.maps.jifar.map_name} | ${embed1}${locationJson.maps.jifar.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.jifar.location_3[`cipher_${inputType}7`], `(Stage 7) ${locationJson.maps.jifar.location_3.plain_text_spaces}: ${locationJson.maps.jifar.map_name} | ${embed1}${locationJson.maps.jifar.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.jifar.location_3[`cipher_${inputType}8`], `(Stage 8) ${locationJson.maps.jifar.location_3.plain_text_spaces}: ${locationJson.maps.jifar.map_name} | ${embed1}${locationJson.maps.jifar.map_url}${embed2}`);
 
     // Peronne
     // 8-1
-    matches = matches.replace(json.maps.peronne.location_1[`cipher_${inputType}1`], `(Stage 1) ${json.maps.peronne.location_1.plain_text_spaces}: ${json.maps.peronne.map_name} | ${embed1}${json.maps.peronne.map_url}${embed2}`);
-    matches = matches.replace(json.maps.peronne.location_1[`cipher_${inputType}2`], `(Stage 2) ${json.maps.peronne.location_1.plain_text_spaces}: ${json.maps.peronne.map_name} | ${embed1}${json.maps.peronne.map_url}${embed2}`);
-    matches = matches.replace(json.maps.peronne.location_1[`cipher_${inputType}3`], `(Stage 3) ${json.maps.peronne.location_1.plain_text_spaces}: ${json.maps.peronne.map_name} | ${embed1}${json.maps.peronne.map_url}${embed2}`);
-    matches = matches.replace(json.maps.peronne.location_1[`cipher_${inputType}4`], `(Stage 4) ${json.maps.peronne.location_1.plain_text_spaces}: ${json.maps.peronne.map_name} | ${embed1}${json.maps.peronne.map_url}${embed2}`);
-    matches = matches.replace(json.maps.peronne.location_1[`cipher_${inputType}5`], `(Stage 5) ${json.maps.peronne.location_1.plain_text_spaces}: ${json.maps.peronne.map_name} | ${embed1}${json.maps.peronne.map_url}${embed2}`);
-    matches = matches.replace(json.maps.peronne.location_1[`cipher_${inputType}6`], `(Stage 6) ${json.maps.peronne.location_1.plain_text_spaces}: ${json.maps.peronne.map_name} | ${embed1}${json.maps.peronne.map_url}${embed2}`);
-    matches = matches.replace(json.maps.peronne.location_1[`cipher_${inputType}7`], `(Stage 7) ${json.maps.peronne.location_1.plain_text_spaces}: ${json.maps.peronne.map_name} | ${embed1}${json.maps.peronne.map_url}${embed2}`);
-    matches = matches.replace(json.maps.peronne.location_1[`cipher_${inputType}8`], `(Stage 8) ${json.maps.peronne.location_1.plain_text_spaces}: ${json.maps.peronne.map_name} | ${embed1}${json.maps.peronne.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.peronne.location_1[`cipher_${inputType}1`], `(Stage 1) ${locationJson.maps.peronne.location_1.plain_text_spaces}: ${locationJson.maps.peronne.map_name} | ${embed1}${locationJson.maps.peronne.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.peronne.location_1[`cipher_${inputType}2`], `(Stage 2) ${locationJson.maps.peronne.location_1.plain_text_spaces}: ${locationJson.maps.peronne.map_name} | ${embed1}${locationJson.maps.peronne.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.peronne.location_1[`cipher_${inputType}3`], `(Stage 3) ${locationJson.maps.peronne.location_1.plain_text_spaces}: ${locationJson.maps.peronne.map_name} | ${embed1}${locationJson.maps.peronne.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.peronne.location_1[`cipher_${inputType}4`], `(Stage 4) ${locationJson.maps.peronne.location_1.plain_text_spaces}: ${locationJson.maps.peronne.map_name} | ${embed1}${locationJson.maps.peronne.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.peronne.location_1[`cipher_${inputType}5`], `(Stage 5) ${locationJson.maps.peronne.location_1.plain_text_spaces}: ${locationJson.maps.peronne.map_name} | ${embed1}${locationJson.maps.peronne.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.peronne.location_1[`cipher_${inputType}6`], `(Stage 6) ${locationJson.maps.peronne.location_1.plain_text_spaces}: ${locationJson.maps.peronne.map_name} | ${embed1}${locationJson.maps.peronne.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.peronne.location_1[`cipher_${inputType}7`], `(Stage 7) ${locationJson.maps.peronne.location_1.plain_text_spaces}: ${locationJson.maps.peronne.map_name} | ${embed1}${locationJson.maps.peronne.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.peronne.location_1[`cipher_${inputType}8`], `(Stage 8) ${locationJson.maps.peronne.location_1.plain_text_spaces}: ${locationJson.maps.peronne.map_name} | ${embed1}${locationJson.maps.peronne.map_url}${embed2}`);
 
     // 8-2
-    matches = matches.replace(json.maps.peronne.location_2[`cipher_${inputType}1`], `(Stage 1) ${json.maps.peronne.location_2.plain_text_spaces}: ${json.maps.peronne.map_name} | ${embed1}${json.maps.peronne.map_url}${embed2}`);
-    matches = matches.replace(json.maps.peronne.location_2[`cipher_${inputType}2`], `(Stage 2) ${json.maps.peronne.location_2.plain_text_spaces}: ${json.maps.peronne.map_name} | ${embed1}${json.maps.peronne.map_url}${embed2}`);
-    matches = matches.replace(json.maps.peronne.location_2[`cipher_${inputType}3`], `(Stage 3) ${json.maps.peronne.location_2.plain_text_spaces}: ${json.maps.peronne.map_name} | ${embed1}${json.maps.peronne.map_url}${embed2}`);
-    matches = matches.replace(json.maps.peronne.location_2[`cipher_${inputType}4`], `(Stage 4) ${json.maps.peronne.location_2.plain_text_spaces}: ${json.maps.peronne.map_name} | ${embed1}${json.maps.peronne.map_url}${embed2}`);
-    matches = matches.replace(json.maps.peronne.location_2[`cipher_${inputType}5`], `(Stage 5) ${json.maps.peronne.location_2.plain_text_spaces}: ${json.maps.peronne.map_name} | ${embed1}${json.maps.peronne.map_url}${embed2}`);
-    matches = matches.replace(json.maps.peronne.location_2[`cipher_${inputType}6`], `(Stage 6) ${json.maps.peronne.location_2.plain_text_spaces}: ${json.maps.peronne.map_name} | ${embed1}${json.maps.peronne.map_url}${embed2}`);
-    matches = matches.replace(json.maps.peronne.location_2[`cipher_${inputType}7`], `(Stage 7) ${json.maps.peronne.location_2.plain_text_spaces}: ${json.maps.peronne.map_name} | ${embed1}${json.maps.peronne.map_url}${embed2}`);
-    matches = matches.replace(json.maps.peronne.location_2[`cipher_${inputType}8`], `(Stage 8) ${json.maps.peronne.location_2.plain_text_spaces}: ${json.maps.peronne.map_name} | ${embed1}${json.maps.peronne.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.peronne.location_2[`cipher_${inputType}1`], `(Stage 1) ${locationJson.maps.peronne.location_2.plain_text_spaces}: ${locationJson.maps.peronne.map_name} | ${embed1}${locationJson.maps.peronne.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.peronne.location_2[`cipher_${inputType}2`], `(Stage 2) ${locationJson.maps.peronne.location_2.plain_text_spaces}: ${locationJson.maps.peronne.map_name} | ${embed1}${locationJson.maps.peronne.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.peronne.location_2[`cipher_${inputType}3`], `(Stage 3) ${locationJson.maps.peronne.location_2.plain_text_spaces}: ${locationJson.maps.peronne.map_name} | ${embed1}${locationJson.maps.peronne.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.peronne.location_2[`cipher_${inputType}4`], `(Stage 4) ${locationJson.maps.peronne.location_2.plain_text_spaces}: ${locationJson.maps.peronne.map_name} | ${embed1}${locationJson.maps.peronne.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.peronne.location_2[`cipher_${inputType}5`], `(Stage 5) ${locationJson.maps.peronne.location_2.plain_text_spaces}: ${locationJson.maps.peronne.map_name} | ${embed1}${locationJson.maps.peronne.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.peronne.location_2[`cipher_${inputType}6`], `(Stage 6) ${locationJson.maps.peronne.location_2.plain_text_spaces}: ${locationJson.maps.peronne.map_name} | ${embed1}${locationJson.maps.peronne.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.peronne.location_2[`cipher_${inputType}7`], `(Stage 7) ${locationJson.maps.peronne.location_2.plain_text_spaces}: ${locationJson.maps.peronne.map_name} | ${embed1}${locationJson.maps.peronne.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.peronne.location_2[`cipher_${inputType}8`], `(Stage 8) ${locationJson.maps.peronne.location_2.plain_text_spaces}: ${locationJson.maps.peronne.map_name} | ${embed1}${locationJson.maps.peronne.map_url}${embed2}`);
 
     // 8-3
-    matches = matches.replace(json.maps.peronne.location_3[`cipher_${inputType}1`], `(Stage 1) ${json.maps.peronne.location_3.plain_text_spaces}: ${json.maps.peronne.map_name} | ${embed1}${json.maps.peronne.map_url}${embed2}`);
-    matches = matches.replace(json.maps.peronne.location_3[`cipher_${inputType}2`], `(Stage 2) ${json.maps.peronne.location_3.plain_text_spaces}: ${json.maps.peronne.map_name} | ${embed1}${json.maps.peronne.map_url}${embed2}`);
-    matches = matches.replace(json.maps.peronne.location_3[`cipher_${inputType}3`], `(Stage 3) ${json.maps.peronne.location_3.plain_text_spaces}: ${json.maps.peronne.map_name} | ${embed1}${json.maps.peronne.map_url}${embed2}`);
-    matches = matches.replace(json.maps.peronne.location_3[`cipher_${inputType}4`], `(Stage 4) ${json.maps.peronne.location_3.plain_text_spaces}: ${json.maps.peronne.map_name} | ${embed1}${json.maps.peronne.map_url}${embed2}`);
-    matches = matches.replace(json.maps.peronne.location_3[`cipher_${inputType}5`], `(Stage 5) ${json.maps.peronne.location_3.plain_text_spaces}: ${json.maps.peronne.map_name} | ${embed1}${json.maps.peronne.map_url}${embed2}`);
-    matches = matches.replace(json.maps.peronne.location_3[`cipher_${inputType}6`], `(Stage 6) ${json.maps.peronne.location_3.plain_text_spaces}: ${json.maps.peronne.map_name} | ${embed1}${json.maps.peronne.map_url}${embed2}`);
-    matches = matches.replace(json.maps.peronne.location_3[`cipher_${inputType}7`], `(Stage 7) ${json.maps.peronne.location_3.plain_text_spaces}: ${json.maps.peronne.map_name} | ${embed1}${json.maps.peronne.map_url}${embed2}`);
-    matches = matches.replace(json.maps.peronne.location_3[`cipher_${inputType}8`], `(Stage 8) ${json.maps.peronne.location_3.plain_text_spaces}: ${json.maps.peronne.map_name} | ${embed1}${json.maps.peronne.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.peronne.location_3[`cipher_${inputType}1`], `(Stage 1) ${locationJson.maps.peronne.location_3.plain_text_spaces}: ${locationJson.maps.peronne.map_name} | ${embed1}${locationJson.maps.peronne.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.peronne.location_3[`cipher_${inputType}2`], `(Stage 2) ${locationJson.maps.peronne.location_3.plain_text_spaces}: ${locationJson.maps.peronne.map_name} | ${embed1}${locationJson.maps.peronne.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.peronne.location_3[`cipher_${inputType}3`], `(Stage 3) ${locationJson.maps.peronne.location_3.plain_text_spaces}: ${locationJson.maps.peronne.map_name} | ${embed1}${locationJson.maps.peronne.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.peronne.location_3[`cipher_${inputType}4`], `(Stage 4) ${locationJson.maps.peronne.location_3.plain_text_spaces}: ${locationJson.maps.peronne.map_name} | ${embed1}${locationJson.maps.peronne.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.peronne.location_3[`cipher_${inputType}5`], `(Stage 5) ${locationJson.maps.peronne.location_3.plain_text_spaces}: ${locationJson.maps.peronne.map_name} | ${embed1}${locationJson.maps.peronne.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.peronne.location_3[`cipher_${inputType}6`], `(Stage 6) ${locationJson.maps.peronne.location_3.plain_text_spaces}: ${locationJson.maps.peronne.map_name} | ${embed1}${locationJson.maps.peronne.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.peronne.location_3[`cipher_${inputType}7`], `(Stage 7) ${locationJson.maps.peronne.location_3.plain_text_spaces}: ${locationJson.maps.peronne.map_name} | ${embed1}${locationJson.maps.peronne.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.peronne.location_3[`cipher_${inputType}8`], `(Stage 8) ${locationJson.maps.peronne.location_3.plain_text_spaces}: ${locationJson.maps.peronne.map_name} | ${embed1}${locationJson.maps.peronne.map_url}${embed2}`);
 
     // Canal
     // 9-1
-    matches = matches.replace(json.maps.canal.location_1[`cipher_${inputType}1`], `(Stage 1) ${json.maps.canal.location_1.plain_text_spaces}: ${json.maps.canal.map_name} | ${embed1}${json.maps.canal.map_url}${embed2}`);
-    matches = matches.replace(json.maps.canal.location_1[`cipher_${inputType}2`], `(Stage 2) ${json.maps.canal.location_1.plain_text_spaces}: ${json.maps.canal.map_name} | ${embed1}${json.maps.canal.map_url}${embed2}`);
-    matches = matches.replace(json.maps.canal.location_1[`cipher_${inputType}3`], `(Stage 3) ${json.maps.canal.location_1.plain_text_spaces}: ${json.maps.canal.map_name} | ${embed1}${json.maps.canal.map_url}${embed2}`);
-    matches = matches.replace(json.maps.canal.location_1[`cipher_${inputType}4`], `(Stage 4) ${json.maps.canal.location_1.plain_text_spaces}: ${json.maps.canal.map_name} | ${embed1}${json.maps.canal.map_url}${embed2}`);
-    matches = matches.replace(json.maps.canal.location_1[`cipher_${inputType}5`], `(Stage 5) ${json.maps.canal.location_1.plain_text_spaces}: ${json.maps.canal.map_name} | ${embed1}${json.maps.canal.map_url}${embed2}`);
-    matches = matches.replace(json.maps.canal.location_1[`cipher_${inputType}6`], `(Stage 6) ${json.maps.canal.location_1.plain_text_spaces}: ${json.maps.canal.map_name} | ${embed1}${json.maps.canal.map_url}${embed2}`);
-    matches = matches.replace(json.maps.canal.location_1[`cipher_${inputType}7`], `(Stage 7) ${json.maps.canal.location_1.plain_text_spaces}: ${json.maps.canal.map_name} | ${embed1}${json.maps.canal.map_url}${embed2}`);
-    matches = matches.replace(json.maps.canal.location_1[`cipher_${inputType}8`], `(Stage 8) ${json.maps.canal.location_1.plain_text_spaces}: ${json.maps.canal.map_name} | ${embed1}${json.maps.canal.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.canal.location_1[`cipher_${inputType}1`], `(Stage 1) ${locationJson.maps.canal.location_1.plain_text_spaces}: ${locationJson.maps.canal.map_name} | ${embed1}${locationJson.maps.canal.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.canal.location_1[`cipher_${inputType}2`], `(Stage 2) ${locationJson.maps.canal.location_1.plain_text_spaces}: ${locationJson.maps.canal.map_name} | ${embed1}${locationJson.maps.canal.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.canal.location_1[`cipher_${inputType}3`], `(Stage 3) ${locationJson.maps.canal.location_1.plain_text_spaces}: ${locationJson.maps.canal.map_name} | ${embed1}${locationJson.maps.canal.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.canal.location_1[`cipher_${inputType}4`], `(Stage 4) ${locationJson.maps.canal.location_1.plain_text_spaces}: ${locationJson.maps.canal.map_name} | ${embed1}${locationJson.maps.canal.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.canal.location_1[`cipher_${inputType}5`], `(Stage 5) ${locationJson.maps.canal.location_1.plain_text_spaces}: ${locationJson.maps.canal.map_name} | ${embed1}${locationJson.maps.canal.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.canal.location_1[`cipher_${inputType}6`], `(Stage 6) ${locationJson.maps.canal.location_1.plain_text_spaces}: ${locationJson.maps.canal.map_name} | ${embed1}${locationJson.maps.canal.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.canal.location_1[`cipher_${inputType}7`], `(Stage 7) ${locationJson.maps.canal.location_1.plain_text_spaces}: ${locationJson.maps.canal.map_name} | ${embed1}${locationJson.maps.canal.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.canal.location_1[`cipher_${inputType}8`], `(Stage 8) ${locationJson.maps.canal.location_1.plain_text_spaces}: ${locationJson.maps.canal.map_name} | ${embed1}${locationJson.maps.canal.map_url}${embed2}`);
 
     // 9-2
-    matches = matches.replace(json.maps.canal.location_2[`cipher_${inputType}1`], `(Stage 1) ${json.maps.canal.location_2.plain_text_spaces}: ${json.maps.canal.map_name} | ${embed1}${json.maps.canal.map_url}${embed2}`);
-    matches = matches.replace(json.maps.canal.location_2[`cipher_${inputType}2`], `(Stage 2) ${json.maps.canal.location_2.plain_text_spaces}: ${json.maps.canal.map_name} | ${embed1}${json.maps.canal.map_url}${embed2}`);
-    matches = matches.replace(json.maps.canal.location_2[`cipher_${inputType}3`], `(Stage 3) ${json.maps.canal.location_2.plain_text_spaces}: ${json.maps.canal.map_name} | ${embed1}${json.maps.canal.map_url}${embed2}`);
-    matches = matches.replace(json.maps.canal.location_2[`cipher_${inputType}4`], `(Stage 4) ${json.maps.canal.location_2.plain_text_spaces}: ${json.maps.canal.map_name} | ${embed1}${json.maps.canal.map_url}${embed2}`);
-    matches = matches.replace(json.maps.canal.location_2[`cipher_${inputType}5`], `(Stage 5) ${json.maps.canal.location_2.plain_text_spaces}: ${json.maps.canal.map_name} | ${embed1}${json.maps.canal.map_url}${embed2}`);
-    matches = matches.replace(json.maps.canal.location_2[`cipher_${inputType}6`], `(Stage 6) ${json.maps.canal.location_2.plain_text_spaces}: ${json.maps.canal.map_name} | ${embed1}${json.maps.canal.map_url}${embed2}`);
-    matches = matches.replace(json.maps.canal.location_2[`cipher_${inputType}7`], `(Stage 7) ${json.maps.canal.location_2.plain_text_spaces}: ${json.maps.canal.map_name} | ${embed1}${json.maps.canal.map_url}${embed2}`);
-    matches = matches.replace(json.maps.canal.location_2[`cipher_${inputType}8`], `(Stage 8) ${json.maps.canal.location_2.plain_text_spaces}: ${json.maps.canal.map_name} | ${embed1}${json.maps.canal.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.canal.location_2[`cipher_${inputType}1`], `(Stage 1) ${locationJson.maps.canal.location_2.plain_text_spaces}: ${locationJson.maps.canal.map_name} | ${embed1}${locationJson.maps.canal.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.canal.location_2[`cipher_${inputType}2`], `(Stage 2) ${locationJson.maps.canal.location_2.plain_text_spaces}: ${locationJson.maps.canal.map_name} | ${embed1}${locationJson.maps.canal.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.canal.location_2[`cipher_${inputType}3`], `(Stage 3) ${locationJson.maps.canal.location_2.plain_text_spaces}: ${locationJson.maps.canal.map_name} | ${embed1}${locationJson.maps.canal.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.canal.location_2[`cipher_${inputType}4`], `(Stage 4) ${locationJson.maps.canal.location_2.plain_text_spaces}: ${locationJson.maps.canal.map_name} | ${embed1}${locationJson.maps.canal.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.canal.location_2[`cipher_${inputType}5`], `(Stage 5) ${locationJson.maps.canal.location_2.plain_text_spaces}: ${locationJson.maps.canal.map_name} | ${embed1}${locationJson.maps.canal.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.canal.location_2[`cipher_${inputType}6`], `(Stage 6) ${locationJson.maps.canal.location_2.plain_text_spaces}: ${locationJson.maps.canal.map_name} | ${embed1}${locationJson.maps.canal.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.canal.location_2[`cipher_${inputType}7`], `(Stage 7) ${locationJson.maps.canal.location_2.plain_text_spaces}: ${locationJson.maps.canal.map_name} | ${embed1}${locationJson.maps.canal.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.canal.location_2[`cipher_${inputType}8`], `(Stage 8) ${locationJson.maps.canal.location_2.plain_text_spaces}: ${locationJson.maps.canal.map_name} | ${embed1}${locationJson.maps.canal.map_url}${embed2}`);
 
     // 9-3
-    matches = matches.replace(json.maps.canal.location_3[`cipher_${inputType}1`], `(Stage 1) ${json.maps.canal.location_3.plain_text_spaces}: ${json.maps.canal.map_name} | ${embed1}${json.maps.canal.map_url}${embed2}`);
-    matches = matches.replace(json.maps.canal.location_3[`cipher_${inputType}2`], `(Stage 2) ${json.maps.canal.location_3.plain_text_spaces}: ${json.maps.canal.map_name} | ${embed1}${json.maps.canal.map_url}${embed2}`);
-    matches = matches.replace(json.maps.canal.location_3[`cipher_${inputType}3`], `(Stage 3) ${json.maps.canal.location_3.plain_text_spaces}: ${json.maps.canal.map_name} | ${embed1}${json.maps.canal.map_url}${embed2}`);
-    matches = matches.replace(json.maps.canal.location_3[`cipher_${inputType}4`], `(Stage 4) ${json.maps.canal.location_3.plain_text_spaces}: ${json.maps.canal.map_name} | ${embed1}${json.maps.canal.map_url}${embed2}`);
-    matches = matches.replace(json.maps.canal.location_3[`cipher_${inputType}5`], `(Stage 5) ${json.maps.canal.location_3.plain_text_spaces}: ${json.maps.canal.map_name} | ${embed1}${json.maps.canal.map_url}${embed2}`);
-    matches = matches.replace(json.maps.canal.location_3[`cipher_${inputType}6`], `(Stage 6) ${json.maps.canal.location_3.plain_text_spaces}: ${json.maps.canal.map_name} | ${embed1}${json.maps.canal.map_url}${embed2}`);
-    matches = matches.replace(json.maps.canal.location_3[`cipher_${inputType}7`], `(Stage 7) ${json.maps.canal.location_3.plain_text_spaces}: ${json.maps.canal.map_name} | ${embed1}${json.maps.canal.map_url}${embed2}`);
-    matches = matches.replace(json.maps.canal.location_3[`cipher_${inputType}8`], `(Stage 8) ${json.maps.canal.location_3.plain_text_spaces}: ${json.maps.canal.map_name} | ${embed1}${json.maps.canal.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.canal.location_3[`cipher_${inputType}1`], `(Stage 1) ${locationJson.maps.canal.location_3.plain_text_spaces}: ${locationJson.maps.canal.map_name} | ${embed1}${locationJson.maps.canal.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.canal.location_3[`cipher_${inputType}2`], `(Stage 2) ${locationJson.maps.canal.location_3.plain_text_spaces}: ${locationJson.maps.canal.map_name} | ${embed1}${locationJson.maps.canal.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.canal.location_3[`cipher_${inputType}3`], `(Stage 3) ${locationJson.maps.canal.location_3.plain_text_spaces}: ${locationJson.maps.canal.map_name} | ${embed1}${locationJson.maps.canal.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.canal.location_3[`cipher_${inputType}4`], `(Stage 4) ${locationJson.maps.canal.location_3.plain_text_spaces}: ${locationJson.maps.canal.map_name} | ${embed1}${locationJson.maps.canal.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.canal.location_3[`cipher_${inputType}5`], `(Stage 5) ${locationJson.maps.canal.location_3.plain_text_spaces}: ${locationJson.maps.canal.map_name} | ${embed1}${locationJson.maps.canal.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.canal.location_3[`cipher_${inputType}6`], `(Stage 6) ${locationJson.maps.canal.location_3.plain_text_spaces}: ${locationJson.maps.canal.map_name} | ${embed1}${locationJson.maps.canal.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.canal.location_3[`cipher_${inputType}7`], `(Stage 7) ${locationJson.maps.canal.location_3.plain_text_spaces}: ${locationJson.maps.canal.map_name} | ${embed1}${locationJson.maps.canal.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.canal.location_3[`cipher_${inputType}8`], `(Stage 8) ${locationJson.maps.canal.location_3.plain_text_spaces}: ${locationJson.maps.canal.map_name} | ${embed1}${locationJson.maps.canal.map_url}${embed2}`);
 
     // 10-1
-    matches = matches.replace(json.maps.giantsshadow.location_1[`cipher_${inputType}9`], `(Stage 9) ${json.maps.giantsshadow.location_1.plain_text_spaces}: ${json.maps.giantsshadow.map_name} | ${embed1}${json.maps.giantsshadow.map_url}${embed2}`);
+    matches = matches.replace(locationJson.maps.giantsshadow.location_1[`cipher_${inputType}9`], `(Stage 9) ${locationJson.maps.giantsshadow.location_1.plain_text_spaces}: ${locationJson.maps.giantsshadow.map_name} | ${embed1}${locationJson.maps.giantsshadow.map_url}${embed2}`);
 
     resultsBox.value = matches;
 
     document.getElementById("matchesText").innerText = `Matches: (${totalMatches})`;
 
-    if (totalMatches == 1) {
-        if (resultsBox.value.includes(json.maps.amiens.location_1.plain_text_spaces)) { // amiens 1
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${json.maps.amiens.map_url}'>Found on ${json.maps.amiens.map_name} (${json.maps.amiens.location_1.plain_text_spaces})</a>`;
+    if (totalMatches === 1) {
+        if (resultsBox.value.includes(locationJson.maps.amiens.location_1.plain_text_spaces)) { // amiens 1
+            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.amiens.map_url}'>Found on ${locationJson.maps.amiens.map_name} (${locationJson.maps.amiens.location_1.plain_text_spaces})</a>`;
         }
-        if (resultsBox.value.includes(json.maps.amiens.location_2.plain_text_spaces)) { // amiens 2
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${json.maps.amiens.map_url}'>Found on ${json.maps.amiens.map_name} (${json.maps.amiens.location_2.plain_text_spaces})</a>`;
+        if (resultsBox.value.includes(locationJson.maps.amiens.location_2.plain_text_spaces)) { // amiens 2
+            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.amiens.map_url}'>Found on ${locationJson.maps.amiens.map_name} (${locationJson.maps.amiens.location_2.plain_text_spaces})</a>`;
         }
-        if (resultsBox.value.includes(json.maps.amiens.location_3.plain_text_spaces)) { // amiens 3
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${json.maps.amiens.map_url}'>Found on ${json.maps.amiens.map_name} (${json.maps.amiens.location_3.plain_text_spaces})</a>`;
-        }
-
-        if (resultsBox.value.includes(json.maps.apremont.location_1.plain_text_spaces)) { // apremont 1
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${json.maps.apremont.map_url}'>Found on ${json.maps.apremont.map_name} (${json.maps.apremont.location_1.plain_text_spaces})</a>`;
-        }
-        if (resultsBox.value.includes(json.maps.apremont.location_2.plain_text_spaces)) { // apremont 2
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${json.maps.apremont.map_url}'>Found on ${json.maps.apremont.map_name} (${json.maps.apremont.location_2.plain_text_spaces})</a>`;
-        }
-        if (resultsBox.value.includes(json.maps.apremont.location_3.plain_text_spaces)) { // apremont 3
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${json.maps.apremont.map_url}'>Found on ${json.maps.apremont.map_name} (${json.maps.apremont.location_3.plain_text_spaces})</a>`;
+        if (resultsBox.value.includes(locationJson.maps.amiens.location_3.plain_text_spaces)) { // amiens 3
+            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.amiens.map_url}'>Found on ${locationJson.maps.amiens.map_name} (${locationJson.maps.amiens.location_3.plain_text_spaces})</a>`;
         }
 
-        if (resultsBox.value.includes(json.maps.varennes.location_1.plain_text_spaces)) { // varennes 1
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${json.maps.varennes.map_url}'>Found on ${json.maps.varennes.map_name} (${json.maps.varennes.location_1.plain_text_spaces})</a>`;
+        if (resultsBox.value.includes(locationJson.maps.apremont.location_1.plain_text_spaces)) { // apremont 1
+            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.apremont.map_url}'>Found on ${locationJson.maps.apremont.map_name} (${locationJson.maps.apremont.location_1.plain_text_spaces})</a>`;
         }
-        if (resultsBox.value.includes(json.maps.varennes.location_2.plain_text_spaces)) { // varennes 2
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${json.maps.varennes.map_url}'>Found on ${json.maps.varennes.map_name} (${json.maps.varennes.location_2.plain_text_spaces})</a>`;
+        if (resultsBox.value.includes(locationJson.maps.apremont.location_2.plain_text_spaces)) { // apremont 2
+            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.apremont.map_url}'>Found on ${locationJson.maps.apremont.map_name} (${locationJson.maps.apremont.location_2.plain_text_spaces})</a>`;
         }
-        if (resultsBox.value.includes(json.maps.varennes.location_3.plain_text_spaces)) { // varennes 3
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${json.maps.varennes.map_url}'>Found on ${json.maps.varennes.map_name} (${json.maps.varennes.location_3.plain_text_spaces})</a>`;
-        }
-
-        if (resultsBox.value.includes(json.maps.adriatic.location_1.plain_text_spaces)) { // adriatic 1
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${json.maps.adriatic.map_url}'>Found on ${json.maps.adriatic.map_name} (${json.maps.adriatic.location_1.plain_text_spaces})</a>`;
-        }
-        if (resultsBox.value.includes(json.maps.adriatic.location_2.plain_text_spaces)) { // adriatic 2
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${json.maps.adriatic.map_url}'>Found on ${json.maps.adriatic.map_name} (${json.maps.adriatic.location_2.plain_text_spaces})</a>`;
-        }
-        if (resultsBox.value.includes(json.maps.adriatic.location_3.plain_text_spaces)) { // adriatic 3
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${json.maps.adriatic.map_url}'>Found on ${json.maps.adriatic.map_name} (${json.maps.adriatic.location_3.plain_text_spaces})</a>`;
+        if (resultsBox.value.includes(locationJson.maps.apremont.location_3.plain_text_spaces)) { // apremont 3
+            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.apremont.map_url}'>Found on ${locationJson.maps.apremont.map_name} (${locationJson.maps.apremont.location_3.plain_text_spaces})</a>`;
         }
 
-        if (resultsBox.value.includes(json.maps.faw.location_1.plain_text_spaces)) { // faw 1
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${json.maps.faw.map_url}'>Found on ${json.maps.faw.map_name} (${json.maps.faw.location_1.plain_text_spaces})</a>`;
+        if (resultsBox.value.includes(locationJson.maps.varennes.location_1.plain_text_spaces)) { // varennes 1
+            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.varennes.map_url}'>Found on ${locationJson.maps.varennes.map_name} (${locationJson.maps.varennes.location_1.plain_text_spaces})</a>`;
         }
-        if (resultsBox.value.includes(json.maps.faw.location_2.plain_text_spaces)) { // faw 2
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${json.maps.faw.map_url}'>Found on ${json.maps.faw.map_name} (${json.maps.faw.location_2.plain_text_spaces})</a>`;
+        if (resultsBox.value.includes(locationJson.maps.varennes.location_2.plain_text_spaces)) { // varennes 2
+            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.varennes.map_url}'>Found on ${locationJson.maps.varennes.map_name} (${locationJson.maps.varennes.location_2.plain_text_spaces})</a>`;
         }
-        if (resultsBox.value.includes(json.maps.faw.location_3.plain_text_spaces)) { // faw 3
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${json.maps.faw.map_url}'>Found on ${json.maps.faw.map_name} (${json.maps.faw.location_3.plain_text_spaces})</a>`;
-        }
-
-        if (resultsBox.value.includes(json.maps.venetian.location_1.plain_text_spaces)) { // venetian 1
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${json.maps.venetian.map_url}'>Found on ${json.maps.venetian.map_name} (${json.maps.venetian.location_1.plain_text_spaces})</a>`;
-        }
-        if (resultsBox.value.includes(json.maps.venetian.location_2.plain_text_spaces)) { // venetian 2
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${json.maps.venetian.map_url}'>Found on ${json.maps.venetian.map_name} (${json.maps.venetian.location_2.plain_text_spaces})</a>`;
-        }
-        if (resultsBox.value.includes(json.maps.venetian.location_3.plain_text_spaces)) { // venetian 3
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${json.maps.venetian.map_url}'>Found on ${json.maps.venetian.map_name} (${json.maps.venetian.location_3.plain_text_spaces})</a>`;
+        if (resultsBox.value.includes(locationJson.maps.varennes.location_3.plain_text_spaces)) { // varennes 3
+            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.varennes.map_url}'>Found on ${locationJson.maps.varennes.map_name} (${locationJson.maps.varennes.location_3.plain_text_spaces})</a>`;
         }
 
-        if (resultsBox.value.includes(json.maps.jifar.location_1.plain_text_spaces)) { // jifar 1
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${json.maps.jifar.map_url}'>Found on ${json.maps.jifar.map_name} (${json.maps.jifar.location_1.plain_text_spaces})</a>`;
+        if (resultsBox.value.includes(locationJson.maps.adriatic.location_1.plain_text_spaces)) { // adriatic 1
+            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.adriatic.map_url}'>Found on ${locationJson.maps.adriatic.map_name} (${locationJson.maps.adriatic.location_1.plain_text_spaces})</a>`;
         }
-        if (resultsBox.value.includes(json.maps.jifar.location_2.plain_text_spaces)) { // jifar 2
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${json.maps.jifar.map_url}'>Found on ${json.maps.jifar.map_name} (${json.maps.jifar.location_2.plain_text_spaces})</a>`;
+        if (resultsBox.value.includes(locationJson.maps.adriatic.location_2.plain_text_spaces)) { // adriatic 2
+            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.adriatic.map_url}'>Found on ${locationJson.maps.adriatic.map_name} (${locationJson.maps.adriatic.location_2.plain_text_spaces})</a>`;
         }
-        if (resultsBox.value.includes(json.maps.jifar.location_3.plain_text_spaces)) { // jifar 3
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${json.maps.jifar.map_url}'>Found on ${json.maps.jifar.map_name} (${json.maps.jifar.location_3.plain_text_spaces})</a>`;
-        }
-
-        if (resultsBox.value.includes(json.maps.peronne.location_1.plain_text_spaces)) { // peronne 1
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${json.maps.peronne.map_url}'>Found on ${json.maps.peronne.map_name} (${json.maps.peronne.location_1.plain_text_spaces})</a>`;
-        }
-        if (resultsBox.value.includes(json.maps.peronne.location_2.plain_text_spaces)) { // peronne 2
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${json.maps.peronne.map_url}'>Found on ${json.maps.peronne.map_name} (${json.maps.peronne.location_2.plain_text_spaces})</a>`;
-        }
-        if (resultsBox.value.includes(json.maps.peronne.location_3.plain_text_spaces)) { // peronne 3
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${json.maps.peronne.map_url}'>Found on ${json.maps.peronne.map_name} (${json.maps.peronne.location_3.plain_text_spaces})</a>`;
+        if (resultsBox.value.includes(locationJson.maps.adriatic.location_3.plain_text_spaces)) { // adriatic 3
+            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.adriatic.map_url}'>Found on ${locationJson.maps.adriatic.map_name} (${locationJson.maps.adriatic.location_3.plain_text_spaces})</a>`;
         }
 
-        if (resultsBox.value.includes(json.maps.canal.location_1.plain_text_spaces)) { // canal 1
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${json.maps.canal.map_url}'>Found on ${json.maps.canal.map_name} (${json.maps.canal.location_1.plain_text_spaces})</a>`;
+        if (resultsBox.value.includes(locationJson.maps.faw.location_1.plain_text_spaces)) { // faw 1
+            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.faw.map_url}'>Found on ${locationJson.maps.faw.map_name} (${locationJson.maps.faw.location_1.plain_text_spaces})</a>`;
         }
-        if (resultsBox.value.includes(json.maps.canal.location_2.plain_text_spaces)) { // canal 2
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${json.maps.canal.map_url}'>Found on ${json.maps.canal.map_name} (${json.maps.canal.location_2.plain_text_spaces})</a>`;
+        if (resultsBox.value.includes(locationJson.maps.faw.location_2.plain_text_spaces)) { // faw 2
+            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.faw.map_url}'>Found on ${locationJson.maps.faw.map_name} (${locationJson.maps.faw.location_2.plain_text_spaces})</a>`;
         }
-        if (resultsBox.value.includes(json.maps.canal.location_3.plain_text_spaces)) { // canal 3
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${json.maps.canal.map_url}'>Found on ${json.maps.canal.map_name} (${json.maps.canal.location_3.plain_text_spaces})</a>`;
+        if (resultsBox.value.includes(locationJson.maps.faw.location_3.plain_text_spaces)) { // faw 3
+            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.faw.map_url}'>Found on ${locationJson.maps.faw.map_name} (${locationJson.maps.faw.location_3.plain_text_spaces})</a>`;
         }
 
-        if (resultsBox.value.includes(json.maps.giantsshadow.location_1.plain_text_spaces)) { // final
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${json.maps.giantsshadow.map_url}'>Found on ${json.maps.giantsshadow.map_name} (${json.maps.giantsshadow.location_1.plain_text_spaces})</a>`;
+        if (resultsBox.value.includes(locationJson.maps.venetian.location_1.plain_text_spaces)) { // venetian 1
+            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.venetian.map_url}'>Found on ${locationJson.maps.venetian.map_name} (${locationJson.maps.venetian.location_1.plain_text_spaces})</a>`;
+        }
+        if (resultsBox.value.includes(locationJson.maps.venetian.location_2.plain_text_spaces)) { // venetian 2
+            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.venetian.map_url}'>Found on ${locationJson.maps.venetian.map_name} (${locationJson.maps.venetian.location_2.plain_text_spaces})</a>`;
+        }
+        if (resultsBox.value.includes(locationJson.maps.venetian.location_3.plain_text_spaces)) { // venetian 3
+            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.venetian.map_url}'>Found on ${locationJson.maps.venetian.map_name} (${locationJson.maps.venetian.location_3.plain_text_spaces})</a>`;
+        }
+
+        if (resultsBox.value.includes(locationJson.maps.jifar.location_1.plain_text_spaces)) { // jifar 1
+            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.jifar.map_url}'>Found on ${locationJson.maps.jifar.map_name} (${locationJson.maps.jifar.location_1.plain_text_spaces})</a>`;
+        }
+        if (resultsBox.value.includes(locationJson.maps.jifar.location_2.plain_text_spaces)) { // jifar 2
+            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.jifar.map_url}'>Found on ${locationJson.maps.jifar.map_name} (${locationJson.maps.jifar.location_2.plain_text_spaces})</a>`;
+        }
+        if (resultsBox.value.includes(locationJson.maps.jifar.location_3.plain_text_spaces)) { // jifar 3
+            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.jifar.map_url}'>Found on ${locationJson.maps.jifar.map_name} (${locationJson.maps.jifar.location_3.plain_text_spaces})</a>`;
+        }
+
+        if (resultsBox.value.includes(locationJson.maps.peronne.location_1.plain_text_spaces)) { // peronne 1
+            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.peronne.map_url}'>Found on ${locationJson.maps.peronne.map_name} (${locationJson.maps.peronne.location_1.plain_text_spaces})</a>`;
+        }
+        if (resultsBox.value.includes(locationJson.maps.peronne.location_2.plain_text_spaces)) { // peronne 2
+            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.peronne.map_url}'>Found on ${locationJson.maps.peronne.map_name} (${locationJson.maps.peronne.location_2.plain_text_spaces})</a>`;
+        }
+        if (resultsBox.value.includes(locationJson.maps.peronne.location_3.plain_text_spaces)) { // peronne 3
+            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.peronne.map_url}'>Found on ${locationJson.maps.peronne.map_name} (${locationJson.maps.peronne.location_3.plain_text_spaces})</a>`;
+        }
+
+        if (resultsBox.value.includes(locationJson.maps.canal.location_1.plain_text_spaces)) { // canal 1
+            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.canal.map_url}'>Found on ${locationJson.maps.canal.map_name} (${locationJson.maps.canal.location_1.plain_text_spaces})</a>`;
+        }
+        if (resultsBox.value.includes(locationJson.maps.canal.location_2.plain_text_spaces)) { // canal 2
+            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.canal.map_url}'>Found on ${locationJson.maps.canal.map_name} (${locationJson.maps.canal.location_2.plain_text_spaces})</a>`;
+        }
+        if (resultsBox.value.includes(locationJson.maps.canal.location_3.plain_text_spaces)) { // canal 3
+            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.canal.map_url}'>Found on ${locationJson.maps.canal.map_name} (${locationJson.maps.canal.location_3.plain_text_spaces})</a>`;
+        }
+
+        if (resultsBox.value.includes(locationJson.maps.giantsshadow.location_1.plain_text_spaces)) { // final
+            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.giantsshadow.map_url}'>Found on ${locationJson.maps.giantsshadow.map_name} (${locationJson.maps.giantsshadow.location_1.plain_text_spaces})</a>`;
         }
 
     } else if (totalMatches > 1) {
