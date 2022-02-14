@@ -122,7 +122,11 @@ button {
 }
 
 button:hover {
-  background-color: #677bc4;
+  background-color: #4752c4;
+}
+
+button:active {
+  background-color: #3c45a5;
 }
 
 .container-matches {
