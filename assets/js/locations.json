@@ -2,8 +2,9 @@
   "maps": {
     "amiens": {
       "map_name": "Amiens",
-      "map_url": "https://bfee.co/images/5/5e/AmiensSymbols.jpg",
+      "map_url": "https://bf1morse.leonlarsson.com/locations/amiens.png",
       "location_1": {
+        "map_url": "https://bf1morse.leonlarsson.com/locations/amiens1.png",
         "plain_text_spaces": "LONGUEVILLE STATUE AMIENS",
         "cipher_morse1": ".-.. --- -. --. ..- . ...- .. .-.. .-.. . ... - .- - ..- . .- -- .. . -. ...",
         "cipher_text1": "LONGUEVILLESTATUEAMIENS",
@@ -23,6 +24,7 @@
         "cipher_text8": "STCYBJHXZSZXPJFGJTGJYIX"
       },
       "location_2": {
+        "map_url": "https://bf1morse.leonlarsson.com/locations/amiens2.png",
         "plain_text_spaces": "AMIENS NEUF FURNITURE",
         "cipher_morse1": ".- -- .. . -. ... -. . ..- ..-. ..-. ..- .-. -. .. - ..- .-. .",
         "cipher_text1": "AMIENSNEUFFURNITURE",
@@ -42,6 +44,7 @@
         "cipher_text8": "HRXWUXORDKTNFSDZAMW"
       },
       "location_3": {
+        "map_url": "https://bf1morse.leonlarsson.com/locations/amiens3.png",
         "plain_text_spaces": "CHURCH RUIN AMIENS",
         "cipher_morse1": "-.-. .... ..- .-. -.-. .... .-. ..- .. -. .- -- .. . -. ...",
         "cipher_text1": "CHURCHRUINAMIENS",
@@ -62,6 +65,7 @@
       },
       "location_3_bad_parent_RUIN(S)": {
         "location_3": {
+          "map_url": "https://bf1morse.leonlarsson.com/locations/amiens3.png",
           "plain_text_spaces": "CHURCH RUINS AMIENS",
           "cipher_morse1": "-.-. .... ..- .-. -.-. .... .-. ..- .. -. ... .- -- .. . -. ...",
           "cipher_text1": "CHURCHRUINSAMIENS",
@@ -84,8 +88,9 @@
     },
     "apremont": {
       "map_name": "Argonne Forest",
-      "map_url": "https://bfee.co/images/e/e4/ArgonneForestSymbolsCorrect2.png",
+      "map_url": "https://bf1morse.leonlarsson.com/locations/apremont.png",
       "location_1": {
+        "map_url": "https://bf1morse.leonlarsson.com/locations/apremont1.png",
         "plain_text_spaces": "PANEL WATER APREMONT",
         "cipher_morse1": ".--. .- -. . .-.. .-- .- - . .-. .- .--. .-. . -- --- -. -",
         "cipher_text1": "PANELWATERAPREMONT",
@@ -105,6 +110,7 @@
         "cipher_text8": "WFCWSBQUSWMMSYRGOJ"
       },
       "location_2": {
+        "map_url": "https://bf1morse.leonlarsson.com/locations/apremont2.png",
         "plain_text_spaces": "TREE TRAIN APREMONT",
         "cipher_morse1": "- .-. . . - .-. .- .. -. .- .--. .-. . -- --- -. -",
         "cipher_text1": "TREETRAINAPREMONT",
@@ -124,6 +130,7 @@
         "cipher_text8": "AWTWAWUASFJJFVCOJ"
       },
       "location_3": {
+        "map_url": "https://bf1morse.leonlarsson.com/locations/apremont3.png",
         "plain_text_spaces": "LUGGAGE BASEMENT APREMONT",
         "cipher_morse1": ".-.. ..- --. --. .- --. . -... .- ... . -- . -. - .- .--. .-. . -- --- -. -",
         "cipher_text1": "LUGGAGEBASEMENTAPREMONT",
@@ -145,8 +152,9 @@
     },
     "varennes": {
       "map_name": "Ballroom Blitz",
-      "map_url": "https://bfee.co/images/6/64/BallroomBlitzSymbols.jpg",
+      "map_url": "https://bf1morse.leonlarsson.com/locations/varennes.png",
       "location_1": {
+        "map_url": "https://bf1morse.leonlarsson.com/locations/varennes1.png",
         "plain_text_spaces": "STATUES GARDEN VARENNES",
         "cipher_morse1": "... - .- - ..- . ... --. .- .-. -.. . -. ...- .- .-. . -. -. . ...",
         "cipher_text1": "STATUESGARDENVARENNES",
@@ -166,6 +174,7 @@
         "cipher_text8": "ZYPLBJLABLYJGCBJISBAT"
       },
       "location_2": {
+        "map_url": "https://bf1morse.leonlarsson.com/locations/varennes2.png",
         "plain_text_spaces": "BALLROOM MAP VARENNES",
         "cipher_morse1": "-... .- .-.. .-.. .-. --- --- -- -- .- .--. ...- .- .-. . -. -. . ...",
         "cipher_text1": "BALLROOMMAPVARENNES",
@@ -185,6 +194,7 @@
         "cipher_text8": "IFADYTQNYMHKPERODAT"
       },
       "location_3": {
+        "map_url": "https://bf1morse.leonlarsson.com/locations/varennes3.png",
         "plain_text_spaces": "VARENNES SERVANT BED",
         "cipher_morse1": "...- .- .-. . -. -. . ... ... . .-. ...- .- -. - -... . -..",
         "cipher_text1": "VARENNESSERVANTBED",
@@ -206,8 +216,9 @@
     },
     "adriatic": {
       "map_name": "Empire's Edge",
-      "map_url": "https://bfee.co/images/b/b3/EmpiresEdgeSymbols.jpg",
+      "map_url": "https://bf1morse.leonlarsson.com/locations/adriatic.png",
       "location_1": {
+        "map_url": "https://bf1morse.leonlarsson.com/locations/adriatic1.png",
         "plain_text_spaces": "CASTELLO ISLE ADRIATIC",
         "cipher_morse1": "-.-. .- ... - . .-.. .-.. --- .. ... .-.. . .- -.. .-. .. .- - .. -.-.",
         "cipher_text1": "CASTELLOISLEADRIATIC",
@@ -227,6 +238,7 @@
         "cipher_text8": "JFHLLQOPBMQQMSABMYJG"
       },
       "location_2": {
+        "map_url": "https://bf1morse.leonlarsson.com/locations/adriatic2.png",
         "plain_text_spaces": "HILL BARN ADRIATIC",
         "cipher_morse1": ".... .. .-.. .-.. -... .- .-. -. .- -.. .-. .. .- - .. -.-.",
         "cipher_text1": "HILLBARNADRIATIC",
@@ -246,6 +258,7 @@
         "cipher_text8": "ONADIFZWMPTJSHJG"
       },
       "location_3": {
+        "map_url": "https://bf1morse.leonlarsson.com/locations/adriatic3.png",
         "plain_text_spaces": "COASTAL FORTRESS ADRIATIC",
         "cipher_morse1": "-.-. --- .- ... - .- .-.. ..-. --- .-. - .-. . ... ... .- -.. .-. .. .- - .. -.-.",
         "cipher_text1": "COASTALFORTRESSADRIATIC",
@@ -267,8 +280,9 @@
     },
     "faw": {
       "map_name": "Fao Fortress",
-      "map_url": "https://bfee.co/images/2/2e/FaoFortressSymbols.jpg",
+      "map_url": "https://bf1morse.leonlarsson.com/locations/faw.png",
       "location_1": {
+        "map_url": "https://bf1morse.leonlarsson.com/locations/faw1.png",
         "plain_text_spaces": "OUTPOST BARREL FAW",
         "cipher_morse1": "--- ..- - .--. --- ... - -... .- .-. .-. . .-.. ..-. .- .--",
         "cipher_text1": "OUTPOSTBARRELFAW",
@@ -288,6 +302,7 @@
         "cipher_text8": "VZIHVXIWUHGXFHBO"
       },
       "location_2": {
+        "map_url": "https://bf1morse.leonlarsson.com/locations/faw2.png",
         "plain_text_spaces": "BUCKET MARSHLANDS FAW",
         "cipher_morse1": "-... ..- -.-. -.- . - -- .- .-. ... .... .-.. .- -. -.. ... ..-. .- .--",
         "cipher_text1": "BUCKETMARSHLANDSFAW",
@@ -307,6 +322,7 @@
         "cipher_text8": "IZRCLYOVUDMFNOVLNMX"
       },
       "location_3": {
+        "map_url": "https://bf1morse.leonlarsson.com/locations/faw3.png",
         "plain_text_spaces": "TREE FORTRESS FAW",
         "cipher_morse1": "- .-. . . ..-. --- .-. - .-. . ... ... ..-. .- .--",
         "cipher_text1": "TREEFORTRESSFAW",
@@ -328,8 +344,9 @@
     },
     "venetian": {
       "map_name": "Monte Grappa",
-      "map_url": "https://bfee.co/images/6/6f/MonteGrappaSymbols.jpg",
+      "map_url": "https://bf1morse.leonlarsson.com/locations/venetian.png",
       "location_1": {
+        "map_url": "https://bf1morse.leonlarsson.com/locations/venetian1.png",
         "plain_text_spaces": "CRATE SEREN VENETIAN",
         "cipher_morse1": "-.-. .-. .- - . ... . .-. . -. ...- . -. . - .. .- -.",
         "cipher_text1": "CRATESERENVENETIAN",
@@ -349,6 +366,7 @@
         "cipher_text8": "JWPLLXHJFHAXSWYWWS"
       },
       "location_2": {
+        "map_url": "https://bf1morse.leonlarsson.com/locations/venetian2.png",
         "plain_text_spaces": "STOVE TURRET VENETIAN",
         "cipher_morse1": "... - --- ...- . - ..- .-. .-. . - ...- . -. . - .. .- -.",
         "cipher_text1": "STOVETURRETVENETIAN",
@@ -368,6 +386,7 @@
         "cipher_text8": "ZYDNLYNLGAYPZFWYCWS"
       },
       "location_3": {
+        "map_url": "https://bf1morse.leonlarsson.com/locations/venetian3.png",
         "plain_text_spaces": "FERRO FIRE VENETIAN",
         "cipher_morse1": "..-. . .-. .-. --- ..-. .. .-. . ...- . -. . - .. .- -.",
         "cipher_text1": "FERROFIREVENETIAN",
@@ -389,8 +408,9 @@
     },
     "jifar": {
       "map_name": "Sinai Desert",
-      "map_url": "https://bfee.co/images/6/68/SinaiDesertSymbols.jpg",
+      "map_url": "https://bf1morse.leonlarsson.com/locations/jifar.png",
       "location_1": {
+        "map_url": "https://bf1morse.leonlarsson.com/locations/jifar1.png",
         "plain_text_spaces": "PILLOW MAZAR JIFAR",
         "cipher_morse1": ".--. .. .-.. .-.. --- .-- -- .- --.. .- .-. .--- .. ..-. .- .-.",
         "cipher_text1": "PILLOWMAZARJIFAR",
@@ -410,6 +430,7 @@
         "cipher_text8": "WNADVBCJLMGGVGAS"
       },
       "location_2": {
+        "map_url": "https://bf1morse.leonlarsson.com/locations/jifar2.png",
         "plain_text_spaces": "CRATE JABAL JIFAR",
         "cipher_morse1": "-.-. .-. .- - . .--- .- -... .- .-.. .--- .. ..-. .- .-.",
         "cipher_text1": "CRATEJABALJIFAR",
@@ -429,6 +450,7 @@
         "cipher_text8": "JWPLLODTBFOSGCS"
       },
       "location_3": {
+        "map_url": "https://bf1morse.leonlarsson.com/locations/jifar3.png",
         "plain_text_spaces": "PILLAR OUTSKIRTS JIFAR",
         "cipher_morse1": ".--. .. .-.. .-.. .- .-. --- ..- - ... -.- .. .-. - ... .--- .. ..-. .- .-.",
         "cipher_text1": "PILLAROUTSKIRTSJIFAR",
@@ -450,8 +472,9 @@
     },
     "peronne": {
       "map_name": "St. Quentin Scar",
-      "map_url": "https://bfee.co/images/2/20/StQuentinsScarSymbols.jpg",
+      "map_url": "https://bf1morse.leonlarsson.com/locations/peronne.png",
       "location_1": {
+        "map_url": "https://bf1morse.leonlarsson.com/locations/peronne1.png",
         "plain_text_spaces": "HOTEL CHECK PERONNE",
         "cipher_morse1": ".... --- - . .-.. -.-. .... . -.-. -.- .--. . .-. --- -. -. .",
         "cipher_text1": "HOTELCHECKPERONNE",
@@ -471,6 +494,7 @@
         "cipher_text8": "OTIWSHPTWPBHZTQYU"
       },
       "location_2": {
+        "map_url": "https://bf1morse.leonlarsson.com/locations/peronne2.png",
         "plain_text_spaces": "TRAVECY ATTIC PERONNE",
         "cipher_morse1": "- .-. .- ...- . -.-. -.-- .- - - .. -.-. .--. . .-. --- -. -. .",
         "cipher_text1": "TRAVECYATTICPERONNE",
@@ -490,6 +514,7 @@
         "cipher_text8": "AWPNLHSSUPNFOFLIWQU"
       },
       "location_3": {
+        "map_url": "https://bf1morse.leonlarsson.com/locations/peronne3.png",
         "plain_text_spaces": "RUIN VENTURE PERONNE",
         "cipher_morse1": ".-. ..- .. -. ...- . -. - ..- .-. . .--. . .-. --- -. -. .",
         "cipher_text1": "RUINVENTUREPERONNE",
@@ -511,8 +536,9 @@
     },
     "canal": {
       "map_name": "Suez",
-      "map_url": "https://bfee.co/images/c/c5/SuezSymbols.jpg",
+      "map_url": "https://bf1morse.leonlarsson.com/locations/canal.png",
       "location_1": {
+        "map_url": "https://bf1morse.leonlarsson.com/locations/canal1.png",
         "plain_text_spaces": "CRATE TRENCH CANAL",
         "cipher_morse1": "-.-. .-. .- - . - .-. . -. -.-. .... -.-. .- -. .- .-..",
         "cipher_text1": "CRATETRENCHCANAL",
@@ -532,6 +558,7 @@
         "cipher_text8": "JWPLLYUWOWMWSSOO"
       },
       "location_2": {
+        "map_url": "https://bf1morse.leonlarsson.com/locations/canal2.png",
         "plain_text_spaces": "CANAL KANTARA VASES",
         "cipher_morse1": "-.-. .- -. .- .-.. -.- .- -. - .- .-. .- ...- .- ... . ...",
         "cipher_text1": "CANALKANTARAVASES",
@@ -551,6 +578,7 @@
         "cipher_text8": "JFCSSPDOHBDLWOMFK"
       },
       "location_3": {
+        "map_url": "https://bf1morse.leonlarsson.com/locations/canal3.png",
         "plain_text_spaces": "HILL TOWER CANAL",
         "cipher_morse1": ".... .. .-.. .-.. - --- .-- . .-. -.-. .- -. .- .-..",
         "cipher_text1": "HILLTOWERCANAL",
