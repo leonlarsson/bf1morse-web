@@ -228,7 +228,7 @@ ${JSON.stringify(jmespath.search(locationJson, `*.*.*.cipher_${inputType}9`)).re
             }
         }
         resultsBox.value = "No results. Please check your morse.";
-        locationText.innerText = "No matches found. Please ask #easter-egg-help.";
+        locationText.innerText = "❌ No matches found. Please ask #easter-egg-help.";
         document.getElementById("matchesText").innerText = `Matches: (0)`;
         return;
     }
@@ -537,103 +537,20 @@ ${JSON.stringify(jmespath.search(locationJson, `*.*.*.cipher_${inputType}9`)).re
     document.getElementById("matchesText").innerText = `Matches: (${totalMatches})`;
 
     if (totalMatches === 1) {
-        if (resultsBox.value.includes(locationJson.maps.amiens.location_1.plain_text_spaces)) { // amiens 1
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.amiens.location_1.map_url}'>Found on ${locationJson.maps.amiens.map_name} (${locationJson.maps.amiens.location_1.plain_text_spaces})</a>`;
-        }
-        if (resultsBox.value.includes(locationJson.maps.amiens.location_2.plain_text_spaces)) { // amiens 2
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.amiens.location_2.map_url}'>Found on ${locationJson.maps.amiens.map_name} (${locationJson.maps.amiens.location_2.plain_text_spaces})</a>`;
-        }
-        if (resultsBox.value.includes(locationJson.maps.amiens.location_3.plain_text_spaces)) { // amiens 3
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.amiens.location_3.map_url}'>Found on ${locationJson.maps.amiens.map_name} (${locationJson.maps.amiens.location_3.plain_text_spaces})</a>`;
+
+        const match = {
+            stage: matches.match(/Stage (\d)/)[1],
+            location: matches.match(/Stage \d\) (.*): /)[1],
+            location_url: matches.match(/(https.*)/)[1].replace("<", "").replace(">", ""),
+            map: matches.match(/: (.*) (?=\|)/)[1],
+            map_url: matches.match(/(https.*)/)[1].replace(/\d\.png/, ".png").replace("<", "").replace(">", "")
         }
 
-        if (resultsBox.value.includes(locationJson.maps.apremont.location_1.plain_text_spaces)) { // apremont 1
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.apremont.location_1.map_url}'>Found on ${locationJson.maps.apremont.map_name} (${locationJson.maps.apremont.location_1.plain_text_spaces})</a>`;
-        }
-        if (resultsBox.value.includes(locationJson.maps.apremont.location_2.plain_text_spaces)) { // apremont 2
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.apremont.location_2.map_url}'>Found on ${locationJson.maps.apremont.map_name} (${locationJson.maps.apremont.location_2.plain_text_spaces})</a>`;
-        }
-        if (resultsBox.value.includes(locationJson.maps.apremont.location_3.plain_text_spaces)) { // apremont 3
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.apremont.location_3.map_url}'>Found on ${locationJson.maps.apremont.map_name} (${locationJson.maps.apremont.location_3.plain_text_spaces})</a>`;
-        }
-
-        if (resultsBox.value.includes(locationJson.maps.varennes.location_1.plain_text_spaces)) { // varennes 1
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.varennes.location_1.map_url}'>Found on ${locationJson.maps.varennes.map_name} (${locationJson.maps.varennes.location_1.plain_text_spaces})</a>`;
-        }
-        if (resultsBox.value.includes(locationJson.maps.varennes.location_2.plain_text_spaces)) { // varennes 2
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.varennes.location_2.map_url}'>Found on ${locationJson.maps.varennes.map_name} (${locationJson.maps.varennes.location_2.plain_text_spaces})</a>`;
-        }
-        if (resultsBox.value.includes(locationJson.maps.varennes.location_3.plain_text_spaces)) { // varennes 3
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.varennes.location_3.map_url}'>Found on ${locationJson.maps.varennes.map_name} (${locationJson.maps.varennes.location_3.plain_text_spaces})</a>`;
-        }
-
-        if (resultsBox.value.includes(locationJson.maps.adriatic.location_1.plain_text_spaces)) { // adriatic 1
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.adriatic.location_1.map_url}'>Found on ${locationJson.maps.adriatic.map_name} (${locationJson.maps.adriatic.location_1.plain_text_spaces})</a>`;
-        }
-        if (resultsBox.value.includes(locationJson.maps.adriatic.location_2.plain_text_spaces)) { // adriatic 2
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.adriatic.location_2.map_url}'>Found on ${locationJson.maps.adriatic.map_name} (${locationJson.maps.adriatic.location_2.plain_text_spaces})</a>`;
-        }
-        if (resultsBox.value.includes(locationJson.maps.adriatic.location_3.plain_text_spaces)) { // adriatic 3
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.adriatic.location_3.map_url}'>Found on ${locationJson.maps.adriatic.map_name} (${locationJson.maps.adriatic.location_3.plain_text_spaces})</a>`;
-        }
-
-        if (resultsBox.value.includes(locationJson.maps.faw.location_1.plain_text_spaces)) { // faw 1
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.faw.location_1.map_url}'>Found on ${locationJson.maps.faw.map_name} (${locationJson.maps.faw.location_1.plain_text_spaces})</a>`;
-        }
-        if (resultsBox.value.includes(locationJson.maps.faw.location_2.plain_text_spaces)) { // faw 2
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.faw.location_2.map_url}'>Found on ${locationJson.maps.faw.map_name} (${locationJson.maps.faw.location_2.plain_text_spaces})</a>`;
-        }
-        if (resultsBox.value.includes(locationJson.maps.faw.location_3.plain_text_spaces)) { // faw 3
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.faw.location_3.map_url}'>Found on ${locationJson.maps.faw.map_name} (${locationJson.maps.faw.location_3.plain_text_spaces})</a>`;
-        }
-
-        if (resultsBox.value.includes(locationJson.maps.venetian.location_1.plain_text_spaces)) { // venetian 1
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.venetian.location_1.map_url}'>Found on ${locationJson.maps.venetian.map_name} (${locationJson.maps.venetian.location_1.plain_text_spaces})</a>`;
-        }
-        if (resultsBox.value.includes(locationJson.maps.venetian.location_2.plain_text_spaces)) { // venetian 2
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.venetian.location_2.map_url}'>Found on ${locationJson.maps.venetian.map_name} (${locationJson.maps.venetian.location_2.plain_text_spaces})</a>`;
-        }
-        if (resultsBox.value.includes(locationJson.maps.venetian.location_3.plain_text_spaces)) { // venetian 3
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.venetian.location_3.map_url}'>Found on ${locationJson.maps.venetian.map_name} (${locationJson.maps.venetian.location_3.plain_text_spaces})</a>`;
-        }
-
-        if (resultsBox.value.includes(locationJson.maps.jifar.location_1.plain_text_spaces)) { // jifar 1
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.jifar.location_1.map_url}'>Found on ${locationJson.maps.jifar.map_name} (${locationJson.maps.jifar.location_1.plain_text_spaces})</a>`;
-        }
-        if (resultsBox.value.includes(locationJson.maps.jifar.location_2.plain_text_spaces)) { // jifar 2
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.jifar.location_2.map_url}'>Found on ${locationJson.maps.jifar.map_name} (${locationJson.maps.jifar.location_2.plain_text_spaces})</a>`;
-        }
-        if (resultsBox.value.includes(locationJson.maps.jifar.location_3.plain_text_spaces)) { // jifar 3
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.jifar.location_3.map_url}'>Found on ${locationJson.maps.jifar.map_name} (${locationJson.maps.jifar.location_3.plain_text_spaces})</a>`;
-        }
-
-        if (resultsBox.value.includes(locationJson.maps.peronne.location_1.plain_text_spaces)) { // peronne 1
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.peronne.location_1.map_url}'>Found on ${locationJson.maps.peronne.map_name} (${locationJson.maps.peronne.location_1.plain_text_spaces})</a>`;
-        }
-        if (resultsBox.value.includes(locationJson.maps.peronne.location_2.plain_text_spaces)) { // peronne 2
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.peronne.location_2.map_url}'>Found on ${locationJson.maps.peronne.map_name} (${locationJson.maps.peronne.location_2.plain_text_spaces})</a>`;
-        }
-        if (resultsBox.value.includes(locationJson.maps.peronne.location_3.plain_text_spaces)) { // peronne 3
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.peronne.location_3.map_url}'>Found on ${locationJson.maps.peronne.map_name} (${locationJson.maps.peronne.location_3.plain_text_spaces})</a>`;
-        }
-
-        if (resultsBox.value.includes(locationJson.maps.canal.location_1.plain_text_spaces)) { // canal 1
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.canal.location_1.map_url}'>Found on ${locationJson.maps.canal.map_name} (${locationJson.maps.canal.location_1.plain_text_spaces})</a>`;
-        }
-        if (resultsBox.value.includes(locationJson.maps.canal.location_2.plain_text_spaces)) { // canal 2
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.canal.location_2.map_url}'>Found on ${locationJson.maps.canal.map_name} (${locationJson.maps.canal.location_2.plain_text_spaces})</a>`;
-        }
-        if (resultsBox.value.includes(locationJson.maps.canal.location_3.plain_text_spaces)) { // canal 3
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.canal.location_3.map_url}'>Found on ${locationJson.maps.canal.map_name} (${locationJson.maps.canal.location_3.plain_text_spaces})</a>`;
-        }
-
-        if (resultsBox.value.includes(locationJson.maps.giantsshadow.location_1.plain_text_spaces)) { // final
-            locationText.innerHTML = `<a id='locationLink' target='_blank' href='${locationJson.maps.giantsshadow.map_url}'>Found on ${locationJson.maps.giantsshadow.map_name} (${locationJson.maps.giantsshadow.location_1.plain_text_spaces})</a>`;
-        }
+        locationText.innerHTML = `<a style="text-decoration: none;" id='locationLink' target='_blank' href='${match.location_url}'>✅ Found on ${match.map} (${match.location})</a>`;
 
     } else if (totalMatches > 1) {
         if (!check9.checked) {
-            locationText.innerHTML = `Please input more to find exact location.`;
+            locationText.innerHTML = "⏳ Please input more to find exact location.";
         }
     }
 }
