@@ -168,7 +168,7 @@ function decode(locationJson) {
         }
 
         outputBox.value = getOutput_9(input);
-        locationText.innerHTML = "<a id='locationLink' target='_blank' href='https://www.youtube.com/watch?v=WjGDr5J6QjQ'>You reached the final stage! Head to Giant's Shadow.</a>";
+        locationText.innerHTML = "<a target='_blank' href='https://www.youtube.com/watch?v=WjGDr5J6QjQ'>You reached the final stage! Head to Giant's Shadow.</a>";
     }
 
     if (check10.checked) { // 10 - All
@@ -228,7 +228,7 @@ ${JSON.stringify(jmespath.search(locationJson, `*.*.*.cipher_${inputType}9`)).re
             }
         }
         resultsBox.value = "No results. Please check your morse.";
-        locationText.innerText = "❌ No matches found. Please ask #easter-egg-help.";
+        locationText.innerHTML = "<span style='color: #ed4245'>❌ No matches found</span>";
         document.getElementById("matchesText").innerText = `Matches: (0)`;
         return;
     }
@@ -546,11 +546,11 @@ ${JSON.stringify(jmespath.search(locationJson, `*.*.*.cipher_${inputType}9`)).re
             map_url: matches.match(/(https.*)/)[1].replace(/\d\.png/, ".png").replace("<", "").replace(">", "")
         }
 
-        locationText.innerHTML = `<a style="text-decoration: none;" id='locationLink' target='_blank' href='${match.location_url}'>✅ Found on ${match.map} (${match.location})</a>`;
+        locationText.innerHTML = `<a style="text-decoration: none; color: #3ba55c" target='_blank' href='${match.location_url}'>✅ Found on ${match.map} (${match.location})</a>`;
 
     } else if (totalMatches > 1) {
         if (!check9.checked) {
-            locationText.innerHTML = "⏳ Please input more to find exact location.";
+            locationText.innerHTML = "⏳ Please input more to find exact location";
         }
     }
 }

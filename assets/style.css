@@ -99,13 +99,6 @@ body * {
   color: #99aab5;
 }
 
-#locationLink,
-#locationLink:visited,
-#locationLink:active {
-  text-decoration-style: solid;
-  color: #f04747;
-}
-
 button {
   position: relative;
   bottom: 3px;
