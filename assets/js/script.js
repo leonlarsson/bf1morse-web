@@ -238,6 +238,7 @@ ${JSON.stringify(jmespath.search(locationJSON, `*.*.*.cipher_${inputType}9`)).re
         locationText.innerHTML = "<span style='color: #ed4245'>❌ No matches found</span>";
         matchesText.innerText = "Matches: (0)";
         resultsBox.value = "No results. Please check your morse.";
+        resultsBox.rows = 1;
         resultImage.hidden = true;
         return;
     }
@@ -543,6 +544,9 @@ ${JSON.stringify(jmespath.search(locationJSON, `*.*.*.cipher_${inputType}9`)).re
 
     // Fill results textarea with matches
     resultsBox.value = matches;
+
+    // If we have fewer than 10 matches, set the textarea rows to x matches + 1. +1 to account for smaller screens with wrapping. If 10 or more matches, keep rows at 10
+    resultsBox.rows = (totalMatches < 10) ? totalMatches + 1 : 10;
 
     // Populate "Matches (n):" text
     matchesText.innerText = `Matches: (${totalMatches})`;
