@@ -551,6 +551,7 @@ ${JSON.stringify(jmespath.search(locationJSON, `*.*.*.cipher_${inputType}9`)).re
 
         const match = {
             date: new Date(),
+            inputUsed: inputRaw,
             stage: matches.match(/Stage (\d)/)[1],
             location: matches.match(/Stage \d\) (.*): /)[1],
             location_url: matches.match(/(https.*)/)[1].replace("<", "").replace(">", ""),
@@ -562,7 +563,7 @@ ${JSON.stringify(jmespath.search(locationJSON, `*.*.*.cipher_${inputType}9`)).re
         localStorage.setItem("lastMatch", JSON.stringify(match));
 
         // Set title tooltip to match
-        matchesText.title = `Last match (${match.date}):\nStage: ${match.stage}\nLocation: ${match.location}\nMap: ${match.map}`;
+        matchesText.title = `Last match (${match.date}):\nInput: "${match.inputUsed}"\nStage: ${match.stage}\nLocation: ${match.location}\nMap: ${match.map}`;
 
         // Populate locationText
         locationText.innerHTML = `<a style="text-decoration: none; color: #3ba55c" target='_blank' href='${match.location_url}'>✅ Found on ${match.map} (${match.location})</a>`;
