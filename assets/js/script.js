@@ -19,10 +19,12 @@ function decode(locationJSON) {
     const inputBox = document.getElementsByClassName("input")[0];
     let inputRaw = inputBox.value.toUpperCase();
 
-    // Define output textbox, location text, and the results textarea
+    // Define output textbox, location text, matches text, results textarea, and result image
     const outputBox = document.getElementById("output");
     const locationText = document.getElementById("locationText");
+    const matchesText = document.getElementById("matchesText");
     const resultsBox = document.getElementById("resultsBox");
+    const resultImage = document.getElementById("resultImage");
 
     // Define variables
     let isMorse;
@@ -238,9 +240,10 @@ ${JSON.stringify(jmespath.search(locationJSON, `*.*.*.cipher_${inputType}9`)).re
                 break noresult;
             }
         }
-        resultsBox.value = "No results. Please check your morse.";
         locationText.innerHTML = "<span style='color: #ed4245'>❌ No matches found</span>";
-        document.getElementById("matchesText").innerText = `Matches: (0)`;
+        matchesText.innerText = "Matches: (0)";
+        resultsBox.value = "No results. Please check your morse.";
+        resultImage.hidden = true;
         return;
     }
 
@@ -547,7 +550,7 @@ ${JSON.stringify(jmespath.search(locationJSON, `*.*.*.cipher_${inputType}9`)).re
     resultsBox.value = matches;
 
     // Populate "Matches (n):" text
-    document.getElementById("matchesText").innerText = `Matches: (${totalMatches})`;
+    matchesText.innerText = `Matches: (${totalMatches})`;
 
     if (totalMatches === 1) {
 
@@ -564,14 +567,21 @@ ${JSON.stringify(jmespath.search(locationJSON, `*.*.*.cipher_${inputType}9`)).re
         localStorage.setItem("lastMatch", JSON.stringify(match));
 
         // Set title tooltip to match
-        document.getElementById("matchesText").setAttribute("title", `Last match (${match.date}):\nStage: ${match.stage}\nLocation: ${match.location}\nMap: ${match.map}`);
+        matchesText.setAttribute("title", `Last match (${match.date}):\nStage: ${match.stage}\nLocation: ${match.location}\nMap: ${match.map}`);
 
         // Populate locationText
         locationText.innerHTML = `<a style="text-decoration: none; color: #3ba55c" target='_blank' href='${match.location_url}'>✅ Found on ${match.map} (${match.location})</a>`;
 
+        // if match is not stage 9 (YouTube), show image
+        if (match.stage !== "9") {
+            resultImage.src = match.location_url;
+            resultImage.hidden = false;
+        }
+
     } else if (totalMatches > 1) {
         if (!check9.checked) {
             locationText.innerHTML = "⏳ Please input more to find exact location";
+            resultImage.hidden = true;
         }
     }
 }
