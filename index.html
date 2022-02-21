@@ -123,7 +123,7 @@
     window.onload = () => {
       if (localStorage.getItem("lastMatch")) {
         const lastMatch = JSON.parse(localStorage.getItem("lastMatch"));
-        document.getElementById("matchesText").setAttribute("title", `Last match (${lastMatch.date}):\nStage: ${lastMatch.stage}\nLocation: ${lastMatch.location}\nMap: ${lastMatch.map}`);
+        document.getElementById("matchesText").title = `Last match (${lastMatch.date}):\nStage: ${lastMatch.stage}\nLocation: ${lastMatch.location}\nMap: ${lastMatch.map}`;
       }
     }
 

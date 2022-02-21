@@ -31,16 +31,17 @@ function decode(locationJSON) {
     let inputType;
     let stage;
     let input = "";
+    const stageSelectedPlaceholderText = "Please start typing to see decoded text.";
 
     // If input is morse, change the ID (changes the font to a more morse-friendly one)
     if (inputRaw.startsWith(".") || inputRaw.startsWith("-")) {
         isMorse = true;
         inputType = "morse";
-        inputBox.setAttribute("id", "inputMorse");
+        inputBox.id = "inputMorse";
     } else {
         isMorse = false;
         inputType = "text";
-        inputBox.setAttribute("id", "input");
+        inputBox.id = "input";
     }
 
     // Stage checking
@@ -48,24 +49,24 @@ function decode(locationJSON) {
     // 1 - Plain
     if (check1.checked) {
         stage = "1";
-        outputBox.setAttribute("placeholder", "Please start typing to see decoded text.");
-        isMorse ? input = MorseCode.decode(inputRaw) : input = inputRaw;
+        outputBox.placeholder = stageSelectedPlaceholderText;
+        input = isMorse ? MorseCode.decode(inputRaw) : inputRaw;
         outputBox.value = input;
     }
 
     // 2 - Reverse
     if (check2.checked) {
         stage = "2";
-        outputBox.setAttribute("placeholder", "Please start typing to see decoded text.");
-        isMorse ? input = MorseCode.decode(inputRaw) : input = inputRaw;
+        outputBox.placeholder = stageSelectedPlaceholderText;
+        input = isMorse ? MorseCode.decode(inputRaw) : inputRaw;
         outputBox.value = input.split("").reverse().join("");
     }
 
     // 3 - Atbash
     if (check3.checked) {
         stage = "3";
-        outputBox.setAttribute("placeholder", "Please start typing to see decoded text.");
-        isMorse ? input = MorseCode.decode(inputRaw) : input = inputRaw;
+        outputBox.placeholder = stageSelectedPlaceholderText;
+        input = isMorse ? MorseCode.decode(inputRaw) : inputRaw;
 
         function getOutput_3(input) {
             const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -87,16 +88,16 @@ function decode(locationJSON) {
     // 4 - Caesarian Shift
     if (check4.checked) {
         stage = "4";
-        outputBox.setAttribute("placeholder", "Please start typing to see decoded text.");
-        isMorse ? input = MorseCode.decode(inputRaw) : input = inputRaw;
+        outputBox.placeholder = stageSelectedPlaceholderText;
+        input = isMorse ? MorseCode.decode(inputRaw) : inputRaw;
         outputBox.value = String.fromCharCode(...input.split('').map(char => ((char.charCodeAt() - 65 + 19) % 26) + 65));
     }
 
     // 5 - Reverse -> Railfence
     if (check5.checked) {
         stage = "5";
-        outputBox.setAttribute("placeholder", "Please start typing to see decoded text.");
-        isMorse ? input = MorseCode.decode(inputRaw) : input = inputRaw;
+        outputBox.placeholder = stageSelectedPlaceholderText;
+        input = isMorse ? MorseCode.decode(inputRaw) : inputRaw;
 
         function getOutput_5(input) {
             const ciphertext = input.split("").reverse().join("").toUpperCase().replace(/[^A-Z]/g, "");
@@ -123,8 +124,8 @@ function decode(locationJSON) {
     // 6 - "E">"A", "T">"B" -> Baconian -> Atbash
     if (check6.checked) {
         stage = "6";
-        outputBox.setAttribute("placeholder", "Please start typing to see decoded text.");
-        isMorse ? input = MorseCode.decode(inputRaw) : input = inputRaw;
+        outputBox.placeholder = stageSelectedPlaceholderText;
+        input = isMorse ? MorseCode.decode(inputRaw) : inputRaw;
 
         function getOutput_6(input) {
             let text = input;
@@ -152,24 +153,24 @@ function decode(locationJSON) {
     // 7 - Vigenere (pass)
     if (check7.checked) {
         stage = "7";
-        outputBox.setAttribute("placeholder", "Please start typing to see decoded text.");
-        isMorse ? input = MorseCode.decode(inputRaw) : input = inputRaw;
+        outputBox.placeholder = stageSelectedPlaceholderText;
+        input = isMorse ? MorseCode.decode(inputRaw) : inputRaw;
         outputBox.value = VigenereCipher.decrypt(input, "Edward");
     }
 
     // 8 - Vigenere (autokey)
     if (check8.checked) {
         stage = "8";
-        outputBox.setAttribute("placeholder", "Please start typing to see decoded text.");
-        isMorse ? input = MorseCode.decode(inputRaw) : input = inputRaw;
+        outputBox.placeholder = stageSelectedPlaceholderText;
+        input = isMorse ? MorseCode.decode(inputRaw) : inputRaw;
         outputBox.value = Vigenere(-1, input, "George", "ZABCDEFGHIJKLMNOPQRSTUVWXY", "Z");
     }
 
     // 9 - Reverse -> Vigenere (autokey) -> Reverse
     if (check9.checked) {
         stage = "9";
-        outputBox.setAttribute("placeholder", "Please start typing to see decoded text.");
-        isMorse ? input = MorseCode.decode(inputRaw) : input = inputRaw;
+        outputBox.placeholder = stageSelectedPlaceholderText;
+        input = isMorse ? MorseCode.decode(inputRaw) : inputRaw;
 
         function getOutput_9(input) {
             let string;
@@ -184,7 +185,7 @@ function decode(locationJSON) {
 
     if (check10.checked) { // 10 - All
         outputBox.value = "";
-        outputBox.setAttribute("placeholder", "Please select a stage if you want to filter results and see the output. This is not required.");
+        outputBox.placeholder = "Please select a stage if you want to filter results and see the output. This is not required.";
     }
 
     // Regex stuff
@@ -224,16 +225,10 @@ ${JSON.stringify(jmespath.search(locationJSON, `*.*.*.cipher_${inputType}9`)).re
     // Kaktus' fix: If no matches on initial regex, start removing characters and see if we have a match with fluff. Remove this entire block if this causes issues.
     noresult: if (matches === null) {
 
-        let minimumChars;
-        isMorse ? minimumChars = 15 : minimumChars = 5;
+        const minimumChars = isMorse ? 15 : 5;
 
-        let regex2;
         for (i = 1; i < inputRaw.length - minimumChars; i++) {
-            if (isMorse) {
-                regex2 = new RegExp("(?:(.*" + inputRaw.slice(0, inputRaw.length - i).replaceAll(".", "\\.") + ".*))", "gi");
-            } else {
-                regex2 = new RegExp("(?:(.*" + inputRaw.slice(0, inputRaw.length - i).replaceAll(".", "\\.").replaceAll(" ", "") + ".*))", "gi");
-            }
+            const regex2 = isMorse ? new RegExp("(?:(.*" + inputRaw.slice(0, inputRaw.length - i).replaceAll(".", "\\.") + ".*))", "gi") : new RegExp("(?:(.*" + inputRaw.slice(0, inputRaw.length - i).replaceAll(".", "\\.").replaceAll(" ", "") + ".*))", "gi");
             const arr2 = str.match(regex2);
             if (arr2) {
                 matches = arr2;
@@ -567,7 +562,7 @@ ${JSON.stringify(jmespath.search(locationJSON, `*.*.*.cipher_${inputType}9`)).re
         localStorage.setItem("lastMatch", JSON.stringify(match));
 
         // Set title tooltip to match
-        matchesText.setAttribute("title", `Last match (${match.date}):\nStage: ${match.stage}\nLocation: ${match.location}\nMap: ${match.map}`);
+        matchesText.title = `Last match (${match.date}):\nStage: ${match.stage}\nLocation: ${match.location}\nMap: ${match.map}`;
 
         // Populate locationText
         locationText.innerHTML = `<a style="text-decoration: none; color: #3ba55c" target='_blank' href='${match.location_url}'>✅ Found on ${match.map} (${match.location})</a>`;
