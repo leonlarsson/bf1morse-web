@@ -195,7 +195,7 @@ textarea:focus {
   background-color: #ed4245;
 }
 
-@media only screen and (max-width: 945px) {
+@media only screen and (max-width: 950px) {
   #titleMain {
     padding-top: 5px;
     padding-bottom: 5px;
@@ -203,24 +203,15 @@ textarea:focus {
     line-height: 30px;
   }
 
-  .radioButton {
-    margin-left: 10px; /* left if "Stage:" is shown */
-    width: 15px;
-    height: 15px;
-    margin-top: 6px;
-  }
-
-  #stageLink {
-    display: none;
+  .container {
+    width: 90vw;
   }
 }
 
 @media only screen and (max-width: 775px) {
   .radioButton {
-    margin-left: 10px; /* left if "Stage:" is shown */
     width: 15px;
     height: 15px;
-    margin-top: 6px;
   }
 
   .container-stages * {
@@ -229,5 +220,35 @@ textarea:focus {
 
   #defaultText {
     display: none;
+  }
+}
+
+@media only screen and (max-width: 535px) {
+  #titleMain {
+    font-size: 2em;
+    line-height: 10px;
+  }
+
+  .container-stages {
+    justify-content: space-between;
+  }
+
+  #stageLink {
+    display: none;
+  }
+
+  .radioButton {
+    margin-left: 0px; /* left if "Stage:" is shown */
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  #titleMain {
+    font-size: 1.4em;
+    line-height: 0px;
+  }
+
+  .container {
+    width: 97vw;
   }
 }
