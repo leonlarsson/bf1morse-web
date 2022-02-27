@@ -125,6 +125,9 @@ ${JSON.stringify(jmespath.search(locationJSON, `*.*.*.cipher_${inputType}9`)).re
             map_url: resultsBox.value.match(/(https.*)/)[1].replace(/\d\.png/, ".png").replace("<", "").replace(">", "")
         };
 
+        // Log match
+        console.log("[DEBUG]: Match found:\n", match);
+
         // Save match to localStorage
         localStorage.setItem("lastMatch", JSON.stringify(match));
 
