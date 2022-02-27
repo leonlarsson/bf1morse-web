@@ -3,7 +3,7 @@ import cleanOutput from "./cleanOutput.js";
 import stageOperations from "./stageOperations.js";
 
 // Define input
-const inputBox = document.getElementById("input");
+const inputTextBox = document.getElementById("inputTextBox");
 
 // Define output textbox, location text, matches text, results textarea, and result image
 const locationText = document.getElementById("locationText");
@@ -13,7 +13,7 @@ const resultImage = document.getElementById("resultImage");
 
 // Add events to each used element. If element is the input box, add the input event
 document.querySelectorAll(".decode-trigger").forEach(element => {
-    if (element === inputBox) {
+    if (element === inputTextBox) {
         element.addEventListener("input", decode);
     } else {
         element.addEventListener("change", decode);
@@ -24,7 +24,7 @@ document.querySelectorAll(".decode-trigger").forEach(element => {
 function decode() {
 
     // Define variables
-    const inputRaw = inputBox.value.toUpperCase();
+    const inputRaw = inputTextBox.value.toUpperCase();
     let isMorse;
     let inputType;
 
@@ -32,11 +32,11 @@ function decode() {
     if (inputRaw.startsWith(".") || inputRaw.startsWith("-")) {
         isMorse = true;
         inputType = "morse";
-        inputBox.id = "inputMorse";
+        inputTextBox.classList.add("morse-input");
     } else {
         isMorse = false;
         inputType = "text";
-        inputBox.id = "input";
+        inputTextBox.classList.remove("morse-input");
     }
 
     // Determine the stage and fill the outout text box
@@ -67,7 +67,7 @@ ${JSON.stringify(jmespath.search(locationJSON, `*.*.*.cipher_${inputType}9`)).re
     let initialRegex;
 
     // If no input, display everything. Replace morse input to escape the special regex dot. Works with both text and morse
-    if (!inputBox.value) {
+    if (!inputTextBox.value) {
         initialRegex = new RegExp("(?:(.*..*))", "gi");
     } else {
         initialRegex = new RegExp("(?:(.*" + inputRaw.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&") + ".*))", "gi");

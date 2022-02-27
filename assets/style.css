@@ -68,8 +68,7 @@ hr {
   width: 70vw;
 }
 
-#input,
-#output {
+.textBox {
   height: 30px;
   font-size: 20px;
   background-color: #40444b;
@@ -80,16 +79,8 @@ hr {
   padding-left: 5px;
 }
 
-#inputMorse {
+.morse-input {
   font-family: monospace;
-  height: 30px;
-  font-size: 20px;
-  background-color: #40444b;
-  border-radius: 5px;
-  border: none;
-  outline: black;
-  color: #99aab5;
-  padding-left: 5px;
 }
 
 .container-stages {

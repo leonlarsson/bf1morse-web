@@ -8,7 +8,7 @@ const check7 = document.getElementById("check7");
 const check8 = document.getElementById("check8");
 const check9 = document.getElementById("check9");
 const check10 = document.getElementById("check10");
-const outputBox = document.getElementById("output");
+const outputTextBox = document.getElementById("outputTextBox");
 
 /**
  * Determine the stage and fill the outout text box.
@@ -25,23 +25,23 @@ export default (inputRaw, isMorse) => {
     // 1 - Plain
     if (check1.checked) {
         stage = "1";
-        outputBox.placeholder = stageSelectedPlaceholderText;
+        outputTextBox.placeholder = stageSelectedPlaceholderText;
         input = isMorse ? MorseCode.decode(inputRaw) : inputRaw;
-        outputBox.value = input;
+        outputTextBox.value = input;
     }
 
     // 2 - Reverse
     if (check2.checked) {
         stage = "2";
-        outputBox.placeholder = stageSelectedPlaceholderText;
+        outputTextBox.placeholder = stageSelectedPlaceholderText;
         input = isMorse ? MorseCode.decode(inputRaw) : inputRaw;
-        outputBox.value = input.split("").reverse().join("");
+        outputTextBox.value = input.split("").reverse().join("");
     }
 
     // 3 - Atbash
     if (check3.checked) {
         stage = "3";
-        outputBox.placeholder = stageSelectedPlaceholderText;
+        outputTextBox.placeholder = stageSelectedPlaceholderText;
         input = isMorse ? MorseCode.decode(inputRaw) : inputRaw;
 
         function getOutput_3(input) {
@@ -58,21 +58,21 @@ export default (inputRaw, isMorse) => {
             return output;
         }
 
-        outputBox.value = getOutput_3(input);
+        outputTextBox.value = getOutput_3(input);
     }
 
     // 4 - Caesarian Shift
     if (check4.checked) {
         stage = "4";
-        outputBox.placeholder = stageSelectedPlaceholderText;
+        outputTextBox.placeholder = stageSelectedPlaceholderText;
         input = isMorse ? MorseCode.decode(inputRaw) : inputRaw;
-        outputBox.value = String.fromCharCode(...input.split('').map(char => ((char.charCodeAt() - 65 + 19) % 26) + 65));
+        outputTextBox.value = String.fromCharCode(...input.split('').map(char => ((char.charCodeAt() - 65 + 19) % 26) + 65));
     }
 
     // 5 - Reverse -> Railfence
     if (check5.checked) {
         stage = "5";
-        outputBox.placeholder = stageSelectedPlaceholderText;
+        outputTextBox.placeholder = stageSelectedPlaceholderText;
         input = isMorse ? MorseCode.decode(inputRaw) : inputRaw;
 
         function getOutput_5(input) {
@@ -97,13 +97,13 @@ export default (inputRaw, isMorse) => {
             return pt.join("");
         }
 
-        outputBox.value = getOutput_5(input);
+        outputTextBox.value = getOutput_5(input);
     }
 
     // 6 - "E">"A", "T">"B" -> Baconian -> Atbash
     if (check6.checked) {
         stage = "6";
-        outputBox.placeholder = stageSelectedPlaceholderText;
+        outputTextBox.placeholder = stageSelectedPlaceholderText;
         input = isMorse ? MorseCode.decode(inputRaw) : inputRaw;
 
         function getOutput_6(input) {
@@ -126,29 +126,29 @@ export default (inputRaw, isMorse) => {
             return output;
         }
 
-        outputBox.value = getOutput_6(input);
+        outputTextBox.value = getOutput_6(input);
     }
 
     // 7 - Vigenere (pass)
     if (check7.checked) {
         stage = "7";
-        outputBox.placeholder = stageSelectedPlaceholderText;
+        outputTextBox.placeholder = stageSelectedPlaceholderText;
         input = isMorse ? MorseCode.decode(inputRaw) : inputRaw;
-        outputBox.value = VigenereCipher.decrypt(input, "Edward");
+        outputTextBox.value = VigenereCipher.decrypt(input, "Edward");
     }
 
     // 8 - Vigenere (autokey)
     if (check8.checked) {
         stage = "8";
-        outputBox.placeholder = stageSelectedPlaceholderText;
+        outputTextBox.placeholder = stageSelectedPlaceholderText;
         input = isMorse ? MorseCode.decode(inputRaw) : inputRaw;
-        outputBox.value = Vigenere(-1, input, "George", "ZABCDEFGHIJKLMNOPQRSTUVWXY", "Z");
+        outputTextBox.value = Vigenere(-1, input, "George", "ZABCDEFGHIJKLMNOPQRSTUVWXY", "Z");
     }
 
     // 9 - Reverse -> Vigenere (autokey) -> Reverse
     if (check9.checked) {
         stage = "9";
-        outputBox.placeholder = stageSelectedPlaceholderText;
+        outputTextBox.placeholder = stageSelectedPlaceholderText;
         input = isMorse ? MorseCode.decode(inputRaw) : inputRaw;
 
         function getOutput_9(input) {
@@ -159,14 +159,14 @@ export default (inputRaw, isMorse) => {
             return string;
         }
 
-        outputBox.value = getOutput_9(input);
+        outputTextBox.value = getOutput_9(input);
     }
 
     // 10 - All
     if (check10.checked) {
         stage = null;
-        outputBox.value = "";
-        outputBox.placeholder = "Please select a stage if you want to filter results and see the output. This is not required.";
+        outputTextBox.value = "";
+        outputTextBox.placeholder = "Please select a stage if you want to filter results and see the output. This is not required.";
     }
 
     return stage;
