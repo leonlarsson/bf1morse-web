@@ -1,4 +1,4 @@
-import locationJSON from "../locations.json" assert { type: "json" };
+import locationData from "../locations.json" assert { type: "json" };
 
 // Define embed checkbox
 const embedCheck = document.getElementById("noEmbedCheck");
@@ -14,7 +14,7 @@ export default (matches, inputType) => {
     // If checked, prevent embed on links
     const embedSymbols = embedCheck.checked ? ["<", ">"] : ["", ""];
 
-    const maps = Object.keys(locationJSON.maps);
+    const maps = Object.keys(locationData.maps);
     const locations = ["location_1", "location_2", "location_3"];
     const stages = ["1", "2", "3", "4", "5", "6", "7", "8"];
 
@@ -23,13 +23,13 @@ export default (matches, inputType) => {
         if (map === "giantsshadow") return;
         locations.forEach(location => {
             stages.forEach(stage => {
-                matches = matches.replace(locationJSON.maps[map][location][`cipher_${inputType}${stage}`], `(Stage ${stage}) ${locationJSON.maps[map][location].plain_text_spaces}: ${locationJSON.maps[map].map_name} | ${embedSymbols[0]}${locationJSON.maps[map][location].map_url}${embedSymbols[1]}`);
+                matches = matches.replace(locationData.maps[map][location][`cipher_${inputType}${stage}`], `(Stage ${stage}) ${locationData.maps[map][location].plain_text_spaces}: ${locationData.maps[map].map_name} | ${embedSymbols[0]}${locationData.maps[map][location].map_url}${embedSymbols[1]}`);
             })
         });
     });
 
     // For stage 9, which only has location_1
-    matches = matches.replace(locationJSON.maps.giantsshadow.location_1[`cipher_${inputType}9`], `(Stage 9) ${locationJSON.maps.giantsshadow.location_1.plain_text_spaces}: ${locationJSON.maps.giantsshadow.map_name} | ${embedSymbols[0]}${locationJSON.maps.giantsshadow.map_url}${embedSymbols[1]}`);
+    matches = matches.replace(locationData.maps.giantsshadow.location_1[`cipher_${inputType}9`], `(Stage 9) ${locationData.maps.giantsshadow.location_1.plain_text_spaces}: ${locationData.maps.giantsshadow.map_name} | ${embedSymbols[0]}${locationData.maps.giantsshadow.map_url}${embedSymbols[1]}`);
 
     return matches;
 }

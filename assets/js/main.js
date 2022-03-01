@@ -1,4 +1,4 @@
-import locationJSON from "../locations.json" assert { type: "json" };
+import locationData from "../locations.json" assert { type: "json" };
 import cleanOutput from "./cleanOutput.js";
 import stageOperations from "./stageOperations.js";
 
@@ -42,11 +42,11 @@ function decode() {
     // Determines which locations to search in. If stage is not specified, search for all. Also determines if to use text or morse locations
     let locationsString;
     if (stage) {
-        locationsString = jmespath.search(locationJSON, `*.*.*.cipher_${inputType}${stage}`).flat(2).join("\n");
+        locationsString = jmespath.search(locationData, `*.*.*.cipher_${inputType}${stage}`).flat(2).join("\n");
     } else {
         let data = [];
         ["1", "2", "3", "4", "5", "6", "7", "8", "9"].forEach(stage => {
-            data.push(jmespath.search(locationJSON, `*.*.*.cipher_${inputType}${stage}`).flat(2).join("\n"));
+            data.push(jmespath.search(locationData, `*.*.*.cipher_${inputType}${stage}`).flat(2).join("\n"));
         });
         locationsString = data.join("\n");
     }
