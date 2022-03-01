@@ -47,20 +47,15 @@ function decode() {
     let locationsString;
     if (stage) {
 
-        locationsString = JSON.stringify(jmespath.search(locationJSON, `*.*.*.cipher_${inputType}${stage}`)).replaceAll(`","`, "\n").replaceAll(`"],["`, "\n").replaceAll(",", "").replaceAll("[", "").replaceAll("]", "").replaceAll(`"`, "");
+        locationsString = jmespath.search(locationJSON, `*.*.*.cipher_${inputType}${stage}`).flat(2).join("\n");
 
     } else {
 
-        locationsString = `${JSON.stringify(jmespath.search(locationJSON, `*.*.*.cipher_${inputType}1`)).replaceAll(`","`, "\n").replaceAll(`"],["`, "\n").replaceAll(",", "").replaceAll("[", "").replaceAll("]", "").replaceAll(`"`, "")}
-${JSON.stringify(jmespath.search(locationJSON, `*.*.*.cipher_${inputType}2`)).replaceAll(`","`, "\n").replaceAll(`"],["`, "\n").replaceAll(",", "").replaceAll("[", "").replaceAll("]", "").replaceAll(`"`, "")}
-${JSON.stringify(jmespath.search(locationJSON, `*.*.*.cipher_${inputType}3`)).replaceAll(`","`, "\n").replaceAll(`"],["`, "\n").replaceAll(",", "").replaceAll("[", "").replaceAll("]", "").replaceAll(`"`, "")}
-${JSON.stringify(jmespath.search(locationJSON, `*.*.*.cipher_${inputType}4`)).replaceAll(`","`, "\n").replaceAll(`"],["`, "\n").replaceAll(",", "").replaceAll("[", "").replaceAll("]", "").replaceAll(`"`, "")}
-${JSON.stringify(jmespath.search(locationJSON, `*.*.*.cipher_${inputType}5`)).replaceAll(`","`, "\n").replaceAll(`"],["`, "\n").replaceAll(",", "").replaceAll("[", "").replaceAll("]", "").replaceAll(`"`, "")}
-${JSON.stringify(jmespath.search(locationJSON, `*.*.*.cipher_${inputType}6`)).replaceAll(`","`, "\n").replaceAll(`"],["`, "\n").replaceAll(",", "").replaceAll("[", "").replaceAll("]", "").replaceAll(`"`, "")}
-${JSON.stringify(jmespath.search(locationJSON, `*.*.*.cipher_${inputType}7`)).replaceAll(`","`, "\n").replaceAll(`"],["`, "\n").replaceAll(",", "").replaceAll("[", "").replaceAll("]", "").replaceAll(`"`, "")}
-${JSON.stringify(jmespath.search(locationJSON, `*.*.*.cipher_${inputType}8`)).replaceAll(`","`, "\n").replaceAll(`"],["`, "\n").replaceAll(",", "").replaceAll("[", "").replaceAll("]", "").replaceAll(`"`, "")}
-${JSON.stringify(jmespath.search(locationJSON, `*.*.*.cipher_${inputType}9`)).replaceAll(`","`, "\n").replaceAll(`"],["`, "\n").replaceAll(",", "").replaceAll("[", "").replaceAll("]", "").replaceAll(`"`, "")}`;
-
+        let data = [];
+        ["1", "2", "3", "4", "5", "6", "7", "8", "9"].forEach(stage => {
+            data.push(jmespath.search(locationJSON, `*.*.*.cipher_${inputType}${stage}`).flat(2).join("\n"));
+        });
+        locationsString = data.join("\n");
     }
 
     // Create initial regex
