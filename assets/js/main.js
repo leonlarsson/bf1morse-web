@@ -13,11 +13,7 @@ const resultImage = document.getElementById("resultImage");
 
 // Add events to each used element. If element is the input box, add the input event
 document.querySelectorAll(".decode-trigger").forEach(element => {
-    if (element === inputTextBox) {
-        element.addEventListener("input", decode);
-    } else {
-        element.addEventListener("change", decode);
-    }
+    element === inputTextBox ? element.addEventListener("input", decode) : element.addEventListener("change", decode);
 });
 
 // The main function
@@ -46,11 +42,8 @@ function decode() {
     // Determines which locations to search in. If stage is not specified, search for all. Also determines if to use text or morse locations
     let locationsString;
     if (stage) {
-
         locationsString = jmespath.search(locationJSON, `*.*.*.cipher_${inputType}${stage}`).flat(2).join("\n");
-
     } else {
-
         let data = [];
         ["1", "2", "3", "4", "5", "6", "7", "8", "9"].forEach(stage => {
             data.push(jmespath.search(locationJSON, `*.*.*.cipher_${inputType}${stage}`).flat(2).join("\n"));
@@ -59,14 +52,8 @@ function decode() {
     }
 
     // Create initial regex
-    let initialRegex;
-
     // If no input, display everything. Replace morse input to escape the special regex dot. Works with both text and morse
-    if (!inputTextBox.value) {
-        initialRegex = new RegExp("(?:(.*..*))", "gi");
-    } else {
-        initialRegex = new RegExp("(?:(.*" + inputRaw.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&") + ".*))", "gi");
-    }
+    const initialRegex = !inputTextBox.value ? new RegExp("(?:(.*..*))", "gi") : new RegExp("(?:(.*" + inputRaw.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&") + ".*))", "gi");
 
     // Get initial matches
     let matches = locationsString.match(initialRegex);
