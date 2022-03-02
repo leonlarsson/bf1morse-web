@@ -1,4 +1,4 @@
-import locationData from "../locations.json" assert { type: "json" };
+import locationData from "../locations.js";
 import cleanOutput from "./cleanOutput.js";
 import stageOperations from "./stageOperations.js";
 

@@ -1,4 +1,4 @@
-import locationData from "../locations.json" assert { type: "json" };
+import locationData from "../locations.js";
 
 // Define embed checkbox
 const embedCheck = document.getElementById("noEmbedCheck");
