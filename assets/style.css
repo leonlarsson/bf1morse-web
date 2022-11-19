@@ -199,7 +199,7 @@ textarea:focus {
   }
 }
 
-@media only screen and (max-width: 775px) {
+@media only screen and (max-width: 630px) {
   .radioButton {
     width: 15px;
     height: 15px;
@@ -207,10 +207,6 @@ textarea:focus {
 
   .container-stages * {
     font-size: 20px;
-  }
-
-  #defaultText {
-    display: none;
   }
 }
 
