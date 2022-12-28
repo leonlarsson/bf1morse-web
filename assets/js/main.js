@@ -24,15 +24,13 @@ function decode() {
     let isMorse;
     let inputType;
 
-    // If input is morse, change the ID (changes the font to a more morse-friendly one)
+    // Set input type
     if (inputRaw.startsWith(".") || inputRaw.startsWith("-")) {
         isMorse = true;
         inputType = "morse";
-        inputTextBox.classList.add("morse-input");
     } else {
         isMorse = false;
         inputType = "text";
-        inputTextBox.classList.remove("morse-input");
     }
 
     // Determine the stage and fill the outout text box

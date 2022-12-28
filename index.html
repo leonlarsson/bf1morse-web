@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html id="mainHtml" lang="en" dir="ltr" data-bs-theme="dark">
 
 <head>
   <!-- Primary Meta Tags -->
@@ -38,69 +38,122 @@
   <script src="assets/js/decoders/VigenereCipher-Autokey.js"></script>
   <script src="assets/js/decoders/morse.js"></script>
   <script defer type="module" src="assets/js/main.js"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
 </head>
 
 <body class="no-select">
-  <div id="topTitle">
-    <div>
-      <span style="color: #ed4245; font-size: larger;">🎄 Merry Christmas and happy new year! 🎆</span>
-    </div>
-    <div id="titleMain">
-      <a href="https://www.ko-fi.com/mozzy" target="_blank" title="A link to ko-fi.com" class="coffeeLink">☕</a>
-      <a id="titleLink" href="https://twitter.com/MozzyFX" target="_blank"
-        title="A link to Mozzy's Twitter.">Mozzy's</a> Morse Solver
-    </div>
-  </div>
-  <hr>
-  <div class="container">
-    <span class="text">Cipher Text/Morse:
-    </span>
-    <input placeholder="Input your morse or text here." class="decode-trigger textBox" id="inputTextBox" type="text">
-    <div class="container-stages">
-      <a id="stageLink" href="https://bfee.co/index.php?title=Battlefield_1/A_Beginning#Decoding_The_Messages"
-        target="_blank"><span class="text">Stage:</span></a>
-      <label class="text"><input id="check1" type="radio" name="stageRadio"
-          class="decode-trigger radioButton">1</input></label>
-      <label class="text"><input id="check2" type="radio" name="stageRadio"
-          class="decode-trigger radioButton">2</input></label>
-      <label class="text"><input id="check3" type="radio" name="stageRadio"
-          class="decode-trigger radioButton">3</input></label>
-      <label class="text"><input id="check4" type="radio" name="stageRadio"
-          class="decode-trigger radioButton">4</input></label>
-      <label class="text"><input id="check5" type="radio" name="stageRadio"
-          class="decode-trigger radioButton">5</input></label>
-      <label class="text"><input id="check6" type="radio" name="stageRadio"
-          class="decode-trigger radioButton">6</input></label>
-      <label class="text"><input id="check7" type="radio" name="stageRadio"
-          class="decode-trigger radioButton">7</input></label>
-      <label class="text"><input id="check8" type="radio" name="stageRadio"
-          class="decode-trigger radioButton">8</input></label>
-      <label class="text"><input id="check9" type="radio" name="stageRadio"
-          class="decode-trigger radioButton">9</input></label>
-      <label class="text"><input id="check10" type="radio" name="stageRadio" class="decode-trigger radioButton"
-          checked>All</input></label>
-    </div>
-    <br />
 
-    <span class="text">Output:</span>
-    <input class="textBox" id="outputTextBox" type="text" readonly
-      placeholder="Please select a stage if you want to filter results and see the output. This is not required.">
-    <br>
-    <span class="text" id="locationText">⏳ Awaiting input...</span>
-    <br>
-    <div class="container-matches">
-      <span id="matchesText" class="text">Matches:</span>
-      <div>
-        <label class="textCheck"><input id="noEmbedCheck" type="checkbox" class="decode-trigger checkbox">No
-          embed</input></label>
-        <button title="Copies the match(es)." id="copyResultButton" onclick="copyResult()">Copy</button>
+  <div class="container">
+
+    <!-- Title -->
+    <div class="titleContainer d-flex user-select-none">
+      <h1 class="mb-0 flex-grow-1">
+        <a style="text-decoration: none; color: #ed4245" id="titleLink" href="https://twitter.com/MozzyFX"
+          target="_blank" title="A link to Mozzy's Twitter.">Mozzy's</a>
+        <span style="color: #0d6efd">Morse Solver</span>
+      </h1>
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="align-self-end"
+        viewBox="0 0 16 16" style="cursor: pointer;" onclick="toggleTheme()">
+        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
+      </svg>
+    </div>
+    <a class="d-inline-block mb-3 user-select-none" style="text-decoration: underline; color: #ed4245"
+      href="https://bfstats.leonlarsson.com" target="_blank" title="A link to the Battlefield Stats Discord bot.">Check
+      out the Battlefield Stats Discord bot here!</a>
+
+    <!-- Input -->
+    <div class="input-group mb-1">
+      <span class="input-group-text">Cipher Text/Morse</span>
+      <input type="text" class="form-control decode-trigger font-monospace" id="inputTextBox"
+        placeholder="Input your morse or text here">
+    </div>
+
+    <!-- Stage select -->
+    <div class="mb-3">
+      <a class="me-2 h5" style="color: inherit; text-decoration: underline #ed4245;"
+        href="https://bfee.co/index.php?title=Battlefield_1/A_Beginning#Decoding_The_Messages"
+        target="_blank">Stage:</a>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input decode-trigger" id="check1" type="radio" name="inlineRadioOptions">
+        <label class="form-check-label" for="check1">1</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input decode-trigger" id="check2" type="radio" name="inlineRadioOptions">
+        <label class="form-check-label" for="check2">2</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input decode-trigger" id="check3" type="radio" name="inlineRadioOptions">
+        <label class="form-check-label" for="check3">3</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input decode-trigger" id="check4" type="radio" name="inlineRadioOptions">
+        <label class="form-check-label" for="check4">4</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input decode-trigger" id="check5" type="radio" name="inlineRadioOptions">
+        <label class="form-check-label" for="check5">5</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input decode-trigger" id="check6" type="radio" name="inlineRadioOptions">
+        <label class="form-check-label" for="check6">6</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input decode-trigger" id="check7" type="radio" name="inlineRadioOptions">
+        <label class="form-check-label" for="check7">7</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input decode-trigger" id="check8" type="radio" name="inlineRadioOptions">
+        <label class="form-check-label" for="check8">8</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input decode-trigger" id="check9" type="radio" name="inlineRadioOptions">
+        <label class="form-check-label" for="check9">9</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input decode-trigger" id="check10" type="radio" name="inlineRadioOptions" checked>
+        <label class="form-check-label" for="check10">All</label>
       </div>
     </div>
-    <textarea placeholder="The matches will show here. Start typing :)" id="resultsBox" readonly></textarea>
-    <img hidden style="align-self: center; width: 50vw; height: auto; margin-top: 20px; margin-bottom: 50px"
-      id="resultImage"></img>
+
+    <!-- Output -->
+    <div hidden class="input-group mb-3" id="output">
+      <span class="input-group-text" id="inputGroup-sizing-default">Output</span>
+      <input readonly type="text" class="form-control decode-trigger font-monospace" id="outputTextBox">
+    </div>
+
+    <!-- Status text -->
+    <h3 class="mb-1" id="locationText">⏳ Awaiting input...</h3>
+
+    <!-- Matches list -->
+    <div class="d-flex align-items-center">
+      <span class="flex-grow-1" id="matchesText">Matches:</span>
+      <div class="decode-trigger me-3">
+        <input class="form-check-input" type="checkbox" id="noEmbedCheck">
+        <label class="form-check-label" for="noEmbedCheck">No embed</label>
+      </div>
+      <div class="btn btn-sm btn-primary" onclick="copyResult()">Copy</div>
+    </div>
+    <div class="form-text">
+      <textarea class="form-control font-monospace" placeholder="Any matches will show here. Start typing :)"
+        id="resultsBox" readonly></textarea>
+    </div>
+
+    <!-- Image -->
+    <img hidden class="img-fluid my-4" id="resultImage"></img>
   </div>
+
   <script>
+
+    function toggleTheme() {
+      const htmlElement = document.getElementById("mainHtml");
+      const currentTheme = htmlElement.getAttribute("data-bs-theme");
+      htmlElement.setAttribute("data-bs-theme", currentTheme === "dark" ? "light" : "dark");
+    }
 
     // Copy results
     function copyResult() {

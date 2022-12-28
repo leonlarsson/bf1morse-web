@@ -8,6 +8,7 @@ const check7 = document.getElementById("check7");
 const check8 = document.getElementById("check8");
 const check9 = document.getElementById("check9");
 const check10 = document.getElementById("check10");
+const output = document.getElementById("output");
 const outputTextBox = document.getElementById("outputTextBox");
 
 /**
@@ -18,9 +19,12 @@ const outputTextBox = document.getElementById("outputTextBox");
  */
 export default (inputRaw, isMorse) => {
 
+    // Only show Output if All isn't selected
+    output.hidden = check10.checked;
+
     let stage;
     let input;
-    const stageSelectedPlaceholderText = "Please start typing to see decoded text.";
+    const stageSelectedPlaceholderText = "Please start typing to see decoded text";
 
     // 1 - Plain
     if (check1.checked) {
@@ -163,11 +167,7 @@ export default (inputRaw, isMorse) => {
     }
 
     // 10 - All
-    if (check10.checked) {
-        stage = null;
-        outputTextBox.value = "";
-        outputTextBox.placeholder = "Please select a stage if you want to filter results and see the output. This is not required.";
-    }
+    if (check10.checked) stage = null;
 
     return stage;
 }
