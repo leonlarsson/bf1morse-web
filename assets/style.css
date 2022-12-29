@@ -1,3 +1,48 @@
 #titleLink:hover {
     color: #1D9BF0 !important
 }
+
+#check1:checked {
+    background-color: #f6f6f1;
+}
+
+#check2:checked {
+    background-color: #bbae32;
+}
+
+#check3:checked {
+    background-color: #604ff5;
+}
+
+#check4:checked {
+    background-color: #55ec58;
+}
+
+#check5:checked {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#check6:checked {
+    background-color: #be844e;
+}
+
+#check7:checked {
+    background-color: #e9c3d9;
+}
+
+#check8:checked {
+    background-color: #b8bc99;
+}
+
+#check9:checked {
+    background-color: #4ae6f3;
+
+}
+#check10:checked {
+    background-color: #c12c20;
+}
+
+.form-check-input:checked[type=radio] {
+    --bs-form-check-bg-image: null !important;
+    border-color: gold;
+}
