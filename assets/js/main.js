@@ -38,16 +38,9 @@ function decode() {
 
     // Regex stuff
     // Determines which locations to search in. If stage is not specified, search for all. Also determines if to use text or morse locations
-    let locationsString;
-    if (stage) {
-        locationsString = jmespath.search(locationData, `*.*.*.cipher_${inputType}${stage}`).flat(2).join("\n");
-    } else {
-        let data = [];
-        ["1", "2", "3", "4", "5", "6", "7", "8", "9"].forEach(stage => {
-            data.push(jmespath.search(locationData, `*.*.*.cipher_${inputType}${stage}`).flat(2).join("\n"));
-        });
-        locationsString = data.join("\n");
-    }
+    const locationsString = stage
+        ? jmespath.search(locationData, `*.*.*.cipher_${inputType}${stage}`).flat(2).join("\n")
+        : ["1", "2", "3", "4", "5", "6", "7", "8", "9"].map(stage => jmespath.search(locationData, `*.*.*.cipher_${inputType}${stage}`).flat(2).join("\n")).join("\n");
 
     // Create initial regex
     // If no input, display everything. Replace morse input to escape the special regex dot. Works with both text and morse
