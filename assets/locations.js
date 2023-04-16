@@ -1,4 +1,4 @@
-export default [
+const locationsData = [
   {
     mapName: "Amiens",
     mapUrl: "https://bf1morse.leonlarsson.com/locations/amiens.png",
@@ -579,9 +579,51 @@ export default [
     mapName: "Giant's Shadow",
     mapUrl: "https://www.youtube.com/watch?v=WjGDr5J6QjQ",
     location1: {
+      mapUrl: "https://www.youtube.com/watch?v=WjGDr5J6QjQ",
       plainText: "GIANTS SHADOW WINDMILL BALCONY LOOKUP",
       cipherMorse9: "--.. --.- -... .-. .. .--. .--. --.- --- .... -... ..-. .. ..- .--. . -.-- .-.. .- --.. .- -- .- .-. --.. .. --- --.. -.. ... -.-- .--- -...",
       cipherText9: "ZQBRIPPQOHBFIUPEYLAZAMARZIOZDSYJB"
     }
   }
-]
+];
+
+const transformedLocations = jmespath.search(locationsData, "[].{mapName: mapName, mapUrl: mapUrl, locations: [location1, location2, location3]}");
+
+const locationsArray = [];
+transformedLocations.forEach(map => {
+  ["Morse", "Text"].forEach(cipherType => {
+
+    // Manually add Giant's Shadow
+    if (map.mapName === "Giant's Shadow") {
+      locationsArray.push(
+        {
+          mapName: map.mapName,
+          mapUrl: map.mapUrl,
+          locationUrl: map.mapUrl,
+          plainText: map.locations[0].plainText,
+          stage: 9,
+          type: cipherType.toLowerCase(),
+          cipher: map.locations[0][`cipher${cipherType}9`]
+        })
+      return;
+    };
+
+    // Add all other maps and locations
+    map.locations.forEach(location => {
+      for (let stage = 1; stage <= 8; stage++) {
+        locationsArray.push({
+          mapName: map.mapName,
+          mapUrl: map.mapUrl,
+          locationUrl: location.mapUrl,
+          plainText: location.plainText,
+          stage,
+          type: cipherType.toLowerCase(),
+          cipher: location[`cipher${cipherType}${stage}`]
+        });
+      }
+    });
+
+  });
+});
+
+export default locationsArray;

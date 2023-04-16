@@ -1,4 +1,4 @@
-import locationData from "../newLocations.js";
+import locations from "../locations.js";
 import stageOperations from "./stageOperations.js";
 
 // Define input
@@ -28,7 +28,7 @@ function decode() {
     const stage = stageOperations(input, inputType);
 
     // Get matches. Takes type, stage 
-    const matches = locationData.filter(location => location.type === inputType && (location.stage === stage || stage === null) && location.cipher.toLowerCase().includes(input.toLowerCase()));
+    const matches = locations.filter(location => location.type === inputType && (location.stage === stage || stage === null) && location.cipher.toLowerCase().includes(input.toLowerCase()));
 
     // If no matches, set the state and return
     if (!matches.length) {
