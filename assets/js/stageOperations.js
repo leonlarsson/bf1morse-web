@@ -14,39 +14,32 @@ const outputTextBox = document.getElementById("outputTextBox");
 /**
  * Determine the stage and fill the outout text box.
  * @param {String} inputRaw The input.
- * @param {Boolean} isMorse If the input type is morse.
+ * @param {"morse" | "text"} inputType The input type.
  * @returns {String} The stage.
  */
-export default (inputRaw, isMorse) => {
+export default (inputRaw, inputType) => {
 
     // Only show Output if All isn't selected
     output.hidden = check10.checked;
 
     let stage;
-    let input;
-    const stageSelectedPlaceholderText = "Please start typing to see decoded text";
+    const input = inputType === "morse" ? MorseCode.decode(inputRaw) : inputRaw;
 
     // 1 - Plain
     if (check1.checked) {
-        stage = "1";
-        outputTextBox.placeholder = stageSelectedPlaceholderText;
-        input = isMorse ? MorseCode.decode(inputRaw) : inputRaw;
+        stage = 1;
         outputTextBox.value = input;
     }
 
     // 2 - Reverse
     if (check2.checked) {
-        stage = "2";
-        outputTextBox.placeholder = stageSelectedPlaceholderText;
-        input = isMorse ? MorseCode.decode(inputRaw) : inputRaw;
+        stage = 2;
         outputTextBox.value = input.split("").reverse().join("");
     }
 
     // 3 - Atbash
     if (check3.checked) {
-        stage = "3";
-        outputTextBox.placeholder = stageSelectedPlaceholderText;
-        input = isMorse ? MorseCode.decode(inputRaw) : inputRaw;
+        stage = 3;
 
         function getOutput_3(input) {
             const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -67,17 +60,13 @@ export default (inputRaw, isMorse) => {
 
     // 4 - Caesarian Shift
     if (check4.checked) {
-        stage = "4";
-        outputTextBox.placeholder = stageSelectedPlaceholderText;
-        input = isMorse ? MorseCode.decode(inputRaw) : inputRaw;
+        stage = 4;
         outputTextBox.value = String.fromCharCode(...input.split('').map(char => ((char.charCodeAt() - 65 + 19) % 26) + 65));
     }
 
     // 5 - Reverse -> Railfence
     if (check5.checked) {
-        stage = "5";
-        outputTextBox.placeholder = stageSelectedPlaceholderText;
-        input = isMorse ? MorseCode.decode(inputRaw) : inputRaw;
+        stage = 5;
 
         function getOutput_5(input) {
             const ciphertext = input.split("").reverse().join("").toUpperCase().replace(/[^A-Z]/g, "");
@@ -106,9 +95,7 @@ export default (inputRaw, isMorse) => {
 
     // 6 - "E">"A", "T">"B" -> Baconian -> Atbash
     if (check6.checked) {
-        stage = "6";
-        outputTextBox.placeholder = stageSelectedPlaceholderText;
-        input = isMorse ? MorseCode.decode(inputRaw) : inputRaw;
+        stage = 6;
 
         function getOutput_6(input) {
             let text = input;
@@ -135,25 +122,19 @@ export default (inputRaw, isMorse) => {
 
     // 7 - Vigenere (pass)
     if (check7.checked) {
-        stage = "7";
-        outputTextBox.placeholder = stageSelectedPlaceholderText;
-        input = isMorse ? MorseCode.decode(inputRaw) : inputRaw;
+        stage = 7;
         outputTextBox.value = VigenereCipher.decrypt(input, "Edward");
     }
 
     // 8 - Vigenere (autokey)
     if (check8.checked) {
-        stage = "8";
-        outputTextBox.placeholder = stageSelectedPlaceholderText;
-        input = isMorse ? MorseCode.decode(inputRaw) : inputRaw;
+        stage = 8;
         outputTextBox.value = Vigenere(-1, input, "George", "ZABCDEFGHIJKLMNOPQRSTUVWXY", "Z");
     }
 
     // 9 - Reverse -> Vigenere (autokey) -> Reverse
     if (check9.checked) {
-        stage = "9";
-        outputTextBox.placeholder = stageSelectedPlaceholderText;
-        input = isMorse ? MorseCode.decode(inputRaw) : inputRaw;
+        stage = 9;
 
         function getOutput_9(input) {
             let string;
