@@ -53,12 +53,14 @@
         <span style="color: #0d6efd">Morse Solver</span>
       </h1>
 
-      <svg id="copySettingsButton" width="30" height="30" xmlns="http://www.w3.org/2000/svg"
-        class="align-self-end text-reset" viewBox="0 0 512 512" style="cursor: pointer;">
-        <path
-          d="M448 384H256c-35.3 0-64-28.7-64-64V64c0-35.3 28.7-64 64-64H396.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V320c0 35.3-28.7 64-64 64zM64 128h96v48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H256c8.8 0 16-7.2 16-16V416h48v32c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V192c0-35.3 28.7-64 64-64z"
-          fill="currentColor" />
-      </svg>
+      <div class="align-self-end text-reset" title="Copy current settings.">
+        <svg id="copySettingsButton" width="30" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+          style="cursor: pointer;">
+          <path
+            d="M448 384H256c-35.3 0-64-28.7-64-64V64c0-35.3 28.7-64 64-64H396.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V320c0 35.3-28.7 64-64 64zM64 128h96v48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H256c8.8 0 16-7.2 16-16V416h48v32c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V192c0-35.3 28.7-64 64-64z"
+            fill="currentColor" />
+        </svg>
+      </div>
 
       <a href="https://github.com/leonlarsson/bf1morse" target="_blank" title="Go to GitHub."
         class="align-self-end text-reset ms-3">
@@ -69,10 +71,12 @@
         </svg>
       </a>
 
-      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="align-self-end ms-3"
-        viewBox="0 0 16 16" style="cursor: pointer;" onclick=toggleTheme()>
-        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
-      </svg>
+      <div class="align-self-end ms-3" title="Toggle theme.">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 16 16"
+          style="cursor: pointer;" onclick=toggleTheme()>
+          <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
+        </svg>
+      </div>
     </div>
 
     <a class="d-inline-block user-select-none text-decoration-underline link-success"

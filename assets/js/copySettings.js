@@ -49,5 +49,5 @@ export const copySettings = () => {
     if (stage) customURL.searchParams.set("stage", stage);
 
     navigator.clipboard.writeText(customURL.href);
-    console.log(`Copied to clipboard!\nInput: ${input || "N/A"}\nStage: ${stage || "All"}`);
+    console.log(`Copied settings URL to clipboard:\nInput: ${input || "N/A"}\nStage: ${stage || "All"}\nURL: ${customURL.href}`);
 };
