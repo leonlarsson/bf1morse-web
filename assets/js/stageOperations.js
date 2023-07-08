@@ -17,31 +17,23 @@ const outputTextBox = document.getElementById("outputTextBox");
  * @param {"morse" | "text"} inputType The input type.
  * @returns {String} The stage.
  */
-export default (inputRaw, inputType) => {
+export const performStageOperations = (inputRaw, inputType) => {
 
     // Only show Output if All isn't selected
     output.hidden = check10.checked;
 
-    let stage;
+    const stage = getStage();
     const input = inputType === "morse" ? MorseCode.decode(inputRaw) : inputRaw;
 
     // 1 - Plain
-    if (check1.checked) {
-        stage = 1;
-        outputTextBox.value = input;
-    }
+    if (check1.checked) outputTextBox.value = input;
 
     // 2 - Reverse
-    if (check2.checked) {
-        stage = 2;
-        outputTextBox.value = input.split("").reverse().join("");
-    }
+    if (check2.checked) outputTextBox.value = input.split("").reverse().join("");
 
     // 3 - Atbash
     if (check3.checked) {
-        stage = 3;
-
-        function getOutput_3(input) {
+        const getOutput_3 = input => {
             const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             const tebahpla = "ZYXWVUTSRQPONMLKJIHGFEDCBA";
             let output = "";
@@ -59,16 +51,11 @@ export default (inputRaw, inputType) => {
     }
 
     // 4 - Caesarian Shift
-    if (check4.checked) {
-        stage = 4;
-        outputTextBox.value = String.fromCharCode(...input.split('').map(char => ((char.charCodeAt() - 65 + 19) % 26) + 65));
-    }
+    if (check4.checked) outputTextBox.value = String.fromCharCode(...input.split('').map(char => ((char.charCodeAt() - 65 + 19) % 26) + 65));
 
     // 5 - Reverse -> Railfence
     if (check5.checked) {
-        stage = 5;
-
-        function getOutput_5(input) {
+        const getOutput_5 = input => {
             const ciphertext = input.split("").reverse().join("").toUpperCase().replace(/[^A-Z]/g, "");
             const key = 5;
             const pt = new Array(ciphertext.length);
@@ -95,14 +82,12 @@ export default (inputRaw, inputType) => {
 
     // 6 - "E">"A", "T">"B" -> Baconian -> Atbash
     if (check6.checked) {
-        stage = 6;
-
-        function getOutput_6(input) {
+        const getOutput_6 = input => {
             let text = input;
             text = text.replace(/E/g, "A").replace(/T/g, "B");
             text = bacon.decode(text, {
                 "alphabet": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-            })
+            });
 
             const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             const tebahpla = "ZYXWVUTSRQPONMLKJIHGFEDCBA";
@@ -121,22 +106,14 @@ export default (inputRaw, inputType) => {
     }
 
     // 7 - Vigenere (pass)
-    if (check7.checked) {
-        stage = 7;
-        outputTextBox.value = VigenereCipher.decrypt(input, "Edward");
-    }
+    if (check7.checked) outputTextBox.value = VigenereCipher.decrypt(input, "Edward");
 
     // 8 - Vigenere (autokey)
-    if (check8.checked) {
-        stage = 8;
-        outputTextBox.value = Vigenere(-1, input, "George", "ZABCDEFGHIJKLMNOPQRSTUVWXY", "Z");
-    }
+    if (check8.checked) outputTextBox.value = Vigenere(-1, input, "George", "ZABCDEFGHIJKLMNOPQRSTUVWXY", "Z");
 
     // 9 - Reverse -> Vigenere (autokey) -> Reverse
     if (check9.checked) {
-        stage = 9;
-
-        function getOutput_9(input) {
+        const getOutput_9 = input => {
             let string;
             string = input.split("").reverse().join("").toUpperCase();
             string = Vigenere(-1, string, "London", "ZABCDEFGHIJKLMNOPQRSTUVWXY", "Z");
@@ -146,9 +123,6 @@ export default (inputRaw, inputType) => {
 
         outputTextBox.value = getOutput_9(input);
     }
-
-    // 10 - All
-    if (check10.checked) stage = null;
 
     return stage;
 }

@@ -1,5 +1,5 @@
 import locations from "../locations.js";
-import stageOperations from "./stageOperations.js";
+import { performStageOperations } from "./stageOperations.js";
 
 // Define input
 const inputTextBox = document.getElementById("inputTextBox");
@@ -25,7 +25,7 @@ export function decode() {
     const inputType = (input.startsWith(".") || input.startsWith("-")) ? "morse" : "text";
 
     // Fill the outout text box and return the selected stage (null if All)
-    const stage = stageOperations(input, inputType);
+    const stage = performStageOperations(input, inputType);
 
     // Get matches. Takes type, stage 
     const matches = locations.filter(location => location.type === inputType && (location.stage === stage || stage === null) && location.cipher.toLowerCase().includes(input.toLowerCase()));
