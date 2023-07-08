@@ -54,9 +54,6 @@ export function decode() {
 
         const match = matches[0];
 
-        // Set title tooltip to match
-        matchesText.title = `Last match (${match.date}):\nInput: "${match.inputUsed}"\nStage: ${match.stage}\nLocation: ${match.location}\nMap: ${match.map}`;
-
         // Populate locationText
         locationText.innerHTML = `<a style="text-decoration: none; color: #3ba55c" target='_blank' href='${match.locationUrl}'>✅ Found on ${match.mapName} (${match.plainText})</a>`;
 
