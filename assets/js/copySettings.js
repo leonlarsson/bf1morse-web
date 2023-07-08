@@ -15,10 +15,10 @@ const check10 = document.getElementById("check10");
 export const populateSettings = () => {
     const searchParams = new URLSearchParams(window.location.search);
 
-    const input = searchParams.get("input");
+    const input = searchParams.get("input")?.trim();
     const stage = searchParams.get("stage");
 
-    if (input) inputTextBox.value = input.trim();
+    if (input) inputTextBox.value = input;
 
     if (stage) {
         if (stage == 1) check1.checked = true;
@@ -45,9 +45,9 @@ export const copySettings = () => {
     const input = document.getElementById("inputTextBox").value.trim();
     const stage = getStage();
 
-    if (input) customURL.searchParams.set("input", input.trim());
+    if (input) customURL.searchParams.set("input", input);
     if (stage) customURL.searchParams.set("stage", stage);
 
     navigator.clipboard.writeText(customURL.href);
-    console.log(`Copied to clipboard!\nInput: ${input.trim() || "N/A"}\nStage: ${stage || "All"}`);
+    console.log(`Copied to clipboard!\nInput: ${input || "N/A"}\nStage: ${stage || "All"}`);
 };
