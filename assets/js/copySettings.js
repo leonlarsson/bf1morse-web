@@ -15,10 +15,12 @@ const check10 = document.getElementById("check10");
 export const populateSettings = () => {
     const searchParams = new URLSearchParams(window.location.search);
 
-    if (searchParams.get("input")) inputTextBox.value = searchParams.get("input");
+    const input = searchParams.get("input");
+    const stage = searchParams.get("stage");
 
-    if (searchParams.get("stage")) {
-        const stage = searchParams.get("stage");
+    if (input) inputTextBox.value = input.trim();
+
+    if (stage) {
         if (stage == 1) check1.checked = true;
         if (stage == 2) check2.checked = true;
         if (stage == 3) check3.checked = true;
@@ -36,8 +38,13 @@ export const populateSettings = () => {
 
 export const copySettings = () => {
     const customURL = new URL(window.location.origin);
-    customURL.searchParams.set("input", document.getElementById("inputTextBox").value);
-    if (getStage()) customURL.searchParams.set("stage", getStage());
+
+    const input = document.getElementById("inputTextBox").value;
+    const stage = getStage();
+
+    customURL.searchParams.set("input", input.trim());
+    if (stage) customURL.searchParams.set("stage", stage);
 
     navigator.clipboard.writeText(customURL.href);
+    alert(`Copied to clipboard!\nInput: ${input.trim() || "N/A"}\nStage: ${stage || "All"}`);
 };
