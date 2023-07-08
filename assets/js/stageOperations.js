@@ -152,3 +152,16 @@ export default (inputRaw, inputType) => {
 
     return stage;
 }
+
+export const getStage = () => {
+    if (check1.checked) return 1;
+    if (check2.checked) return 2;
+    if (check3.checked) return 3;
+    if (check4.checked) return 4;
+    if (check5.checked) return 5;
+    if (check6.checked) return 6;
+    if (check7.checked) return 7;
+    if (check8.checked) return 8;
+    if (check9.checked) return 9;
+    if (check10.checked) return null;
+};

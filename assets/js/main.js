@@ -15,7 +15,7 @@ const resultImage = document.getElementById("resultImage");
 document.querySelectorAll(".decode-trigger").forEach(element => element === inputTextBox ? element.addEventListener("input", decode) : element.addEventListener("change", decode));
 
 // The main function
-function decode() {
+export function decode() {
 
     // Define variables
     const input = inputTextBox.value.trim();
