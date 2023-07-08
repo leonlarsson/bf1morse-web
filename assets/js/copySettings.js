@@ -33,18 +33,21 @@ export const populateSettings = () => {
         if (!stage) check10.checked = true;
     };
 
-    decode();
+    if (input || stage) decode();
+
+    // Strip URL of the params
+    history.pushState({}, null, "./");
 };
 
 export const copySettings = () => {
     const customURL = new URL(window.location.origin);
 
-    const input = document.getElementById("inputTextBox").value;
+    const input = document.getElementById("inputTextBox").value.trim();
     const stage = getStage();
 
-    customURL.searchParams.set("input", input.trim());
+    if (input) customURL.searchParams.set("input", input.trim());
     if (stage) customURL.searchParams.set("stage", stage);
 
     navigator.clipboard.writeText(customURL.href);
-    alert(`Copied to clipboard!\nInput: ${input.trim() || "N/A"}\nStage: ${stage || "All"}`);
+    console.log(`Copied to clipboard!\nInput: ${input.trim() || "N/A"}\nStage: ${stage || "All"}`);
 };
