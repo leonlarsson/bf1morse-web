@@ -56,9 +56,9 @@ export function decode() {
     // Populate "Matches (n):" text
     matchesText.innerText = `Matches: (${matches.length})`;
 
-    cardDisplay.innerHTML = showCardsCheck.checked ? matches.filter(x => x.stage !== 9).map(match => `
+    cardDisplay.innerHTML = showCardsCheck.checked ? matches.map(match => `
         <div class="card" style="width: 19rem">
-            ${noEmbedCheck.checked ? "" : `<img src="${match.locationUrl}" class="card-image-top" loading="lazy"></img>`}
+            ${noEmbedCheck.checked || match.stage === 9 ? "" : `<img src="${match.locationUrl}" class="card-image-top" loading="lazy"></img>`}
             <div class="card-body">
                 <h5 class="card-title">${match.plainText}</h5>
                 <h6 class="card-subtitle mb-2 text-body-secondary">Stage ${match.stage} - <a href="${match.locationUrl}" target="_blank" class="card-link">${match.mapName}</a></h6>
