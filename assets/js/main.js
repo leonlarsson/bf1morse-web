@@ -8,8 +8,10 @@ const inputTextBox = document.getElementById("inputTextBox");
 const locationText = document.getElementById("locationText");
 const matchesText = document.getElementById("matchesText");
 const resultsBox = document.getElementById("resultsBox");
-const embedCheck = document.getElementById("noEmbedCheck");
+const showCardsCheck = document.getElementById("showCardsCheck");
+const noEmbedCheck = document.getElementById("noEmbedCheck");
 const resultImage = document.getElementById("resultImage");
+const cardDisplay = document.getElementById("cardDisplay");
 
 // Add events to each used element. If element is the input box, add the input event
 document.querySelectorAll(".decode-trigger").forEach(element => element === inputTextBox ? element.addEventListener("input", decode) : element.addEventListener("change", decode));
@@ -17,9 +19,11 @@ document.querySelectorAll(".decode-trigger").forEach(element => element === inpu
 // The main function
 export function decode() {
 
+    handleVisiblity();
+
     // Define variables
     const input = inputTextBox.value.trim();
-    const embedSymbols = embedCheck.checked ? ["<", ">"] : ["", ""];
+    const embedSymbols = noEmbedCheck.checked ? ["<", ">"] : ["", ""];
 
     // Set input type
     const inputType = (input.startsWith(".") || input.startsWith("-")) ? "morse" : "text";
@@ -37,8 +41,11 @@ export function decode() {
         resultsBox.value = "No results. Please check your morse.";
         resultsBox.rows = 1;
         resultImage.hidden = true;
+        cardDisplay.innerHTML = null;
         return;
     }
+
+    handleVisiblity()
 
     // If there are matches
     resultsBox.value = matches.map(match => `(Stage ${match.stage}) ${match.plainText}: ${match.mapName} | ${embedSymbols[0]}${match.locationUrl}${embedSymbols[1]}`).join("\n");
@@ -48,6 +55,16 @@ export function decode() {
 
     // Populate "Matches (n):" text
     matchesText.innerText = `Matches: (${matches.length})`;
+
+    cardDisplay.innerHTML = showCardsCheck.checked ? matches.filter(x => x.stage !== 9).map(match => `
+        <div class="card" style="width: 19rem">
+            ${noEmbedCheck.checked ? "" : `<img src="${match.locationUrl}" class="card-image-top" loading="lazy"></img>`}
+            <div class="card-body">
+                <h5 class="card-title">${match.plainText}</h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary">Stage ${match.stage} - <a href="${match.locationUrl}" target="_blank" class="card-link">${match.mapName}</a></h6>
+                Cipher: ${match.cipher.replace(input.toUpperCase() || null, `<span><mark>${input.toUpperCase()}</mark></span>`)}
+            </div>
+        </div>`).join("\n") : null;
 
     // If one match
     if (matches.length === 1) {
@@ -60,7 +77,7 @@ export function decode() {
         // if match is not stage 9 (YouTube), show image
         if (match.stage !== 9) {
             resultImage.src = match.locationUrl;
-            resultImage.hidden = false;
+            if (!showCardsCheck.checked) resultImage.hidden = false;
         }
 
         // If more than 1 match AND not stage 9
@@ -68,4 +85,10 @@ export function decode() {
         locationText.innerHTML = "⏳ Please input more to find exact location";
         resultImage.hidden = true;
     }
+}
+
+function handleVisiblity() {
+    resultsBox.hidden = showCardsCheck.checked;
+    cardDisplay.hidden = !showCardsCheck.checked;
+    resultImage.hidden = showCardsCheck.checked;
 }

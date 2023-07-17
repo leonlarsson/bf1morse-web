@@ -1,3 +1,7 @@
+html {
+    overflow-y: scroll;
+}
+
 #titleLink:hover {
     color: #1D9BF0 !important
 }

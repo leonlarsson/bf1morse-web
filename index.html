@@ -156,7 +156,11 @@
     <!-- Matches list -->
     <div class="d-flex align-items-center">
       <span class="flex-grow-1" id="matchesText">Matches:</span>
-      <div class="decode-trigger me-3" title="Remove embeds from Discord messages.">
+      <div class="decode-trigger me-3 form-switch form-check" title="Show results as cards.">
+        <input class="form-check-input" type="checkbox" id="showCardsCheck">
+        <label class="form-check-label" for="showCardsCheck">Show cards</label>
+      </div>
+      <div class="decode-trigger me-3" title="Remove embeds from Discord messages and cards.">
         <input class="form-check-input" type="checkbox" id="noEmbedCheck">
         <label class="form-check-label" for="noEmbedCheck">No embed</label>
       </div>
@@ -166,6 +170,8 @@
       <textarea class="form-control font-monospace" placeholder="Any matches will show here. Start typing :)"
         id="resultsBox" readonly></textarea>
     </div>
+
+    <div id="cardDisplay" class="d-flex justify-content-center mt-1 mb-3 flex-wrap gap-2" hidden></div>
 
     <!-- Image -->
     <img hidden class="img-fluid my-4" id="resultImage"></img>
@@ -178,7 +184,6 @@
   </script>
 
   <script>
-
     function toggleTheme() {
       const htmlElement = document.getElementById("mainHtml");
       const currentTheme = htmlElement.getAttribute("data-bs-theme");
@@ -186,9 +191,7 @@
     }
 
     function copyResult() {
-      document.getElementById("resultsBox").select();
-      document.execCommand("copy");
-      document.getSelection().removeAllRanges();
+      navigator.clipboard.writeText(document.getElementById("resultsBox").value);
     }
   </script>
 </body>
