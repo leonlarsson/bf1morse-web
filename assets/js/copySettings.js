@@ -11,12 +11,16 @@ const check7 = document.getElementById("check7");
 const check8 = document.getElementById("check8");
 const check9 = document.getElementById("check9");
 const check10 = document.getElementById("check10");
+const showCardsCheck = document.getElementById("showCardsCheck");
+const noEmbedCheck = document.getElementById("noEmbedCheck");
 
 export const populateSettings = () => {
     const searchParams = new URLSearchParams(window.location.search);
 
     const input = searchParams.get("input")?.trim();
     const stage = searchParams.get("stage");
+    const cards = searchParams.get("cards");
+    const noEmbed = searchParams.get("noembed");
 
     if (input) inputTextBox.value = input;
 
@@ -33,7 +37,10 @@ export const populateSettings = () => {
         if (!stage) check10.checked = true;
     };
 
-    if (input || stage) decode();
+    if (cards) showCardsCheck.checked = true;
+    if (noEmbed) noEmbedCheck.checked = true;
+
+    if (input || stage || cards) decode();
 
     // Strip URL of the params
     history.pushState({}, null, "./");
@@ -47,6 +54,8 @@ export const copySettings = () => {
 
     if (input) customURL.searchParams.set("input", input);
     if (stage) customURL.searchParams.set("stage", stage);
+    if (showCardsCheck.checked) customURL.searchParams.set("cards", true);
+    if (noEmbedCheck.checked) customURL.searchParams.set("noembed", true);
 
     navigator.clipboard.writeText(customURL.href);
     console.log(`Copied settings URL to clipboard:\nInput: ${input || "N/A"}\nStage: ${stage || "All"}\nURL: ${customURL.href}`);
