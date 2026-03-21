@@ -62,8 +62,12 @@ export function decode() {
             .filter(loc => loc.cipher.toLowerCase().includes(input.toLowerCase()))
             .map(loc => ({ loc, score: 1.0 }));
 
-    const matches = scoredMatches.map(({ loc }) => loc);
-    const scores = scoredMatches.map(({ score }) => score);
+    // If any result is an exact match, suppress partial/fuzzy results
+    const hasExact = scoredMatches.some(({ score }) => score === 1.0);
+    const finalMatches = hasExact ? scoredMatches.filter(({ score }) => score === 1.0) : scoredMatches;
+
+    const matches = finalMatches.map(({ loc }) => loc);
+    const scores = finalMatches.map(({ score }) => score);
 
     // If no matches, set the state and return
     if (!matches.length) {
