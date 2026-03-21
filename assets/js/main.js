@@ -4,6 +4,17 @@ import { fuzzyScore } from "./search.js";
 
 const FUZZY_THRESHOLD = 0.45;
 
+const STAGE_EXTRA_TEXT = {
+    1: "OLD METHODS COMPROMISED. MUST ACQUIRE NEW KEY. WILL MISS DROPOFF IF DELAY OR INCORRECT LOCATION.",
+    2: "REMEMBER FIRST RULE. IF COMPROMISED. L PILL.",
+    3: "SECOND RULE. SIGHTING. REPORT AND WAIT. INVESTIGATING ALONE COULD LEAD TO DEATH",
+    4: "THIRD RULE. IF TAKEN BY THE OTHERS DISCOVER MEANS TO COMMUNICATE TO HOUSE",
+    5: "FOURTH RULE. KILL ALL ON SAME TRAIL. REMOVE DOG TAGS AND REPORT TO HOUSE",
+    6: "MORSE MESSAGES BEING INTERCEPTED. BEGINNING FULL ENCRYPTION SOON",
+    7: "ALLIES CAN BE CLOTHED AS ENEMIES. ENEMIES CAN BE CLOTHED AS ALLIES. ALWAYS USE ID",
+    8: "FINAL. BELIEVE EVERYTHING. REPORT EVERYTHING",
+};
+
 // Define input
 const inputTextBox = document.getElementById("inputTextBox");
 
@@ -95,6 +106,7 @@ export function decode() {
                 <h5 class="card-title">${match.plainText}</h5>
                 <h6 class="card-subtitle mb-2 text-body-secondary">Stage ${match.stage} - <a href="${match.locationUrl}" target="_blank" class="card-link">${match.mapName}</a>${badge}</h6>
                 Cipher: ${cipherDisplay}
+                ${STAGE_EXTRA_TEXT[match.stage] ? `<p class="card-text small text-body-secondary mt-2 mb-0">+ ${STAGE_EXTRA_TEXT[match.stage]}</p>` : ""}
             </div>
         </div>`;
     }).join("\n") : null;

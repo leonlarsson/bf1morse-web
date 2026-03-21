@@ -46,8 +46,8 @@ export function fuzzyScore(query, cipher) {
     let maxDist;
     if (c.length < q.length * 0.75) {
         // Cipher is embedded in a longer input (user pasted full decoded output with a typo).
-        // Slide a cipher-length window over the query; cap at 1 edit.
-        maxDist = 1;
+        // Slide a cipher-length window over the query; cap at 2 edits.
+        maxDist = 2;
         dist = Infinity;
         for (let i = 0; i <= q.length - c.length; i++) {
             const d = levenshtein(c, q.slice(i, i + c.length));

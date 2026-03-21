@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(node --test assets/js/search.test.mjs)"
+      "Bash(node --test assets/js/search.test.mjs)",
+      "Bash(curl -s https://wiki.bfee.co/BF1/A_Beginning)",
+      "WebFetch(domain:wiki.bfee.co)"
     ]
   }
 }

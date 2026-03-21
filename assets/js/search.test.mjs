@@ -139,6 +139,15 @@ describe("fuzzyScore — Tier 1: exact substring → 1.0", () => {
         assert.ok(score >= 0.45, `Expected score >= 0.45, got ${score}`);
         assert.ok(score < 1.0, `Expected score < 1.0, got ${score}`);
     });
+
+    test("cipher embedded in longer input with 2-char typo → still matches (cap raised to 2)", () => {
+        // O→A at position 0, J→H at position 12: 2 substitutions inside the cipher portion
+        const cipher = "ONADIFZWMPTJSHJG";
+        const fullInput = "XXXANADIFZWMPTJSHHGXROUUEKUWFHGJHNWUYMESYQYXXFAWAUGQNMESY";
+        const score = fuzzyScore(fullInput, cipher);
+        assert.ok(score >= 0.45, `Expected score >= 0.45, got ${score}`);
+        assert.ok(score < 1.0, `Expected score < 1.0, got ${score}`);
+    });
 });
 
 // ---------------------------------------------------------------------------
