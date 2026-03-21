@@ -178,8 +178,8 @@ body {
 
 .header-right {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  flex-wrap: wrap;
+  align-items: center;
   gap: 10px;
 }
 
@@ -705,8 +705,6 @@ a.field-label:hover,
   }
 
   .header-right {
-    flex-direction: row;
-    align-items: center;
     justify-content: space-between;
     width: 100%;
   }
