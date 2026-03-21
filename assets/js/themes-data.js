@@ -224,17 +224,17 @@ window.__BF1_THEMES = [
       '--color-title-span':       'var(--text-primary)',
 
       // ── Header links ────────────────────────────────
-      '--color-header-link':       'var(--accent-primary)',
-      '--color-header-link-hover': '#ffffff',
+      '--color-header-link':       'var(--text-primary)',
+      '--color-header-link-hover': '#000000',
       '--header-link-decoration':  'none',
-      '--header-link-border':      '1px solid var(--accent-yellow-dim)',
+      '--header-link-border':      'none',
       '--header-link-spacing':     '0.8px',
 
       // ── Labels ──────────────────────────────────────
       '--color-label':            'var(--accent-primary)',
       '--label-link-decoration':  'none',
-      '--label-link-border':      '1px solid var(--accent-yellow-dim)',
-      '--color-label-link-hover': '#ffffff',
+      '--label-link-border':      'none',
+      '--color-label-link-hover': '#000000',
 
       // ── Icon buttons ────────────────────────────────
       '--color-icon-hover-border': 'var(--accent-primary)',
@@ -265,7 +265,6 @@ window.__BF1_THEMES = [
 
       // ── Copy button ─────────────────────────────────
       '--color-copy-btn-text':         '#000000',
-      '--color-copy-btn-hover-bg':     '#ffffff',
       '--color-copy-btn-hover-shadow': 'transparent',
 
       // ── Info banner ─────────────────────────────────

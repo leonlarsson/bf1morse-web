@@ -180,12 +180,15 @@ body {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
+  gap: 16px;
 }
 
-.header-links { display: flex; gap: 16px; }
+.header-links { display: flex; gap: 16px; margin-right: 6px; }
 
 .header-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   font-size: 12px;
   font-weight: 600;
   font-family: var(--ui-font, var(--font-ui));
@@ -195,7 +198,7 @@ body {
   border-bottom: var(--header-link-border, none);
   letter-spacing: var(--header-link-spacing, 0px);
   text-transform: var(--ui-text-transform, none);
-  transition: color 120ms ease, border-color 120ms ease;
+  transition: color 120ms ease, border-color 120ms ease, background 120ms ease;
 }
 
 .header-link:hover {
@@ -283,7 +286,18 @@ a.field-label,
   text-underline-offset: 3px;
   border-bottom: var(--label-link-border, none);
   cursor: pointer;
-  transition: color 120ms ease, border-color 120ms ease;
+  transition: color 120ms ease, border-color 120ms ease, background 120ms ease;
+}
+
+.header-link::after,
+.stage-field-link::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  background: currentColor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 2.5h9v9m0-9L3 13' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 2.5h9v9m0-9L3 13' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
+  flex-shrink: 0;
 }
 
 a.field-label:hover,
@@ -359,12 +373,6 @@ a.field-label:hover,
   transform: var(--stage-hover-transform, translateY(-1px));
 }
 
-/* Not Marathon adds a border-color on hover that original omits.
-   This is the only [data-theme] rule in the file. */
-[data-theme="not-marathon"] .stage-btn:hover {
-  border-color: var(--accent-primary);
-}
-
 /* Subtle stage-tinted borders (unselected) */
 .stage-btn.stage-1  { border-color: rgba(246, 246, 241, 0.18); }
 .stage-btn.stage-2  { border-color: rgba(187, 174,  50, 0.25); }
@@ -388,6 +396,69 @@ a.field-label:hover,
 .stage-btn.stage-8:has(input:checked)   { background: #b8bc99; color: #1a1a1a; border-color: #b8bc99; box-shadow: 0 0 var(--btn-glow-size, 14px) rgba(184,188,153,0.30); }
 .stage-btn.stage-9:has(input:checked)   { background: #4ae6f3; color: #062020; border-color: #4ae6f3; box-shadow: 0 0 var(--btn-glow-size, 14px) rgba( 74,230,243,0.50); }
 .stage-btn.stage-all:has(input:checked) { background: #c12c20; color: #ffffff; border-color: #c12c20; box-shadow: 0 0 var(--btn-glow-size, 14px) rgba(193, 44, 32,0.50); }
+
+/* ── Not Marathon button overrides ────────────────────
+   Type 1 (Ghost):  white border + text → yellow on hover
+   Type 2 (Filled): yellow bg, black text → inverts on hover */
+
+/* Type 1 — default state */
+[data-theme="not-marathon"] .icon-btn,
+[data-theme="not-marathon"] .toggle-pill {
+  background: transparent;
+  border-color: var(--text-primary);
+  color: var(--text-primary);
+}
+
+/* Type 1 — hover */
+[data-theme="not-marathon"] .icon-btn:hover,
+[data-theme="not-marathon"] .toggle-pill:hover {
+  background: transparent;
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+/* Type 2 — checked */
+[data-theme="not-marathon"] .toggle-pill:has(input:checked) {
+  background: var(--accent-primary);
+  color: #000000;
+  border-color: var(--accent-primary);
+}
+
+/* Type 2 — hover when checked (invert) */
+[data-theme="not-marathon"] .toggle-pill:has(input:checked):hover {
+  background: transparent;
+  color: var(--accent-primary);
+  border-color: var(--accent-primary);
+}
+
+/* Text links — no transition, yellow highlight on hover */
+[data-theme="not-marathon"] .header-link,
+[data-theme="not-marathon"] a.field-label,
+[data-theme="not-marathon"] .stage-field-link {
+  transition: none;
+}
+
+[data-theme="not-marathon"] .header-link:hover,
+[data-theme="not-marathon"] a.field-label:hover,
+[data-theme="not-marathon"] .stage-field-link:hover {
+  background: var(--accent-primary);
+  color: #000000 !important;
+  padding: 1px 4px;
+  margin: -1px -4px;
+}
+
+[data-theme="not-marathon"] .stage-field-link {
+  align-self: flex-start;
+}
+
+/* Type 2 — copy button hover (invert) */
+[data-theme="not-marathon"] .copy-btn:hover {
+  background: transparent;
+  color: var(--accent-primary);
+  border-color: var(--accent-primary);
+  box-shadow: none;
+  transform: none;
+}
 
 /* ── RESULTS PANEL ──────────────────────────────────── */
 .results-panel {
