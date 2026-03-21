@@ -464,17 +464,19 @@ a.field-label:hover,
 /* Text links — no transition, yellow highlight on hover */
 [data-theme="not-marathon"] .header-link,
 [data-theme="not-marathon"] a.field-label,
-[data-theme="not-marathon"] .stage-field-link {
+[data-theme="not-marathon"] .stage-field-link,
+[data-theme="not-marathon"] .status-heading a {
   transition: none;
 }
 
 [data-theme="not-marathon"] .header-link:hover,
 [data-theme="not-marathon"] a.field-label:hover,
-[data-theme="not-marathon"] .stage-field-link:hover {
+[data-theme="not-marathon"] .stage-field-link:hover,
+[data-theme="not-marathon"] .status-heading a:hover {
   background: var(--accent-primary);
   color: #000000 !important;
-  padding: 1px 4px;
-  margin: -1px -4px;
+  padding: 0px 2px;
+  margin: -0px -2px;
 }
 
 [data-theme="not-marathon"] .stage-field-link {
@@ -524,7 +526,23 @@ a.field-label:hover,
   background: rgba(237, 66, 69, 0.05);
 }
 
-.status-heading a { text-decoration: none; font-weight: 500; }
+.status-heading a {
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.status-heading a::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  background: currentColor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 2.5h9v9m0-9L3 13' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 2.5h9v9m0-9L3 13' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
+  flex-shrink: 0;
+}
 
 /* ── RESULTS CONTROLS ───────────────────────────────── */
 .results-controls {
