@@ -401,6 +401,37 @@ a.field-label:hover,
    Type 1 (Ghost):  white border + text → yellow on hover
    Type 2 (Filled): yellow bg, black text → inverts on hover */
 
+/* Stage buttons — stage colors in Marathon style */
+[data-theme="not-marathon"] .stage-btn.stage-1   { --stage-color: #f6f6f1; }
+[data-theme="not-marathon"] .stage-btn.stage-2   { --stage-color: #bbae32; }
+[data-theme="not-marathon"] .stage-btn.stage-3   { --stage-color: #604ff5; }
+[data-theme="not-marathon"] .stage-btn.stage-4   { --stage-color: #55ec58; }
+[data-theme="not-marathon"] .stage-btn.stage-5   { --stage-color: #b4c8ff; }
+[data-theme="not-marathon"] .stage-btn.stage-6   { --stage-color: #be844e; }
+[data-theme="not-marathon"] .stage-btn.stage-7   { --stage-color: #e9c3d9; }
+[data-theme="not-marathon"] .stage-btn.stage-8   { --stage-color: #b8bc99; }
+[data-theme="not-marathon"] .stage-btn.stage-9   { --stage-color: #4ae6f3; }
+[data-theme="not-marathon"] .stage-btn.stage-all { --stage-color: #c12c20; }
+
+[data-theme="not-marathon"] .stage-btn {
+  background: transparent;
+  border-color: color-mix(in srgb, var(--stage-color) 40%, transparent);
+  color: color-mix(in srgb, var(--stage-color) 50%, var(--text-primary));
+}
+
+[data-theme="not-marathon"] .stage-btn:hover {
+  background: var(--stage-color);
+  color: #000000;
+  border-color: var(--stage-color);
+}
+
+[data-theme="not-marathon"] .stage-btn:has(input:checked) {
+  background: var(--stage-color);
+  color: #000000;
+  border-color: var(--stage-color);
+  box-shadow: none;
+}
+
 /* Type 1 — default state */
 [data-theme="not-marathon"] .icon-btn,
 [data-theme="not-marathon"] .toggle-pill {
