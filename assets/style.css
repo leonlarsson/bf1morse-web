@@ -106,7 +106,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.font-monospace { font-family: var(--font-mono) !important; }
+.font-monospace { font-family: var(--ui-font, var(--font-mono)) !important; }
 [hidden]        { display: none !important; }
 
 /* ── AMBIENT GLOW ───────────────────────────────────── */
@@ -299,6 +299,7 @@ a.field-label:hover,
   border: 1.5px solid var(--border-default);
   border-radius: var(--radius-md);
   color: var(--text-primary);
+  font-family: var(--ui-font, var(--font-mono));
   font-size: 14px;
   line-height: 1.5;
   transition: border-color 150ms ease, box-shadow 150ms ease;
