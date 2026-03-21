@@ -26,6 +26,7 @@ const showCardsCheck = document.getElementById("showCardsCheck");
 const noEmbedCheck = document.getElementById("noEmbedCheck");
 const fuzzySearchCheck = document.getElementById("fuzzySearchCheck");
 const resultImage = document.getElementById("resultImage");
+const resultVideo = document.getElementById("resultVideo");
 const cardDisplay = document.getElementById("cardDisplay");
 const fuzzyHintBanner = document.getElementById("fuzzyHintBanner");
 
@@ -76,6 +77,7 @@ export function decode() {
         locationText.innerHTML = "<span style='color: #ed4245'>❌ No matches found</span>";
         matchesText.innerText = "Matches: (0)";
         resultImage.hidden = true;
+        resultVideo.hidden = true;
         cardDisplay.innerHTML = null;
 
         resultsBox.value = "No results. Please check your morse.";
@@ -108,8 +110,8 @@ export function decode() {
         const badge = scores[i] >= 0.85 && scores[i] < 1.0
             ? `<span class="badge bg-warning text-dark ms-1">partial</span>`
             : scores[i] < 0.85
-            ? `<span class="badge bg-secondary ms-1">~fuzzy</span>`
-            : "";
+                ? `<span class="badge bg-secondary ms-1">~fuzzy</span>`
+                : "";
         const cipherDisplay = match.cipher.toLowerCase().includes(input.toLowerCase())
             ? match.cipher.replace(input.toUpperCase(), `<span><mark>${input.toUpperCase()}</mark></span>`)
             : match.cipher;
@@ -133,16 +135,24 @@ export function decode() {
         // Populate locationText
         locationText.innerHTML = `<a style="text-decoration: none; color: #3ba55c" target='_blank' href='${match.locationUrl}'>✅ Found on ${match.mapName} (${match.plainText})</a>`;
 
-        // if match is not stage 9 (YouTube), show image
-        if (match.stage !== 9) {
+        // if match is stage 9 (YouTube), show embedded video; otherwise show image
+        if (match.stage === 9) {
+            const newSrc = `https://www.youtube.com/embed/${new URL(match.locationUrl).searchParams.get("v")}`;
+            if (resultVideo.src !== newSrc) resultVideo.src = newSrc;
+            resultVideo.hidden = showCardsCheck.checked;
+            resultImage.hidden = true;
+        } else {
             resultImage.src = match.locationUrl;
             if (!showCardsCheck.checked) resultImage.hidden = false;
+            resultVideo.src = "";
+            resultVideo.hidden = true;
         }
 
         // If more than 1 match AND not stage 9
     } else if (matches.length > 1 && !document.getElementById("check9").checked) {
         locationText.innerHTML = "⏳ Please input more to find exact location";
         resultImage.hidden = true;
+        resultVideo.hidden = true;
     }
 }
 
@@ -150,4 +160,5 @@ function handleVisiblity() {
     resultsBox.hidden = showCardsCheck.checked;
     cardDisplay.hidden = !showCardsCheck.checked;
     resultImage.hidden = showCardsCheck.checked;
+    // resultVideo is managed only in match-specific code to avoid flashing with stale src
 }

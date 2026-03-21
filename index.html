@@ -6,7 +6,7 @@
   <title>Mozzy's Morse Solver</title>
   <meta name="title" content="Mozzy's Morse Solver">
   <meta name="description" content="A website used for quickly solving 'The Beginning' morse codes from Battlefield 1.">
-  <meta name="theme-color" content="#7289da">
+  <meta name="theme-color" content="#5b86e5">
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
@@ -28,7 +28,21 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <link rel="icon" href="https://leonlarsson.com/favicon.ico" type="image/x-icon">
   <link rel="shortcut icon" href="https://leonlarsson.com/favicon.ico" type="image/x-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <!-- Bootstrap (kept for JS-generated card/badge/alert classes) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+  <!-- Custom styles — after Bootstrap so overrides apply -->
   <link rel="stylesheet" href="assets/style.css">
+
   <script src="assets/js/packages/jmespath.js"></script>
   <script src="assets/js/decoders/bacon.js"></script>
   <script src="assets/js/decoders/util.js"></script>
@@ -36,154 +50,179 @@
   <script src="assets/js/decoders/VigenereCipher-Autokey.js"></script>
   <script src="assets/js/decoders/morse.js"></script>
   <script defer type="module" src="assets/js/main.js"></script>
-
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 
-<body class="no-select">
+<body>
 
-  <div class="container">
+  <div class="app-bg-glow"></div>
 
-    <!-- Title -->
-    <div class="titleContainer d-flex user-select-none">
-      <h1 class="mb-0 flex-grow-1">
-        <a style="text-decoration: none; color: #ed4245" id="titleLink" href="https://twitter.com/MozzyFX"
-          target="_blank" title="A link to Mozzy's Twitter.">Mozzy's</a>
-        <span style="color: #0d6efd">Morse Solver</span>
-      </h1>
+  <div class="app-container">
 
-      <div class="align-self-end text-reset" title="Copy current settings.">
-        <svg id="copySettingsButton" width="30" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-          style="cursor: pointer;">
-          <path
-            d="M448 384H256c-35.3 0-64-28.7-64-64V64c0-35.3 28.7-64 64-64H396.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V320c0 35.3-28.7 64-64 64zM64 128h96v48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H256c8.8 0 16-7.2 16-16V416h48v32c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V192c0-35.3 28.7-64 64-64z"
-            fill="currentColor" />
-        </svg>
+    <!-- ══════════ HEADER ══════════ -->
+    <header class="app-header">
+      <div class="header-brand">
+        <h1 class="app-title">
+          <a id="titleLink" href="https://twitter.com/MozzyFX" target="_blank" title="Mozzy's Twitter">Mozzy's</a>
+          <span>Morse Solver</span>
+        </h1>
+        <p class="app-tagline">Battlefield 1 &middot; The Beginning</p>
       </div>
 
-      <a href="https://github.com/leonlarsson/bf1morse" target="_blank" title="Go to GitHub."
-        class="align-self-end text-reset ms-3">
-        <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-          <path fill-rule="evenodd" clip-rule="evenodd"
-            d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z"
-            fill="currentColor" />
-        </svg>
-      </a>
-
-      <div class="align-self-end ms-3" title="Toggle theme.">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 16 16"
-          style="cursor: pointer;" onclick=toggleTheme()>
-          <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
-        </svg>
+      <div class="header-right">
+        <nav class="header-links">
+          <a class="header-link" href="https://battlefieldstats.com" target="_blank">Battlefield Stats</a>
+          <a class="header-link" href="https://bf1morse-api.leonlarsson.com/?input=fh&stage=8" target="_blank">API</a>
+        </nav>
+        <div class="header-actions">
+          <button id="copySettingsButton" class="icon-btn" title="Copy current settings URL">
+            <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path
+                d="M448 384H256c-35.3 0-64-28.7-64-64V64c0-35.3 28.7-64 64-64H396.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V320c0 35.3-28.7 64-64 64zM64 128h96v48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H256c8.8 0 16-7.2 16-16V416h48v32c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V192c0-35.3 28.7-64 64-64z"
+                fill="currentColor" />
+            </svg>
+          </button>
+          <a href="https://github.com/leonlarsson/bf1morse" target="_blank" class="icon-btn" title="GitHub">
+            <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z"
+                fill="currentColor" />
+            </svg>
+          </a>
+          <button class="icon-btn" onclick="toggleTheme()" title="Toggle theme">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
+            </svg>
+          </button>
+        </div>
       </div>
+    </header>
+
+    <!-- ══════════ SOLVER PANEL ══════════ -->
+    <div class="solver-panel">
+
+      <!-- Input -->
+      <div class="field-group">
+        <label class="field-label" for="inputTextBox">Cipher Input</label>
+        <input type="text" class="field-input decode-trigger font-monospace" id="inputTextBox"
+          placeholder="Enter morse code (·  −) or text here…" autocomplete="off" spellcheck="false">
+      </div>
+
+      <!-- Stage Selector -->
+      <div class="field-group">
+        <a class="field-label stage-field-link" href="https://wiki.bfee.co/BF1/A_Beginning#Stage_1_%E2%80%93_White"
+          target="_blank">Stage</a>
+        <div class="stage-grid">
+          <label class="stage-btn stage-1" title="Stage 1 – White">
+            <input class="decode-trigger" id="check1" type="radio" name="inlineRadioOptions">
+            <span>1</span>
+          </label>
+          <label class="stage-btn stage-2" title="Stage 2 – Yellow">
+            <input class="decode-trigger" id="check2" type="radio" name="inlineRadioOptions">
+            <span>2</span>
+          </label>
+          <label class="stage-btn stage-3" title="Stage 3 – Purple">
+            <input class="decode-trigger" id="check3" type="radio" name="inlineRadioOptions">
+            <span>3</span>
+          </label>
+          <label class="stage-btn stage-4" title="Stage 4 – Green">
+            <input class="decode-trigger" id="check4" type="radio" name="inlineRadioOptions">
+            <span>4</span>
+          </label>
+          <label class="stage-btn stage-5" title="Stage 5 – Clear">
+            <input class="decode-trigger" id="check5" type="radio" name="inlineRadioOptions">
+            <span>5</span>
+          </label>
+          <label class="stage-btn stage-6" title="Stage 6 – Gold">
+            <input class="decode-trigger" id="check6" type="radio" name="inlineRadioOptions">
+            <span>6</span>
+          </label>
+          <label class="stage-btn stage-7" title="Stage 7 – Pink">
+            <input class="decode-trigger" id="check7" type="radio" name="inlineRadioOptions">
+            <span>7</span>
+          </label>
+          <label class="stage-btn stage-8" title="Stage 8 – Lime">
+            <input class="decode-trigger" id="check8" type="radio" name="inlineRadioOptions">
+            <span>8</span>
+          </label>
+          <label class="stage-btn stage-9" title="Stage 9 – Teal">
+            <input class="decode-trigger" id="check9" type="radio" name="inlineRadioOptions">
+            <span>9</span>
+          </label>
+          <label class="stage-btn stage-all" title="All Stages">
+            <input class="decode-trigger" id="check10" type="radio" name="inlineRadioOptions" checked>
+            <span>All</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Output (hidden until stage is selected) -->
+      <div class="field-group" id="output" hidden>
+        <label class="field-label">Decoded Output</label>
+        <input readonly type="text" class="field-input decode-trigger font-monospace" id="outputTextBox"
+          placeholder="Decoded text appears here…">
+      </div>
+
     </div>
 
-    <a class="d-inline-block user-select-none text-decoration-underline link-success"
-      href="https://battlefieldstats.com" target="_blank" title="A link to the Battlefield Stats Discord bot.">
-      Check out the Battlefield Stats Discord bot here!
-    </a>
+    <!-- ══════════ RESULTS PANEL ══════════ -->
+    <div class="results-panel">
 
-    <a class="d-inline-block mb-3 user-select-none text-decoration-underline link-success"
-      href="https://bf1morse-api.leonlarsson.com/?input=fh&stage=8" target="_blank" title="A link to the (unused) API.">
-      API
-    </a>
+      <!-- Status -->
+      <h3 class="status-heading" id="locationText">⏳ Awaiting input…</h3>
 
-    <!-- Input -->
-    <div class="input-group mb-1">
-      <span class="input-group-text">Cipher Morse/Text</span>
-      <input type="text" class="form-control decode-trigger font-monospace" id="inputTextBox"
-        placeholder="Input your morse or text here">
+      <!-- Controls bar: matches count + options -->
+      <div class="results-controls">
+        <span id="matchesText" class="matches-chip">Matches: (0)</span>
+        <div class="controls-group">
+          <label class="toggle-pill decode-trigger" title="Show results as cards">
+            <input type="checkbox" id="showCardsCheck">
+            <span>Cards</span>
+          </label>
+          <label class="toggle-pill decode-trigger" title="Remove Discord embeds from results">
+            <input type="checkbox" id="noEmbedCheck">
+            <span>No embed</span>
+          </label>
+          <label class="toggle-pill decode-trigger" title="Enable fuzzy/partial matching for typos">
+            <input type="checkbox" id="fuzzySearchCheck" checked>
+            <span>Fuzzy</span>
+          </label>
+          <button class="copy-btn" onclick="copyResult()" title="Copy all matches">
+            <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path
+                d="M448 384H256c-35.3 0-64-28.7-64-64V64c0-35.3 28.7-64 64-64H396.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V320c0 35.3-28.7 64-64 64zM64 128h96v48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H256c8.8 0 16-7.2 16-16V416h48v32c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V192c0-35.3 28.7-64 64-64z"
+                fill="currentColor" />
+            </svg>
+            Copy
+          </button>
+        </div>
+      </div>
+
+      <!-- Fuzzy info banner -->
+      <div class="info-banner" id="fuzzyBanner" role="alert">
+        <span><strong>New:</strong> Fuzzy search is enabled by default — it catches typos and partial inputs. Disable it
+          for exact matching only.</span>
+        <button class="banner-dismiss" onclick="document.getElementById('fuzzyBanner').remove()"
+          aria-label="Dismiss">&#x2715;</button>
+      </div>
+      <div id="fuzzyHintBanner"></div>
+
+      <!-- Results textarea -->
+      <textarea class="results-textarea font-monospace" id="resultsBox" readonly
+        placeholder="Matches will appear here. Start typing :)"></textarea>
+
+      <!-- Card view -->
+      <div id="cardDisplay" class="card-display" hidden></div>
+
+      <!-- Single match image (stages 1–8) -->
+      <img hidden class="result-image" id="resultImage">
+
+      <!-- Single match YouTube embed (stage 9) -->
+      <iframe hidden class="result-video" id="resultVideo"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+
     </div>
 
-    <!-- Stage select -->
-    <div class="mb-3">
-      <a class="me-2 h5" style="color: inherit; text-decoration: underline #ed4245;"
-        href="https://wiki.bfee.co/BF1/A_Beginning#Stage_1_%E2%80%93_White"
-        target="_blank">Stage:</a>
-      <div class="form-check form-check-inline" title="Stage 1 - White">
-        <input class="form-check-input decode-trigger" id="check1" type="radio" name="inlineRadioOptions">
-        <label class="form-check-label" for="check1">1</label>
-      </div>
-      <div class="form-check form-check-inline" title="Stage 2 - Yellow">
-        <input class="form-check-input decode-trigger" id="check2" type="radio" name="inlineRadioOptions">
-        <label class="form-check-label" for="check2">2</label>
-      </div>
-      <div class="form-check form-check-inline" title="Stage 3 - Purple">
-        <input class="form-check-input decode-trigger" id="check3" type="radio" name="inlineRadioOptions">
-        <label class="form-check-label" for="check3">3</label>
-      </div>
-      <div class="form-check form-check-inline" title="Stage 4 - Green">
-        <input class="form-check-input decode-trigger" id="check4" type="radio" name="inlineRadioOptions">
-        <label class="form-check-label" for="check4">4</label>
-      </div>
-      <div class="form-check form-check-inline" title="Stage 5 - Clear">
-        <input class="form-check-input decode-trigger" id="check5" type="radio" name="inlineRadioOptions">
-        <label class="form-check-label" for="check5">5</label>
-      </div>
-      <div class="form-check form-check-inline" title="Stage 6 - Gold">
-        <input class="form-check-input decode-trigger" id="check6" type="radio" name="inlineRadioOptions">
-        <label class="form-check-label" for="check6">6</label>
-      </div>
-      <div class="form-check form-check-inline" title="Stage 7 - Pink">
-        <input class="form-check-input decode-trigger" id="check7" type="radio" name="inlineRadioOptions">
-        <label class="form-check-label" for="check7">7</label>
-      </div>
-      <div class="form-check form-check-inline" title="Stage 8 - Lime">
-        <input class="form-check-input decode-trigger" id="check8" type="radio" name="inlineRadioOptions">
-        <label class="form-check-label" for="check8">8</label>
-      </div>
-      <div class="form-check form-check-inline" title="Stage 9 - Teal">
-        <input class="form-check-input decode-trigger" id="check9" type="radio" name="inlineRadioOptions">
-        <label class="form-check-label" for="check9">9</label>
-      </div>
-      <div class="form-check form-check-inline" title="All Stages">
-        <input class="form-check-input decode-trigger" id="check10" type="radio" name="inlineRadioOptions" checked>
-        <label class="form-check-label" for="check10">All</label>
-      </div>
-    </div>
-
-    <!-- Output -->
-    <div hidden class="input-group mb-3" id="output">
-      <span class="input-group-text" id="inputGroup-sizing-default">Output</span>
-      <input readonly type="text" class="form-control decode-trigger font-monospace" id="outputTextBox"
-        placeholder="Please start typing to see decoded text">
-    </div>
-
-    <!-- Status text -->
-    <h3 class="mb-1" id="locationText">⏳ Awaiting input...</h3>
-
-    <!-- Matches list -->
-    <div class="d-flex align-items-center flex-wrap">
-      <span class="flex-grow-1" id="matchesText">Matches:</span>
-      <div class="decode-trigger me-3" title="Show results as cards.">
-        <input class="form-check-input" type="checkbox" id="showCardsCheck">
-        <label class="form-check-label" for="showCardsCheck">Show cards</label>
-      </div>
-      <div class="decode-trigger me-3" title="Remove embeds from Discord messages and cards.">
-        <input class="form-check-input" type="checkbox" id="noEmbedCheck">
-        <label class="form-check-label" for="noEmbedCheck">No embed</label>
-      </div>
-      <div class="decode-trigger me-3" title="Enable fuzzy/partial matching to find near-miss results.">
-        <input class="form-check-input" type="checkbox" id="fuzzySearchCheck" checked>
-        <label class="form-check-label" for="fuzzySearchCheck">Fuzzy search</label>
-      </div>
-      <div class="btn btn-sm btn-primary" onclick=copyResult() title="Copy all Matches.">Copy</div>
-    </div>
-    <div class="alert alert-info alert-dismissible py-1 px-2 mt-1 mb-1 small" role="alert" id="fuzzyBanner">
-      <strong>New:</strong> Experimental fuzzy search is enabled by default — it catches typos and partial inputs. Disable it for exact matching only.
-      <button type="button" class="btn-close btn-sm p-2" onclick="document.getElementById('fuzzyBanner').remove()" aria-label="Close"></button>
-    </div>
-    <div id="fuzzyHintBanner"></div>
-    <div class="form-text">
-      <textarea class="form-control font-monospace" placeholder="Any matches will show here. Start typing :)"
-        id="resultsBox" readonly></textarea>
-    </div>
-
-    <div id="cardDisplay" class="d-flex justify-content-center mt-1 mb-3 flex-wrap gap-2" hidden></div>
-
-    <!-- Image -->
-    <img hidden class="img-fluid my-4" id="resultImage"></img>
   </div>
 
   <script type="module">
@@ -198,7 +237,6 @@
       const currentTheme = htmlElement.getAttribute("data-bs-theme");
       htmlElement.setAttribute("data-bs-theme", currentTheme === "dark" ? "light" : "dark");
     }
-
     function copyResult() {
       navigator.clipboard.writeText(document.getElementById("resultsBox").value);
     }
