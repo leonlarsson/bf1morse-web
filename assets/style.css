@@ -410,7 +410,7 @@ a.field-label:hover,
 [data-theme="not-marathon"] .stage-btn.stage-7   { --stage-color: #e9c3d9; }
 [data-theme="not-marathon"] .stage-btn.stage-8   { --stage-color: #b8bc99; }
 [data-theme="not-marathon"] .stage-btn.stage-9   { --stage-color: #4ae6f3; }
-[data-theme="not-marathon"] .stage-btn.stage-all { --stage-color: #c12c20; }
+[data-theme="not-marathon"] .stage-btn.stage-all { --stage-color: #c0fe04; }
 
 [data-theme="not-marathon"] .stage-btn {
   background: transparent;
