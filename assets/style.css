@@ -494,7 +494,7 @@ a.field-label:hover,
 /* ── RESULTS CONTROLS ───────────────────────────────── */
 .results-controls {
   display: flex;
-  align-items: center;
+  align-items: end;
   justify-content: space-between;
   gap: 6px;
   flex-wrap: wrap;
