@@ -27,6 +27,7 @@ const noEmbedCheck = document.getElementById("noEmbedCheck");
 const fuzzySearchCheck = document.getElementById("fuzzySearchCheck");
 const resultImage = document.getElementById("resultImage");
 const cardDisplay = document.getElementById("cardDisplay");
+const fuzzyHintBanner = document.getElementById("fuzzyHintBanner");
 
 // Add events to each used element. If element is the input box, add the input event
 document.querySelectorAll(".decode-trigger").forEach(element => element === inputTextBox ? element.addEventListener("input", decode) : element.addEventListener("change", decode));
@@ -40,6 +41,7 @@ fuzzySearchCheck.addEventListener("change", () => {
 export function decode() {
 
     handleVisiblity();
+    fuzzyHintBanner.innerHTML = "";
 
     // Define variables
     const input = inputTextBox.value.trim();
@@ -73,10 +75,18 @@ export function decode() {
     if (!matches.length) {
         locationText.innerHTML = "<span style='color: #ed4245'>❌ No matches found</span>";
         matchesText.innerText = "Matches: (0)";
-        resultsBox.value = "No results. Please check your morse.";
-        resultsBox.rows = 1;
         resultImage.hidden = true;
         cardDisplay.innerHTML = null;
+
+        resultsBox.value = "No results. Please check your morse.";
+        resultsBox.rows = 1;
+
+        // If fuzzy is off, check whether enabling it would find anything
+        if (!fuzzySearchCheck.checked && eligible.some(loc => fuzzyScore(input, loc.cipher) >= FUZZY_THRESHOLD)) {
+            fuzzyHintBanner.innerHTML = `<div class="alert alert-warning py-1 px-2 mt-1 mb-1 small" role="alert">💡 No exact match, but <strong>Fuzzy search</strong> found possible matches. <span style="cursor:pointer;text-decoration:underline" onclick="document.getElementById('fuzzySearchCheck').click()">Enable it</span>.</div>`;
+        } else {
+            fuzzyHintBanner.innerHTML = "";
+        }
         return;
     }
 
