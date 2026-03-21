@@ -226,16 +226,16 @@
   </div>
 
   <script type="module">
-    import { populateSettings, copySettings } from "./assets/js/copySettings.js";
-    document.getElementById("copySettingsButton").addEventListener("click", copySettings);
-    populateSettings();
-  </script>
-
-  <script type="module">
     import { initTheme, cycleTheme } from "./assets/js/themes.js";
     initTheme();
     document.getElementById("themeToggleBtn").addEventListener("click", cycleTheme);
-  </script>
+    </script>
+
+    <script type="module">
+      import { populateSettings, copySettings } from "./assets/js/copySettings.js";
+      document.getElementById("copySettingsButton").addEventListener("click", copySettings);
+      populateSettings();
+    </script>
 
   <script>
     function copyResult() {

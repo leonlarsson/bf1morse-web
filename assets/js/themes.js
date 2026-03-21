@@ -52,6 +52,12 @@ export function cycleTheme() {
 /** Sync the theme button label after DOM is ready.
  *  The vars were already applied by themes-data.js before first paint. */
 export function initTheme() {
+  const themeOverride = new URLSearchParams(window.location.search).get('theme');
+  if (themeOverride && THEMES.some(t => t.id === themeOverride)) {
+    applyTheme(themeOverride);
+    return;
+  };
+
   const saved = JSON.parse(localStorage.getItem('theme') || 'null');
   applyTheme(THEMES.some(t => t.id === saved?.key) ? saved.key : DEFAULT_THEME);
 }
