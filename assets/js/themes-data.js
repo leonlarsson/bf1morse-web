@@ -138,8 +138,8 @@ window.__BF1_THEMES = [
     },
   },
   {
-    id: 'light',
-    name: 'Light',
+    id: 'original-light',
+    name: 'Original Light',
     bsTheme: 'light',
     onApply() { __setFavicon('#eef0f5', '#5b86e5'); },
     // Bootstrap handles its own components via data-bs-theme="light".
