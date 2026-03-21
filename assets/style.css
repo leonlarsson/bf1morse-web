@@ -1,10 +1,9 @@
 /* ═══════════════════════════════════════════════════
    MOZZY'S MORSE SOLVER — Design System
    ═══════════════════════════════════════════════════
-   All visual values live in themes.js.
-   This file contains only structure + var() references.
-   The only [data-theme] rule is one hover edge-case
-   at the bottom that cannot be expressed as a var.
+   All visual values live in themes-data.js.
+   This file contains structure, var() references,
+   and [data-theme] overrides for Not Marathon buttons.
    ═══════════════════════════════════════════════════ */
 
 /* ── FONTS ─────────────────────────────────────────── */
