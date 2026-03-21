@@ -7,6 +7,7 @@
  */
 
 export const THEMES = window.__BF1_THEMES;
+const DEFAULT_THEME = 'original';
 
 /** Apply a theme by id, persisting the choice to localStorage. */
 export function applyTheme(id) {
@@ -52,5 +53,5 @@ export function cycleTheme() {
  *  The vars were already applied by themes-data.js before first paint. */
 export function initTheme() {
   const saved = JSON.parse(localStorage.getItem('theme') || 'null');
-  applyTheme(THEMES.some(t => t.id === saved?.key) ? saved.key : 'not-marathon');
+  applyTheme(THEMES.some(t => t.id === saved?.key) ? saved.key : DEFAULT_THEME);
 }

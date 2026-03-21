@@ -292,10 +292,11 @@ window.__BF1_THEMES = [
 // Apply the saved theme immediately — runs synchronously before CSS is parsed,
 // so inline vars are in place before the first paint. No flash.
 {
+  const DEFAULT_THEME = 'original';
   const saved = JSON.parse(localStorage.getItem('theme') || 'null');
   const themes = window.__BF1_THEMES;
   const theme = themes.find(t => t.id === saved?.key)
-             || themes.find(t => t.id === 'not-marathon');
+             || themes.find(t => t.id === DEFAULT_THEME);
   const root = document.documentElement;
   for (const k in theme.vars) root.style.setProperty(k, theme.vars[k]);
   root.setAttribute('data-theme', theme.id);
