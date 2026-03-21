@@ -1,5 +1,8 @@
 import locations from "../locations.js";
 import { performStageOperations } from "./stageOperations.js";
+import { fuzzyScore } from "./search.js";
+
+const FUZZY_THRESHOLD = 0.45;
 
 // Define input
 const inputTextBox = document.getElementById("inputTextBox");
@@ -10,11 +13,17 @@ const matchesText = document.getElementById("matchesText");
 const resultsBox = document.getElementById("resultsBox");
 const showCardsCheck = document.getElementById("showCardsCheck");
 const noEmbedCheck = document.getElementById("noEmbedCheck");
+const fuzzySearchCheck = document.getElementById("fuzzySearchCheck");
 const resultImage = document.getElementById("resultImage");
 const cardDisplay = document.getElementById("cardDisplay");
 
 // Add events to each used element. If element is the input box, add the input event
 document.querySelectorAll(".decode-trigger").forEach(element => element === inputTextBox ? element.addEventListener("input", decode) : element.addEventListener("change", decode));
+
+// Dismiss the fuzzy banner when the user turns fuzzy search off
+fuzzySearchCheck.addEventListener("change", () => {
+    if (!fuzzySearchCheck.checked) document.getElementById("fuzzyBanner")?.remove();
+});
 
 // The main function
 export function decode() {
@@ -31,8 +40,19 @@ export function decode() {
     // Fill the outout text box and return the selected stage (null if All)
     const stage = performStageOperations(input, inputType);
 
-    // Get matches. Takes type, stage 
-    const matches = locations.filter(location => location.type === inputType && (location.stage === stage || stage === null) && location.cipher.toLowerCase().includes(input.toLowerCase()));
+    // Get matches — fuzzy scored when enabled, exact substring when disabled
+    const eligible = locations.filter(loc => loc.type === inputType && (loc.stage === stage || stage === null));
+    const scoredMatches = fuzzySearchCheck.checked
+        ? eligible
+            .map(loc => ({ loc, score: fuzzyScore(input, loc.cipher) }))
+            .filter(({ score }) => score >= FUZZY_THRESHOLD)
+            .sort((a, b) => b.score - a.score)
+        : eligible
+            .filter(loc => loc.cipher.toLowerCase().includes(input.toLowerCase()))
+            .map(loc => ({ loc, score: 1.0 }));
+
+    const matches = scoredMatches.map(({ loc }) => loc);
+    const scores = scoredMatches.map(({ score }) => score);
 
     // If no matches, set the state and return
     if (!matches.length) {
@@ -48,7 +68,10 @@ export function decode() {
     handleVisiblity()
 
     // If there are matches
-    resultsBox.value = matches.map(match => `(Stage ${match.stage}) ${match.plainText}: ${match.mapName} | ${embedSymbols[0]}${match.locationUrl}${embedSymbols[1]}`).join("\n");
+    resultsBox.value = matches.map((match, i) => {
+        const label = scores[i] === 1.0 ? "" : scores[i] >= 0.85 ? " [partial]" : " [~fuzzy]";
+        return `(Stage ${match.stage}) ${match.plainText}: ${match.mapName} | ${embedSymbols[0]}${match.locationUrl}${embedSymbols[1]}${label}`;
+    }).join("\n");
 
     // If we have fewer than 10 matches, set the textarea rows to x matches + 1. +1 to account for smaller screens with wrapping. If 10 or more matches, keep rows at 10
     resultsBox.rows = (matches.length < 10) ? matches.length + 1 : 10;
@@ -56,15 +79,25 @@ export function decode() {
     // Populate "Matches (n):" text
     matchesText.innerText = `Matches: (${matches.length})`;
 
-    cardDisplay.innerHTML = showCardsCheck.checked ? matches.map(match => `
+    cardDisplay.innerHTML = showCardsCheck.checked ? matches.map((match, i) => {
+        const badge = scores[i] >= 0.85 && scores[i] < 1.0
+            ? `<span class="badge bg-warning text-dark ms-1">partial</span>`
+            : scores[i] < 0.85
+            ? `<span class="badge bg-secondary ms-1">~fuzzy</span>`
+            : "";
+        const cipherDisplay = match.cipher.toLowerCase().includes(input.toLowerCase())
+            ? match.cipher.replace(input.toUpperCase(), `<span><mark>${input.toUpperCase()}</mark></span>`)
+            : match.cipher;
+        return `
         <div class="card" style="width: 19rem">
             ${noEmbedCheck.checked || match.stage === 9 ? "" : `<img src="${match.locationUrl}" class="card-image-top" loading="lazy"></img>`}
             <div class="card-body">
                 <h5 class="card-title">${match.plainText}</h5>
-                <h6 class="card-subtitle mb-2 text-body-secondary">Stage ${match.stage} - <a href="${match.locationUrl}" target="_blank" class="card-link">${match.mapName}</a></h6>
-                Cipher: ${match.cipher.replace(input.toUpperCase() || null, `<span><mark>${input.toUpperCase()}</mark></span>`)}
+                <h6 class="card-subtitle mb-2 text-body-secondary">Stage ${match.stage} - <a href="${match.locationUrl}" target="_blank" class="card-link">${match.mapName}</a>${badge}</h6>
+                Cipher: ${cipherDisplay}
             </div>
-        </div>`).join("\n") : null;
+        </div>`;
+    }).join("\n") : null;
 
     // If one match
     if (matches.length === 1) {

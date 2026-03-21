@@ -13,6 +13,7 @@ const check9 = document.getElementById("check9");
 const check10 = document.getElementById("check10");
 const showCardsCheck = document.getElementById("showCardsCheck");
 const noEmbedCheck = document.getElementById("noEmbedCheck");
+const fuzzySearchCheck = document.getElementById("fuzzySearchCheck");
 
 export const populateSettings = () => {
     const searchParams = new URLSearchParams(window.location.search);
@@ -21,6 +22,7 @@ export const populateSettings = () => {
     const stage = searchParams.get("stage");
     const cards = searchParams.get("cards");
     const noEmbed = searchParams.get("noembed");
+    const fuzzy = searchParams.get("fuzzy");
 
     if (input) inputTextBox.value = input;
 
@@ -39,6 +41,7 @@ export const populateSettings = () => {
 
     if (cards) showCardsCheck.checked = true;
     if (noEmbed) noEmbedCheck.checked = true;
+    if (fuzzy === "false") { fuzzySearchCheck.checked = false; document.getElementById("fuzzyBanner")?.remove(); }
 
     if (input || stage || cards) decode();
 
@@ -56,6 +59,7 @@ export const copySettings = () => {
     if (stage) customURL.searchParams.set("stage", stage);
     if (showCardsCheck.checked) customURL.searchParams.set("cards", true);
     if (noEmbedCheck.checked) customURL.searchParams.set("noembed", true);
+    if (!fuzzySearchCheck.checked) customURL.searchParams.set("fuzzy", false);
 
     navigator.clipboard.writeText(customURL.href);
     console.log(`Copied settings URL to clipboard:\nInput: ${input || "N/A"}\nStage: ${stage || "All"}\nURL: ${customURL.href}`);
