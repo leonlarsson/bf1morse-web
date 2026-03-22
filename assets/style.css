@@ -454,10 +454,10 @@ a.field-label:hover,
   border-color: var(--accent-primary);
 }
 
-/* Type 2 — hover when checked (invert) */
-[data-theme="not-marathon"] .toggle-pill:has(input:checked):hover {
-  background: transparent;
-  color: var(--accent-primary);
+/* Type 1 — no hover effect when checked */
+[data-theme="not-marathon"] .toggle-pill:hover:has(input:checked) {
+  background: var(--accent-primary);
+  color: #000000;
   border-color: var(--accent-primary);
 }
 
@@ -585,11 +585,25 @@ a.field-label:hover,
 }
 
 .toggle-pill input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.toggle-pill::before {
+  content: '✕';
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  display: inline-block;
   width: 12px;
-  height: 12px;
-  accent-color: var(--accent-primary);
-  cursor: pointer;
-  flex-shrink: 0;
+  text-align: center;
+}
+
+.toggle-pill:has(input:checked)::before {
+  content: '✓';
 }
 
 .toggle-pill:has(input:checked) {
