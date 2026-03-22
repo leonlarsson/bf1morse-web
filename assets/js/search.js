@@ -1,16 +1,24 @@
-export function levenshtein(a, b) {
+export function levenshtein(a, b, maxDist = Infinity) {
     const m = a.length, n = b.length;
-    const dp = Array.from({ length: m + 1 }, (_, i) => {
-        const row = Array(n + 1).fill(0);
-        row[0] = i;
-        return row;
-    });
-    for (let j = 0; j <= n; j++) dp[0][j] = j;
-    for (let i = 1; i <= m; i++)
-        for (let j = 1; j <= n; j++)
-            dp[i][j] = a[i - 1] === b[j - 1] ? dp[i - 1][j - 1]
-                : 1 + Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]);
-    return dp[m][n];
+    // Quick reject: length difference alone exceeds cap
+    if (Math.abs(m - n) > maxDist) return maxDist + 1;
+    // Two-row DP instead of full matrix
+    let prev = new Array(n + 1);
+    let curr = new Array(n + 1);
+    for (let j = 0; j <= n; j++) prev[j] = j;
+    for (let i = 1; i <= m; i++) {
+        curr[0] = i;
+        let rowMin = i;
+        for (let j = 1; j <= n; j++) {
+            curr[j] = a[i - 1] === b[j - 1] ? prev[j - 1]
+                : 1 + Math.min(prev[j], curr[j - 1], prev[j - 1]);
+            if (curr[j] < rowMin) rowMin = curr[j];
+        }
+        // Every value in this row exceeds the cap — no point continuing
+        if (rowMin > maxDist) return maxDist + 1;
+        [prev, curr] = [curr, prev];
+    }
+    return prev[n];
 }
 
 export function fuzzyScore(query, cipher) {
@@ -53,7 +61,7 @@ export function fuzzyScore(query, cipher) {
         maxDist = 2;
         dist = Infinity;
         for (let i = 0; i <= q.length - c.length; i++) {
-            const d = levenshtein(c, q.slice(i, i + c.length));
+            const d = levenshtein(c, q.slice(i, i + c.length), maxDist);
             if (d < dist) dist = d;
             if (dist === 0) break;
         }
@@ -64,14 +72,14 @@ export function fuzzyScore(query, cipher) {
         maxDist = 2;
         dist = Infinity;
         for (let i = 0; i <= c.length - q.length; i++) {
-            const d = levenshtein(q, c.slice(i, i + q.length));
+            const d = levenshtein(q, c.slice(i, i + q.length), maxDist);
             if (d < dist) dist = d;
             if (dist === 0) break;
         }
     } else {
         // Full-cipher typo search: allow up to 3 edits
         maxDist = 3;
-        dist = levenshtein(q, c);
+        dist = levenshtein(q, c, maxDist);
     }
 
     if (dist <= maxDist) return 1 - dist / Math.max(q.length, c.length);

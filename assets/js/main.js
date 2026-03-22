@@ -30,19 +30,8 @@ const resultVideo = document.getElementById("resultVideo");
 const cardDisplay = document.getElementById("cardDisplay");
 const fuzzyHintBanner = document.getElementById("fuzzyHintBanner");
 
-// Debounce helper — delays fn by ms after the last call
-function debounce(fn, ms) {
-    let timer;
-    return (...args) => { clearTimeout(timer); timer = setTimeout(() => fn(...args), ms); };
-}
-
-// Checkboxes/radios respond immediately; the text input is debounced to avoid
-// running expensive fuzzy scoring on every keystroke while pasting long morse strings
-document.querySelectorAll(".decode-trigger").forEach(element =>
-    element === inputTextBox
-        ? element.addEventListener("input", debounce(decode, 150))
-        : element.addEventListener("change", decode)
-);
+// Add events to each used element. If element is the input box, add the input event
+document.querySelectorAll(".decode-trigger").forEach(element => element === inputTextBox ? element.addEventListener("input", decode) : element.addEventListener("change", decode));
 
 // Dismiss the fuzzy banner when the user turns fuzzy search off
 fuzzySearchCheck.addEventListener("change", () => {
@@ -89,7 +78,7 @@ export function decode() {
         matchesText.innerText = "Matches: (0)";
         resultImage.hidden = true;
         resultVideo.hidden = true;
-        cardDisplay.innerHTML = null;
+        cardDisplay.innerHTML = "";
 
         resultsBox.value = "No results. Please check your morse.";
         resultsBox.rows = 1;
@@ -102,8 +91,6 @@ export function decode() {
         }
         return;
     }
-
-    handleVisiblity()
 
     // If there are matches
     resultsBox.value = matches.map((match, i) => {
