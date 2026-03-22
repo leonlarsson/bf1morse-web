@@ -83,11 +83,13 @@ export function decode() {
         resultsBox.value = "No results. Please check your morse.";
         resultsBox.rows = 1;
 
-        // If fuzzy is off, check whether enabling it would find anything
-        if (!fuzzySearchCheck.checked && eligible.some(loc => fuzzyScore(input, loc.cipher) >= FUZZY_THRESHOLD)) {
-            fuzzyHintBanner.innerHTML = `<div class="alert alert-warning py-1 px-2 mt-1 mb-1 small" role="alert">💡 No exact match, but <strong>Fuzzy search</strong> found possible matches. <span style="cursor:pointer;text-decoration:underline" onclick="document.getElementById('fuzzySearchCheck').click()">Enable it</span>.</div>`;
-        } else {
-            fuzzyHintBanner.innerHTML = "";
+        // If fuzzy is off, check whether enabling it would find anything (deferred to avoid blocking input)
+        if (!fuzzySearchCheck.checked) {
+            setTimeout(() => {
+                if (eligible.some(loc => fuzzyScore(input, loc.cipher) >= FUZZY_THRESHOLD)) {
+                    fuzzyHintBanner.innerHTML = `<div class="alert alert-warning py-1 px-2 mt-1 mb-1 small" role="alert">💡 No exact match, but <strong>Fuzzy search</strong> found possible matches. <span style="cursor:pointer;text-decoration:underline" onclick="document.getElementById('fuzzySearchCheck').click()">Enable it</span>.</div>`;
+                }
+            }, 0);
         }
         return;
     }
