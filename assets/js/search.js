@@ -46,6 +46,9 @@ export function fuzzyScore(query, cipher) {
     let maxDist;
     if (c.length < q.length * 0.75) {
         // Cipher is embedded in a longer input (user pasted full decoded output with a typo).
+        // Tier 1 already handles the exact case; if that missed and the query is very long,
+        // the sliding window becomes too expensive and unlikely to yield useful results.
+        if (q.length > 120) return 0;
         // Slide a cipher-length window over the query; cap at 2 edits.
         maxDist = 2;
         dist = Infinity;

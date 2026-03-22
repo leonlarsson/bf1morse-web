@@ -30,8 +30,19 @@ const resultVideo = document.getElementById("resultVideo");
 const cardDisplay = document.getElementById("cardDisplay");
 const fuzzyHintBanner = document.getElementById("fuzzyHintBanner");
 
-// Add events to each used element. If element is the input box, add the input event
-document.querySelectorAll(".decode-trigger").forEach(element => element === inputTextBox ? element.addEventListener("input", decode) : element.addEventListener("change", decode));
+// Debounce helper — delays fn by ms after the last call
+function debounce(fn, ms) {
+    let timer;
+    return (...args) => { clearTimeout(timer); timer = setTimeout(() => fn(...args), ms); };
+}
+
+// Checkboxes/radios respond immediately; the text input is debounced to avoid
+// running expensive fuzzy scoring on every keystroke while pasting long morse strings
+document.querySelectorAll(".decode-trigger").forEach(element =>
+    element === inputTextBox
+        ? element.addEventListener("input", debounce(decode, 150))
+        : element.addEventListener("change", decode)
+);
 
 // Dismiss the fuzzy banner when the user turns fuzzy search off
 fuzzySearchCheck.addEventListener("change", () => {
