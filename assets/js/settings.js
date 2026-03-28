@@ -15,6 +15,10 @@ const showCardsCheck = document.getElementById("showCardsCheck");
 const noEmbedCheck = document.getElementById("noEmbedCheck");
 const fuzzySearchCheck = document.getElementById("fuzzySearchCheck");
 
+showCardsCheck.addEventListener("change", () => localStorage.setItem("settings_cards", showCardsCheck.checked));
+noEmbedCheck.addEventListener("change", () => localStorage.setItem("settings_noembed", noEmbedCheck.checked));
+fuzzySearchCheck.addEventListener("change", () => localStorage.setItem("settings_fuzzy", fuzzySearchCheck.checked));
+
 export const populateSettings = () => {
     const searchParams = new URLSearchParams(window.location.search);
 
@@ -39,9 +43,15 @@ export const populateSettings = () => {
         if (!stage) check10.checked = true;
     };
 
+    // Load persisted settings from localStorage, then let URL params override
+    if (localStorage.getItem("settings_cards") === "true") showCardsCheck.checked = true;
+    if (localStorage.getItem("settings_noembed") === "true") noEmbedCheck.checked = true;
+    if (localStorage.getItem("settings_fuzzy") === "false") { fuzzySearchCheck.checked = false; document.getElementById("fuzzyBanner")?.remove(); }
+
     if (cards) showCardsCheck.checked = true;
     if (noEmbed) noEmbedCheck.checked = true;
     if (fuzzy === "false") { fuzzySearchCheck.checked = false; document.getElementById("fuzzyBanner")?.remove(); }
+    if (fuzzy === "true") fuzzySearchCheck.checked = true;
 
     if (input || stage || cards) decode();
 

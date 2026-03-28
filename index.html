@@ -92,7 +92,8 @@
                 fill="currentColor" />
             </svg>
           </a>
-          <button id="themeToggleBtn" class="icon-btn theme-btn" title="Switch theme">—</button><script>var _t=JSON.parse(localStorage.getItem('theme')||'null');if(_t&&_t.name)document.getElementById('themeToggleBtn').textContent=_t.name;</script>
+          <button id="themeToggleBtn" class="icon-btn theme-btn" title="Switch theme">—</button>
+          <script>var _t = JSON.parse(localStorage.getItem('theme') || 'null'); if (_t && _t.name) document.getElementById('themeToggleBtn').textContent = _t.name;</script>
         </div>
       </div>
     </header>
@@ -229,13 +230,13 @@
     import { initTheme, cycleTheme } from "./assets/js/themes.js";
     initTheme();
     document.getElementById("themeToggleBtn").addEventListener("click", cycleTheme);
-    </script>
+  </script>
 
-    <script type="module">
-      import { populateSettings, copySettings } from "./assets/js/copySettings.js";
-      document.getElementById("copySettingsButton").addEventListener("click", copySettings);
-      populateSettings();
-    </script>
+  <script type="module">
+    import { populateSettings, copySettings } from "./assets/js/settings.js";
+    document.getElementById("copySettingsButton").addEventListener("click", copySettings);
+    populateSettings();
+  </script>
 
   <script>
     function copyResult() {
