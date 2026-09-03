@@ -97,7 +97,7 @@ export function decode() {
     // If there are matches
     resultsBox.value = matches.map((match, i) => {
         const label = scores[i] === 1.0 ? "" : scores[i] >= 0.85 ? " [partial]" : " [~fuzzy]";
-        return `(Stage ${match.stage}) ${match.plainText}: ${match.mapName} | ${embedSymbols[0]}${match.locationUrl}${embedSymbols[1]}${label}`;
+        return `(Stage ${match.stage}) ${match.plainText}: ${match.mapName} | ${embedSymbols[0]}${match.locationUrl}?v${embedSymbols[1]}${label}`;
     }).join("\n");
 
     // If we have fewer than 10 matches, set the textarea rows to x matches + 1. +1 to account for smaller screens with wrapping. If 10 or more matches, keep rows at 10
